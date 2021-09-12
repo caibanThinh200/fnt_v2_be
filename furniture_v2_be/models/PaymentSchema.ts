@@ -1,7 +1,7 @@
-const TAG_DEFINE = require("../Constant/define");
+import TAG_DEFINE from "../Constant/define";
+import mongoose from "mongoose";
 
-const mongoose = require("mongoose"),
-{Schema} = mongoose;
+const {Schema} = mongoose;
 
 const payments = new Schema({
     name: {

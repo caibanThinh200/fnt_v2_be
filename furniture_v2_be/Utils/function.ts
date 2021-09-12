@@ -1,3 +1,4 @@
+import logger from '../config/logger';
 class CommonFunction {
     static instance: CommonFunction;
     constructor() {
@@ -7,13 +8,13 @@ class CommonFunction {
         return CommonFunction.instance;
     }
 
-    //functions
-    static formatInt(number: any, defaultNum:number = 0) {
-        return isNaN(number) ? defaultNum : (number);
+    // functions
+    static formatInt(numberParams: any, defaultNum:number = 0) {
+        return isNaN(numberParams) ? defaultNum : (numberParams);
     }
 
     static customizeLogger(value: any, colors: any) {
-        return console.log(value[colors]);
+        return logger.info(value[colors]);
     }
 }
 

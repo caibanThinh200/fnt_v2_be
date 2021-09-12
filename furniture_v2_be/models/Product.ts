@@ -1,7 +1,6 @@
 import TAG_DEFINE from "../Constant/define";
-
-const mongoose = require("mongoose"),
-{Schema} = mongoose;
+import mongoose from "mongoose";
+const {Schema} = mongoose;
 
 const Product = new Schema({
     name: {
@@ -11,7 +10,7 @@ const Product = new Schema({
     giftsList: [],
     status: {
         type: String,
-        default: TAG_DEFINE.STATUS.unactive 
+        default: TAG_DEFINE.STATUS.unactive
     },
     created_at: {
         type: Date,

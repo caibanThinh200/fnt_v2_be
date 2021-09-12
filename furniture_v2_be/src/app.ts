@@ -21,7 +21,7 @@ app.get("/", (req: Request, res: Response) => {
     res.send(TAG_DEFINE.SERVICE.start);
 })
 
-const PORT : number = typeof(process.env.PORT_SERVER) !== "number" ? CommonUtils.formatInt(process.env.PORT_SERVER) : process.env.PORT_SERVER; 
+const PORT : number = typeof(process.env.PORT_SERVER) !== "number" ? CommonUtils.formatInt(process.env.PORT_SERVER) : process.env.PORT_SERVER;
 const server: Server = createServer(app)
 server.listen(PORT, () => logger.info(TAG_DEFINE.SERVER.start.replace("%s", PORT.toString())));
 

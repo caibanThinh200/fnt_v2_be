@@ -13,7 +13,7 @@ const typeMessage = (value: any) => {
 }
 
 const loggingMessage = (value: any): string => {
-  let colorMessage: string = colors.black(`(${typeMessage(value)}) Message logged in ${moment(value.timestamp).format("DD-MM-YYYY hh:mm:ss")} \n- ${value.message} - `); 
+  const colorMessage: string = colors.black(`(${typeMessage(value)}) Message logged in ${moment(value.timestamp).format("DD-MM-YYYY hh:mm:ss")} \n- ${value.message} - `);
   if(value.level === `warn`) {
     return colors.bgYellow(colorMessage);
   }
@@ -21,7 +21,7 @@ const loggingMessage = (value: any): string => {
     return colors.bgRed(colorMessage);
   }
   else return colors.bgGreen(colorMessage);
-} 
+}
 
 const logger: any = createLogger({
     format: winston.format.combine(

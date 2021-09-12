@@ -1,10 +1,13 @@
-import TAG_DEFINE from "../Constant/define";
-import GiftsSchema from "./GiftsSchema";
-import mongoose from "mongoose";
-
-const {Schema} = mongoose
-
-const vouchers = new Schema({
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var define_1 = __importDefault(require("../Constant/define"));
+var GiftsSchema_1 = __importDefault(require("./GiftsSchema"));
+var mongoose_1 = __importDefault(require("mongoose"));
+var Schema = mongoose_1.default.Schema;
+var vouchers = new Schema({
     name: {
         type: String,
         required: true
@@ -28,12 +31,12 @@ const vouchers = new Schema({
         default: 0
     },
     gifts: {
-        type: [GiftsSchema],
+        type: [GiftsSchema_1.default],
         default: []
     },
     status: {
         type: String,
-        default: TAG_DEFINE.STATUS.unactive
+        default: define_1.default.STATUS.unactive
     },
     created_at_from: {
         type: Date,
@@ -47,7 +50,6 @@ const vouchers = new Schema({
         type: Date,
         default: null
     }
-})
-
-const VoucherSchema = mongoose.model("Vouchers", vouchers);
-export default VoucherSchema;
+});
+var VoucherSchema = mongoose_1.default.model("Vouchers", vouchers);
+exports.default = VoucherSchema;

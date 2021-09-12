@@ -1,9 +1,9 @@
-const PaymentSchema = require("./PaymentSchema");
-const VoucherSchema = require("./VoucherSchema");
+import PaymentSchema from "./PaymentSchema";
+import VoucherSchema from "./VoucherSchema";
+import TAG_DEFINE from "../Constant/define";
+import mongoose from "mongoose";
 
-const TAG_DEFINE = require("../Constant/define"),
-mongoose = require("mongoose"),
-{Schema} = mongoose;
+const {Schema} = mongoose;
 
 const User = new Schema({
     fullname: {
@@ -35,9 +35,9 @@ const User = new Schema({
         default: []
     },
     bills: {
-        
+
     }
 })
 
-const UserSchema = mongoose.model(TAG_DEFINE.default.SCHEMA.USER, User);
+const UserSchema = mongoose.model(TAG_DEFINE.SCHEMA.USER, User);
 export default UserSchema;
