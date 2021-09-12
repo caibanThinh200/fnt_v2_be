@@ -3,12 +3,19 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var PaymentSchema_1 = __importDefault(require("./PaymentSchema"));
-var VoucherSchema_1 = __importDefault(require("./VoucherSchema"));
-var define_1 = __importDefault(require("../Constant/define"));
-var mongoose_1 = __importDefault(require("mongoose"));
-var Schema = mongoose_1.default.Schema;
-var User = new Schema({
+const define_1 = __importDefault(require("../Constant/define"));
+const mongoose_1 = __importDefault(require("mongoose"));
+const { Schema } = mongoose_1.default;
+const User = new Schema({
+    username: {
+        type: String,
+        required: true,
+        unique: true,
+    },
+    password: {
+        type: String,
+        required: true,
+    },
     fullname: {
         type: String,
         required: true
@@ -19,7 +26,8 @@ var User = new Schema({
     },
     email: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     social: {
         type: String,
@@ -30,14 +38,17 @@ var User = new Schema({
         default: 0
     },
     vouchers: {
-        type: [VoucherSchema_1.default],
+        type: Array,
         default: []
     },
     paymentList: {
-        type: [PaymentSchema_1.default],
+        type: Array,
         default: []
     },
-    bills: {}
+    bills: {
+        type: [],
+        default: []
+    }
 });
-var UserSchema = mongoose_1.default.model(define_1.default.SCHEMA.USER, User);
+const UserSchema = mongoose_1.default.model(define_1.default.SCHEMA.USER, User, 'user');
 exports.default = UserSchema;

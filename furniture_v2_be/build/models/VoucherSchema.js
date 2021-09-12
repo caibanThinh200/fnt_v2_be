@@ -3,11 +3,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var define_1 = __importDefault(require("../Constant/define"));
-var GiftsSchema_1 = __importDefault(require("./GiftsSchema"));
-var mongoose_1 = __importDefault(require("mongoose"));
-var Schema = mongoose_1.default.Schema;
-var vouchers = new Schema({
+const define_1 = __importDefault(require("../Constant/define"));
+const GiftsSchema_1 = __importDefault(require("./GiftsSchema"));
+const mongoose_1 = __importDefault(require("mongoose"));
+const { Schema } = mongoose_1.default;
+const vouchers = new Schema({
     name: {
         type: String,
         required: true
@@ -51,5 +51,5 @@ var vouchers = new Schema({
         default: null
     }
 });
-var VoucherSchema = mongoose_1.default.model("Vouchers", vouchers);
+const VoucherSchema = mongoose_1.default.model("Vouchers", vouchers);
 exports.default = VoucherSchema;

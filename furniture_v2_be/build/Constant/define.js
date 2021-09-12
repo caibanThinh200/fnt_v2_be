@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var TAG_DEFINE = {
+const TAG_DEFINE = {
     SERVER: {
         start: "Server is running on port %s"
     },
