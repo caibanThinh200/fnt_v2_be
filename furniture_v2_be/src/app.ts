@@ -1,13 +1,13 @@
 import express, {Request, Response} from "express";
 import http, { createServer, IncomingMessage, Server, ServerResponse } from "http";
 import dotenv from "dotenv";
-import CommonUtils from "../Utils/function";
-import logger from '../config/logger';
+import CommonUtils from "./Utils/function";
+import logger from './config/logger';
 import colors, { red } from "colors";
-import TAG_DEFINE from '../Constant/define';
-import dataConfig from "../config/mongodb";
-import PATH from '../Constant/url';
-import ProductRoutes from "../Routes/Product.routes";
+import TAG_DEFINE from './Constant/define';
+import dataConfig from "./config/mongodb";
+import PATH from './Constant/url';
+import ProductRoutes from "./Routes/Product.routes";
 import bodyParser from "body-parser";
 
 dataConfig().then((err: any) => {

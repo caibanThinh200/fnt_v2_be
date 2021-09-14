@@ -1,4 +1,4 @@
-import ProductSchema from '../models/ProductSchema';
+import ProductSchema from '../models/Product';
 import logger from '../config/logger';
 import TAG_DEFINE from '../Constant/define';
 import CommonFunction from "../Utils/function";
@@ -26,7 +26,7 @@ class ProductService {
         try {
             const {type} = req.query;
             const product = await ProductSchema.find({type});
-            const productFactory = product.map(item => ProductFactory.getProduct(item, type)); 
+            const productFactory = product.map(item => ProductFactory.getProduct(item, type));
             return productFactory;
         } catch(e) {
             logger.error(e);

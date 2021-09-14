@@ -28,10 +28,8 @@ class ProductService {
     static async GetListProductService(req) {
         try {
             const { type } = req.query;
-            logger_1.default.info(type);
             const product = await ProductSchema_1.default.find({ type });
-            const productFactory = factory_1.ProductFactory.createProduct(product, type);
-            logger_1.default.info(JSON.stringify(productFactory));
+            const productFactory = product.map(item => factory_1.ProductFactory.getProduct(item, type));
             return productFactory;
         }
         catch (e) {

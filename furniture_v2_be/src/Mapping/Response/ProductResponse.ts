@@ -1,5 +1,5 @@
 import { Product } from "../../Factory/interface";
-import logger from '../../config/logger';
+import logger from "../../config/logger";
 
 export abstract class ProductModel implements Product {
     private _id: any;

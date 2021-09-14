@@ -1,9 +1,15 @@
-import TAG_DEFINE from "../Constant/define";
+import TAG_DEFINE from "../../Constant/define";
 import mongoose from "mongoose";
-import GiftsSchema from './GiftsSchema';
+import GiftsSchema from '../GiftsSchema';
+import FurnitureSchema from './furniture';
 const {Schema} = mongoose;
 
-const Product = new Schema({
+let childProduct = {
+    ...FurnitureSchema
+};
+
+let BaseProduct = {
+    ...childProduct,
     name: {
         type: String,
         required: true
@@ -31,8 +37,8 @@ const Product = new Schema({
     updated_at: {
         type: Date,
         default: null
-    }
-})
-
+    },
+};
+const Product = new Schema(BaseProduct);
 const ProductSchema = mongoose.model(TAG_DEFINE.SCHEMA.PRODUCT, Product);
 export default ProductSchema;
