@@ -38,7 +38,21 @@ const TAG_DEFINE = {
     },
     ERROR: {
         start: "Server failed"
+    },
+    RESULT: {
+        200: " thành công",
+        500: " thất bại",
+        DATABASE: {
+            connect: {
+                success: "Connection success",
+                failed: "Connection failed"
+            }
+        },
+        PRODUCT: {
+            create: "Thêm sản phẩm",
+            getList: "Lấy danh sách sản phẩm"
+        }
     }
 }
 
-export default TAG_DEFINE
+export default TAG_DEFINE;

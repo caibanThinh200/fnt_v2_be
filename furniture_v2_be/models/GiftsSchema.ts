@@ -7,7 +7,6 @@ const Gifts = new Schema({
         type: String,
         required: true
     },
-    giftsList: [],
     status: {
         type: String,
         default: TAG_DEFINE.STATUS.unactive
