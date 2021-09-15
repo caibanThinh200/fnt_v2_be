@@ -1,7 +1,7 @@
 import { ProductModel } from '../../../../Mapping/Request/ProductRequest';
 import logger from '../../../../config/logger';
 class FurnitureModel extends ProductModel {
-    private colors: any;
+    private size: any;
 
     constructor(data: any) {
         super(data)
@@ -10,7 +10,7 @@ class FurnitureModel extends ProductModel {
 
     setFurnitureData(data: any) {
         this.setData(data);
-        this.colors = data.colors || "";
+        this.size = data.size || "";
     }
 }
 

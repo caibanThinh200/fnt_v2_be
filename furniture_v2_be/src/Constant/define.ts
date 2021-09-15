@@ -7,7 +7,9 @@ const TAG_DEFINE = {
         VOUCHER: "Voucher",
         GIFT: "Gift",
         PAYMENT: "Payment",
-        PRODUCT: "Product"
+        PRODUCT: "Product",
+        IMAGE: "Image",
+        CATEGORY: "Category"
     },
     SERVICE: {
         start: "WELCOME TO AZP SERVER",
@@ -44,8 +46,8 @@ const TAG_DEFINE = {
         500: " thất bại",
         DATABASE: {
             connect: {
-                success: "Connection success",
-                failed: "Connection failed"
+                success: "Database connection success",
+                failed: "Database connection failed"
             }
         },
         PRODUCT: {

@@ -4,20 +4,31 @@ import GiftsSchema from '../GiftsSchema';
 import FurnitureSchema from './furniture';
 const {Schema} = mongoose;
 
-let childProduct = {
-    ...FurnitureSchema
-};
+export const aaa = {
+    bbb: 123123
+}
 
-let BaseProduct = {
-    ...childProduct,
+export const ProductBaseField = {
     name: {
         type: String,
         required: true
     },
-    // giftsList: {
-    //     type: [GiftsSchema],
-    //     default: []
-    // },
+    description: {
+        type: String,
+        maxLength: 100
+    },
+    quanity: {
+        type: Number,
+        default: 0
+    },
+    saled_count: {
+        type: Number,
+        default: 0
+    },
+    discount_percent: {
+        type: Number,
+        default: 0
+    },
     price: {
         type: Number,
         required: true
@@ -30,6 +41,10 @@ let BaseProduct = {
         required: true,
         type: String,
     },
+    madeIn: {
+        type: String,
+        require: true
+    },
     created_at: {
         type: Date,
         default: Date.now()
@@ -39,6 +54,23 @@ let BaseProduct = {
         default: null
     },
 };
-const Product = new Schema(BaseProduct);
-const ProductSchema = mongoose.model(TAG_DEFINE.SCHEMA.PRODUCT, Product);
-export default ProductSchema;
+
+export const createSchema = (data ,type) => {
+    switch(type) {
+        case "furniture": {
+            const model =  new FurnitureSchema(data);
+            console.log(12312, model)
+            return model;
+        }
+        default: {
+            return new FurnitureSchema(data)
+        }
+    }
+}
+
+export const getSchema = (type) => {
+    switch(type) {
+        case "furniture": return FurnitureSchema
+        default: return FurnitureSchema
+    }
+}
