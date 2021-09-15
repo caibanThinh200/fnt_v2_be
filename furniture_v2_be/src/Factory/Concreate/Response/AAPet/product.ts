@@ -1,4 +1,4 @@
-import { ProductModel } from "../../../../Mapping/Request/ProductRequest";
+import { ProductModel } from "../../../../Mapping/Response/ProductResponse";
 import logger from "../../../../config/logger";
 class AAPetModel extends ProductModel {
     private category_id: string;

@@ -24,7 +24,7 @@ class ProductService {
 
     public static async GetListProductService(req: any) {
         try {
-            const {type} = req.query;
+            const type = req.headers['type'];
             const product = await getSchema(type).find({type});
             const productFactory = product.map(item => ProductFactory.getProduct(item, type));
             return productFactory;
