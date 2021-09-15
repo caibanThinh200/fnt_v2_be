@@ -54,6 +54,10 @@ const TAG_DEFINE = {
             create: "Thêm sản phẩm",
             getList: "Lấy danh sách sản phẩm"
         }
+    },
+    STORE: {
+        FURNITURE: 'furniture',
+        AA_PET: 'aa-pet'
     }
 }
 

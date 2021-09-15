@@ -32,6 +32,6 @@ const FurnitureFields = {
 }
 
 const schema = new Schema(FurnitureFields);
-const FurnitureSchema = model(CommonFunction.getStoreSchema(TAG_DEFINE.SCHEMA.PRODUCT, "furniture"), schema)
+const FurnitureSchema = model(CommonFunction.getStoreSchema(TAG_DEFINE.SCHEMA.PRODUCT, TAG_DEFINE.STORE.FURNITURE), schema)
 
 export default FurnitureSchema;

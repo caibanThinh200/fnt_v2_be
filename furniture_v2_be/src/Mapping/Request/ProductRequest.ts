@@ -1,6 +1,6 @@
 import { Product } from "../../Factory/interface";
-import logger from '../../config/logger';
-import TAG_DEFINE from '../../Constant/define';
+import logger from "../../config/logger";
+import TAG_DEFINE from "../../Constant/define";
 
 export abstract class ProductModel implements Product {
     private _id: any;
@@ -23,46 +23,43 @@ export abstract class ProductModel implements Product {
 export const ProductBaseField = {
     name: {
         type: String,
-        required: true
+        required: true,
     },
     description: {
         type: String,
-        maxLength: 100
+        maxLength: 100,
     },
     quanity: {
         type: Number,
-        default: 0
+        default: 0,
     },
     saled_count: {
         type: Number,
-        default: 0
+        default: 0,
     },
     discount_percent: {
         type: Number,
-        default: 0
+        default: 0,
     },
     price: {
         type: Number,
-        required: true
+        required: true,
     },
     status: {
         type: String,
-        default: TAG_DEFINE.STATUS.unactive
+        default: TAG_DEFINE.STATUS.unactive,
     },
-    type: {
-        required: true,
-        type: String,
-    },
+
     madeIn: {
         type: String,
-        require: true
+        require: true,
     },
     created_at: {
         type: Date,
-        default: Date.now()
+        default: Date.now(),
     },
     updated_at: {
         type: Date,
-        default: null
+        default: null,
     },
 };
