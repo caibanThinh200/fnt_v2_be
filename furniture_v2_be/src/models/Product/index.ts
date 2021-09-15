@@ -58,12 +58,10 @@ export const ProductBaseField = {
 export const createSchema = (data ,type) => {
     switch(type) {
         case "furniture": {
-            const model =  new FurnitureSchema(data);
-            console.log(12312, model)
-            return model;
+            return new FurnitureSchema(data);
         }
         default: {
-            return new FurnitureSchema(data)
+            return new FurnitureSchema(data);
         }
     }
 }
