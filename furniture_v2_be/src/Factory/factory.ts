@@ -1,50 +1,104 @@
 import { generateData } from "./interface";
-import FurnitureRequest from "./Concreate/Request/Furniture/product";
-import FurnitureResponse from "./Concreate/Response/Furniture/product";
-import FurnitureSchema from '../models/Product/furniture';
 
-import AAPetRequest from "./Concreate/Request/AAPet/product";
-import AAPetResponse from "./Concreate/Response/AAPet/product";
+//Furniture 
+import { FurnitureProductRequest, FurnitureUserRequest } from "./Concreate/Furniture/Request/";
+import { FurnitureProductResponse, FurnitureUserResponse } from "./Concreate/Furniture/Response/";
+import FurnitureProductSchema from '../models/Product/furniture';
+import FurnitureUserSchema from '../models/User/furniture'
+
+//AA-PET
+import { AAPetProductRequest, AAPetUserRequest } from "./Concreate/AA-PET/Request/";
+import { AAPetProductResponse, AAPetUserResponse } from "./Concreate/AA-PET/Response/";
+import AAPetProductSchema from '../models/Product/aa-pet'
+import AAPetUserSchema from "../models/User/aa-pet";
+
 import TAG_DEFINE from "../Constant/define";
 
 export class ProductFactory {
     public static createProduct(data: any, type: string): generateData {
         switch(type) {
-            case "furniture": return new FurnitureRequest(data)
-            default : return new FurnitureRequest(data)
+            case TAG_DEFINE.STORE.FURNITURE: return new FurnitureProductRequest(data);
+            case TAG_DEFINE.STORE.AA_PET: return new AAPetProductRequest(data);
+            default : return new FurnitureProductRequest(data);
         }
     }
 
     public static getProduct(data: any, type: string): generateData {
         switch(type) {
             case TAG_DEFINE.STORE.FURNITURE:
-                return new FurnitureRequest(data);
+                return new FurnitureProductResponse(data);
             case TAG_DEFINE.STORE.AA_PET:
-                return new AAPetRequest(data);
+                return new AAPetProductResponse(data);
             default:
-                return new FurnitureRequest(data);
+                return new FurnitureProductResponse(data);
         }
     }
 
     public static createSchema(data ,type) {
         switch (type) {
             case TAG_DEFINE.STORE.FURNITURE:
-                return new FurnitureSchema(data);
-            // case TAG_DEFINE.STORE.AA_PET:
-            //     return new AAPetRequest(data);
+                return new FurnitureProductSchema(data);
+            case TAG_DEFINE.STORE.AA_PET:
+                return new AAPetProductSchema(data);
             default:
-                return new FurnitureSchema(data);
+                return new FurnitureProductSchema(data);
         }
     }
     
     public static getSchema(type) {
         switch (type) {
             case TAG_DEFINE.STORE.FURNITURE:
-                return FurnitureSchema;
-            // case TAG_DEFINE.STORE.AA_PET:
-            //     return AAPetResponse;
+                return FurnitureProductSchema;
+            case TAG_DEFINE.STORE.AA_PET:
+                return AAPetProductSchema;
             default:
-                return FurnitureSchema;
+                return FurnitureProductSchema;
+        }
+    }
+}
+
+export class UserFactory {
+    public static createUser(data: any, type: string): generateData {
+        switch (type) {
+            case TAG_DEFINE.STORE.FURNITURE:
+                return new FurnitureUserRequest(data);
+            case TAG_DEFINE.STORE.AA_PET:
+                return new AAPetUserRequest(data);
+            default:
+                return new FurnitureUserRequest(data);
+        }
+    }
+
+    public static getUser(data: any, type: string): generateData {
+        switch (type) {
+            case TAG_DEFINE.STORE.FURNITURE:
+                return new FurnitureUserResponse(data);
+            case TAG_DEFINE.STORE.AA_PET:
+                return new AAPetUserResponse(data);
+            default:
+                return new FurnitureUserResponse(data);
+        }
+    }
+
+    public static createSchema(data, type) {
+        switch (type) {
+            case TAG_DEFINE.STORE.FURNITURE:
+                return new FurnitureUserSchema(data);
+            case TAG_DEFINE.STORE.AA_PET:
+                return new AAPetUserSchema(data);
+            default:
+                return new FurnitureUserSchema(data);
+        }
+    }
+
+    public static getSchema(type) {
+        switch (type) {
+            case TAG_DEFINE.STORE.FURNITURE:
+                return FurnitureUserSchema;
+            case TAG_DEFINE.STORE.AA_PET:
+                return AAPetUserSchema;
+            default:
+                return FurnitureUserSchema;
         }
     }
 }

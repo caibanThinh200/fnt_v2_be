@@ -1,15 +1,18 @@
 const PATH: any = {
     APP: {
-       start: "/",
-       params: "/:params",
-       404: "*"
+        start: "/",
+        params: "/:params",
+        404: "*",
     },
-    USER: {
-
-    },
+    USER: {},
     PRODUCT: {
-        baseURL: "/product"
-    }
-}
+        baseURL: "/product",
+    },
+    AUTH: {
+        baseURL: "/auth",
+        login: "/login",
+        register: "/register",
+    },
+};
 
 export default PATH;

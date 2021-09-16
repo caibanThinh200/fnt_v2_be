@@ -1,6 +1,6 @@
 const TAG_DEFINE = {
     SERVER: {
-        start: "Server is running on port %s"
+        start: "Server is running on port %s",
     },
     SCHEMA: {
         USER: "User",
@@ -9,7 +9,7 @@ const TAG_DEFINE = {
         PAYMENT: "Payment",
         PRODUCT: "Product",
         IMAGE: "Image",
-        CATEGORY: "Category"
+        CATEGORY: "Category",
     },
     SERVICE: {
         start: "WELCOME TO AZP SERVER",
@@ -21,25 +21,25 @@ const TAG_DEFINE = {
         PAYMENT: {
             cash: "CASH",
             visa: "VISA",
-            momo: "MOMO"
-        }
+            momo: "MOMO",
+        },
     },
     STATUS: {
         active: "active",
         unactive: "unactive",
         sucess: "SUCCESS",
-        failed: "FAILED"
+        failed: "FAILED",
     },
     CODE: {
         PAYMENT: {
             cash: "CA",
             visa: "VS",
-            momo: "MO"
+            momo: "MO",
         },
-        404: "%s not found"
+        404: "%s not found",
     },
     ERROR: {
-        start: "Server failed"
+        start: "Server failed",
     },
     RESULT: {
         200: " thành công",
@@ -47,8 +47,8 @@ const TAG_DEFINE = {
         DATABASE: {
             connect: {
                 success: "Database connection success",
-                failed: "Database connection failed"
-            }
+                failed: "Database connection failed",
+            },
         },
         PRODUCT: {
             create: "Thêm sản phẩm",
@@ -56,11 +56,21 @@ const TAG_DEFINE = {
             update: "Cập nhật sản phẩm",
             getDetail: "Lấy chi tiết sản phẩm",
         },
+        AUTH: {
+            LOGIN: {
+                success: "Đăng nhập thành công",
+                failed: "Đăng nhập",
+            },
+            REGISTER: {
+                success: "Đăng ký thành công",
+                failed: "Đăng ký",
+            },
+        },
     },
     STORE: {
-        FURNITURE: 'furniture',
-        AA_PET: 'aa-pet'
-    }
-}
+        FURNITURE: "furniture",
+        AA_PET: "aa-pet",
+    },
+};
 
 export default TAG_DEFINE;

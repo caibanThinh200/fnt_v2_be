@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import TAG_DEFINE from "../../Constant/define";
 import CommonFunction from "../../Utils/function";
-import {ProductBaseField} from '.././../Mapping/Request/ProductRequest'
+import {ProductBaseField} from './baseField'
 
 const ProductSchema = new mongoose.Schema({
     ...ProductBaseField,

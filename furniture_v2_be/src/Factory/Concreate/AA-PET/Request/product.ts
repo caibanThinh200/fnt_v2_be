@@ -1,6 +1,6 @@
-import { ProductRequest } from "../../../../Mapping/Request/ProductRequest";
+import ProductModel from "../../../../Mapping/Request/ProductRequest";
 import logger from "../../../../config/logger";
-class AAPetModel extends ProductRequest {
+class AAPetModel extends ProductModel {
     private category_id: string;
 
     constructor(data: any) {

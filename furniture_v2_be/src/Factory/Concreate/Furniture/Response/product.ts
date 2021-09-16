@@ -1,6 +1,6 @@
-import { ProductRequest } from '../../../../Mapping/Request/ProductRequest';
-import logger from '../../../../config/logger';
-class FurnitureRequest extends ProductRequest {
+import ProductResponse from "../../../../Mapping/Response/ProductResponse";
+import logger from "../../../../config/logger";
+class FurnitureResponse extends ProductResponse {
     private size: any;
     private productWeight: any;
     private maxWeight: any;
@@ -9,19 +9,19 @@ class FurnitureRequest extends ProductRequest {
     private categories: any;
 
     constructor(data: any) {
-        super(data)
+        super(data);
         this.setFurnitureData(data);
     }
 
     setFurnitureData(data: any) {
         this.setData(data);
         this.size = data.size || "";
-        this.productWeight = data.productWeight || 0;
-        this.maxWeight = data.maxWeight || 0;
+        this.productWeight = data.productWeight || "";
+        this.maxWeight = data.maxWeight || "";
         this.feature = data.feature || "";
-        this.images = data.images || null;
+        this.images = data.images || "";
         this.categories = data.categories || "";
     }
 }
 
-export default FurnitureRequest;
+export default FurnitureResponse;

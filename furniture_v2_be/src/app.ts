@@ -7,8 +7,8 @@ import colors, { red } from "colors";
 import TAG_DEFINE from './Constant/define';
 import dataConfig from "./config/mongodb";
 import PATH from './Constant/url';
-import ProductRoutes from "./Routes/Product.routes";
 import bodyParser from "body-parser";
+import router from './Routes/index.routes'
 
 dataConfig().then((err: any) => {
     if(err) {
@@ -24,7 +24,7 @@ app.use(bodyParser.raw());
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json());
 
-app.use(PATH.PRODUCT.baseURL, ProductRoutes);
+router(app);
 
 app.get(PATH.APP.start, (req: Request, res: Response) => {
     res.send(TAG_DEFINE.SERVICE.start);
