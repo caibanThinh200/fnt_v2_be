@@ -35,11 +35,11 @@ export abstract class ProductRequest implements generateData {
 export const ProductBaseField = {
     name: {
         type: String,
-        required: true
+        required: true,
     },
     description: {
         type: String,
-        maxLength: 100
+        maxLength: 100,
     },
     quantity: {
         type: Number,
@@ -48,30 +48,31 @@ export const ProductBaseField = {
     },
     saled_count: {
         type: Number,
-        default: 0
+        default: 0,
     },
     discount_percent: {
         type: Number,
-        default: 0
+        default: 0,
     },
     price: {
         type: Number,
-        required: true
+        required: true,
     },
     status: {
         type: String,
         default: 0
     },
+
     madeIn: {
         type: String,
-        require: true
+        require: true,
     },
     created_at: {
         type: Date,
-        default: Date.now()
+        default: Date.now(),
     },
     updated_at: {
         type: Date,
-        default: null
+        default: null,
     },
 };
