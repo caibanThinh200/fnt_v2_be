@@ -1,6 +1,6 @@
 import {CategorySchema} from "../Categories/furniture";
 import ImageModel, {ImageSchema} from '../Images/furniture';
-import { ProductBaseField } from '../../Mapping/Request/ProductRequest';
+import { ProductBaseField } from './baseField';
 import { Schema, model } from 'mongoose';
 import TAG_DEFINE from '../../Constant/define';
 import CommonFunction from "../../Utils/function";

@@ -1,6 +1,6 @@
 import { Schema, model } from "mongoose";
 import TAG_DEFINE from '../../Constant/define';
-import { ImageBaseField } from "../../Mapping/Request/UploadRequest";
+import ImageBaseField  from "./baseField";
 
 const FurnitureImageField = {
     ...ImageBaseField

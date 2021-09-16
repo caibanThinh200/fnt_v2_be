@@ -1,11 +1,10 @@
 import { Schema, model } from 'mongoose';
 import TAG_DEFINE from '../../Constant/define';
 import  CategoryBaseField from './baseField';
-import { ImageSchema } from '../Images/furniture';
 import CommonFunction from '../../Utils/function';
 
 
-const FurnitureCategoryField = {
+const AACategoryField = {
     ...CategoryBaseField,
     code: {
         require: true,
@@ -16,7 +15,7 @@ const FurnitureCategoryField = {
     // }
 }
 
-export const CategorySchema = new Schema(FurnitureCategoryField);
+export const CategorySchema = new Schema(AACategoryField);
 
-const CategoryModel = model(CommonFunction.getStoreSchema(TAG_DEFINE.SCHEMA.CATEGORY, TAG_DEFINE.STORE.FURNITURE), CategorySchema);
+const CategoryModel = model(CommonFunction.getStoreSchema(TAG_DEFINE.SCHEMA.CATEGORY, TAG_DEFINE.STORE.AA_PET), CategorySchema);
 export default CategoryModel;

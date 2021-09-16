@@ -1,4 +1,4 @@
-import { ProductRequest } from '../../../../Mapping/Request/ProductRequest';
+import  ProductRequest from '../../../../Mapping/Request/ProductRequest';
 import logger from '../../../../config/logger';
 class FurnitureRequest extends ProductRequest {
     private code: any;

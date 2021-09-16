@@ -16,18 +16,3 @@ export abstract class CategoryRequest implements generateData {
         this.updated_at = data.updated_at || null;
     }
 }
-
-export const CategoryBaseField = {
-    name: {
-        type: String,
-        required: true
-    },
-    created_at: {
-        type: Date,
-        default: Date.now()
-    },
-    updated_at: {
-        type: Date,
-        default: null
-    }
-};

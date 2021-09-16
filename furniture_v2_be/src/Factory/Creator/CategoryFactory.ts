@@ -1,10 +1,10 @@
 import { generateData } from "../interface";
-import FurnitureCategoryRequest from "../Concreate/Request/Furniture/category";
-import FurnitureResponse from "../Concreate/Response/Furniture/category";
+import FurnitureCategoryRequest from "../Concreate/Furniture/Response/category";
+import FurnitureResponse from "../Concreate/Furniture/Response/category";
 import FurnitureSchema from '../../models/Categories/furniture';
 
-import AAPetRequest from "../Concreate/Request/AAPet/product";
-import AAPetResponse from "../Concreate/Response/AAPet/product";
+import AAPetRequest from "../Concreate/AA-PET/Request/category";
+import AAPetResponse from "../Concreate/AA-PET/Response/category";
 import TAG_DEFINE from "../../Constant/define";
 
 export class CategoryFactory {
