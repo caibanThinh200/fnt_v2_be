@@ -29,8 +29,7 @@ export abstract class ProductResponse implements generateData {
         this.discount_percent = data.discount_percent || 0;
         this.price = data.price || 0;
         this.status = data.status || 0;
-        this.name = data.name || "";
-        this.created_at = data.created_at || null;
+        this.created_at = data.created_at || new Date();
         this.updated_at = data.updated_at || null;
     }
 } 

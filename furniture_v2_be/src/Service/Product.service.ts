@@ -1,7 +1,7 @@
 import logger from '../config/logger';
 import TAG_DEFINE from '../Constant/define';
 import CommonFunction from "../Utils/function";
-import { ProductFactory } from '../Factory/factory';
+import { ProductFactory } from '../Factory/Creator/ProductFactory';
 
 
 class ProductService {
@@ -52,10 +52,7 @@ class ProductService {
         try {
             const {type} = req.query || "";
             const {id} = req.params || "";
-            const currentProduct = await ProductFactory.getSchema(type).find({
-                type,
-                _id: id
-            });
+            const currentProduct = await this.GetDetailProductService(req);
             const filters = currentProduct[0] || {};
             const newRequest = {
                 ...currentProduct[0], 

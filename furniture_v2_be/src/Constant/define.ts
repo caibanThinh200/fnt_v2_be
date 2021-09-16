@@ -56,6 +56,12 @@ const TAG_DEFINE = {
             update: "Cập nhật sản phẩm",
             getDetail: "Lấy chi tiết sản phẩm",
         },
+        CATEGORY: {
+            create: "Thêm danh mục",
+            getList: "Lấy danh sách danh mục",
+            update: "Cập nhật danh mục",
+            getDetail: "Lấy chi tiết danh mục",
+        }
     },
     STORE: {
         FURNITURE: 'furniture',

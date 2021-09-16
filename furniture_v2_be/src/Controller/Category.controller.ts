@@ -1,13 +1,13 @@
-import ProductService from '../Service/Product.service';
+import CategoryService from '../Service/Category.service';
 import logger from '../config/logger';
 import TAG_DEFINE from '../Constant/define';
 import CommonFunction from '../Utils/function';
 import {Request, Response} from "express"
 
-class ProductController {
-    public static async AddProductController(req: Request, res: Response) {
+class CategoryController {
+    public static async AddCategoryController(req: Request, res: Response) {
         try {
-            const result = await ProductService.AddProductService(req);
+            const result = await CategoryService.AddCategoryService(req);
             res.status(400).json({
                 status: TAG_DEFINE.STATUS.sucess,
                 error: null,
@@ -19,15 +19,15 @@ class ProductController {
                 status: TAG_DEFINE.STATUS.failed,
                 error: {
                     code: 500,
-                    mesage: CommonFunction.getActionResult(TAG_DEFINE.RESULT.PRODUCT.create, 500)
+                    mesage: CommonFunction.getActionResult(TAG_DEFINE.RESULT.CATEGORY.create, 500)
                 }
             });
         }
     }
 
-    public static async GetListProductController(req: Request, res: Response) {
+    public static async GetListCategoryController(req: Request, res: Response) {
         try {
-            const result = await ProductService.GetListProductService(req);
+            const result = await CategoryService.GetListCategoryService(req);
             res.status(400).json({
                 status: TAG_DEFINE.STATUS.sucess,
                 error: null,
@@ -39,15 +39,15 @@ class ProductController {
                 status: TAG_DEFINE.STATUS.failed,
                 error: {
                     code: 500,
-                    mesage: CommonFunction.getActionResult(TAG_DEFINE.RESULT.PRODUCT.getList, 500)
+                    mesage: CommonFunction.getActionResult(TAG_DEFINE.RESULT.CATEGORY.getList, 500)
                 }
             });
         }
     }
 
-    public static async GetDetailProductController(req: Request, res: Response) {
+    public static async GetDetailCategoryController(req: Request, res: Response) {
         try {
-            const result = await ProductService.GetDetailProductService(req);
+            const result = await CategoryService.GetDetailCategoryService(req);
             res.status(400).json({
                 status: TAG_DEFINE.STATUS.sucess,
                 error: null,
@@ -59,15 +59,15 @@ class ProductController {
                 status: TAG_DEFINE.STATUS.failed,
                 error: {
                     code: 500,
-                    mesage: CommonFunction.getActionResult(TAG_DEFINE.RESULT.PRODUCT.getDetail, 500)
+                    mesage: CommonFunction.getActionResult(TAG_DEFINE.RESULT.CATEGORY.getDetail, 500)
                 }
             });
         }
     }
     
-    public static async UpdateProductController(req: Request, res: Response) {
+    public static async UpdateCategoryController(req: Request, res: Response) {
         try {
-            const result = await ProductService.UpdateProductService(req);
+            const result = await CategoryService.UpdateCategoryService(req);
             res.status(400).json({
                 status: TAG_DEFINE.STATUS.sucess,
                 error: null,
@@ -79,11 +79,11 @@ class ProductController {
                 status: TAG_DEFINE.STATUS.failed,
                 error: {
                     code: 500,
-                    mesage: CommonFunction.getActionResult(TAG_DEFINE.RESULT.PRODUCT.update, 500)
+                    mesage: CommonFunction.getActionResult(TAG_DEFINE.RESULT.CATEGORY.update, 500)
                 }
             });
         }
     }
 }
 
-export default ProductController;
+export default CategoryController;

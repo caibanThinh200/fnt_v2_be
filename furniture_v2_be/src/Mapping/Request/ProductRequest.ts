@@ -27,7 +27,7 @@ export abstract class ProductRequest implements generateData {
         this.discount_percent = data.discount_percent || 0;
         this.price = data.price || 0;
         this.status = data.status || 0;
-        this.created_at = data.created_at || null;
+        this.created_at = data.created_at || Date.now();
         this.updated_at = data.updated_at || null;
     }
 }

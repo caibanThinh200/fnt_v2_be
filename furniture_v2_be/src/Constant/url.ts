@@ -9,6 +9,9 @@ const PATH: any = {
     },
     PRODUCT: {
         baseURL: "/product"
+    },
+    CATEGORY: {
+        baseURL: "/cate"
     }
 }
 

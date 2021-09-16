@@ -1,7 +1,7 @@
 import { generateData } from '../../Factory/interface';
 import TAG_DEFINE from '../../Constant/define';
 
-export abstract class CategoryRequest implements generateData {
+export abstract class CategoryResponse implements generateData {
     private _id: any;
     private name: any;
     private created_at: any;

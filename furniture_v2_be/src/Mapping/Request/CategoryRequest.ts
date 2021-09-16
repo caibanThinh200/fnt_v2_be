@@ -12,7 +12,7 @@ export abstract class CategoryRequest implements generateData {
 
     setData(data: any): void {
         this.name = data.name || "";
-        this.created_at = data.created_at || null;
+        this.created_at = data.created_at || Date.now;
         this.updated_at = data.updated_at || null;
     }
 }
