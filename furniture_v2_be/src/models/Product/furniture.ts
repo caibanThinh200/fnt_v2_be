@@ -1,5 +1,5 @@
-import CategorySchema from "../Categories/index";
-import ImageSchema from '../Images/index';
+import {CategorySchema} from "../Categories/furniture";
+import ImageModel, {ImageSchema} from '../Images/furniture';
 import { ProductBaseField } from '../../Mapping/Request/ProductRequest';
 import { Schema, model } from 'mongoose';
 import TAG_DEFINE from '../../Constant/define';
@@ -25,13 +25,12 @@ const FurnitureFields = {
     // images: {
     //     type: [ImageSchema]
     // },
-    categories: {
-        type: String,
-
-    }
+    // categories: {
+    //     type: [CategorySchema]
+    // }
 }
 
 const schema = new Schema(FurnitureFields);
-const FurnitureSchema = model(CommonFunction.getStoreSchema(TAG_DEFINE.SCHEMA.PRODUCT, "furniture"), schema)
+const FurnitureSchema = model(CommonFunction.getStoreSchema(TAG_DEFINE.SCHEMA.PRODUCT, "furniture"), schema);
 
 export default FurnitureSchema;

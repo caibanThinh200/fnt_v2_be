@@ -1,7 +1,12 @@
-import { ProductModel } from '../../../../Mapping/Request/ProductRequest';
+import { ProductRequest } from '../../../../Mapping/Request/ProductRequest';
 import logger from '../../../../config/logger';
-class FurnitureModel extends ProductModel {
+class FurnitureRequest extends ProductRequest {
     private size: any;
+    private productWeight: any;
+    private maxWeight: any;
+    private feature: any;
+    private images: any;
+    private categories: any;
 
     constructor(data: any) {
         super(data)
@@ -11,7 +16,12 @@ class FurnitureModel extends ProductModel {
     setFurnitureData(data: any) {
         this.setData(data);
         this.size = data.size || "";
+        this.productWeight = data.productWeight || 0;
+        this.maxWeight = data.maxWeight || 0;
+        this.feature = data.feature || "";
+        this.images = data.images || null;
+        this.categories = data.categories || "";
     }
 }
 
-export default FurnitureModel;
+export default FurnitureRequest;

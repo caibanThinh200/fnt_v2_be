@@ -1,13 +1,21 @@
+import { Schema, model } from 'mongoose';
+import TAG_DEFINE from '../../Constant/define';
+import { CategoryBaseField } from '../../Mapping/Request/CategoryRequest';
+import { ImageSchema } from '../Images/furniture';
 
-const FuritureFields = {
+
+const FurnitureCategoryField = {
+    ...CategoryBaseField,
     code: {
-        type: String,
-        require: true
+        require: true,
+        type: String
     },
-    // products: {
-    //     type: [ProductSchema],
-    //     default: []
-    // }
+    image: {
+        type: ImageSchema
+    }
 }
 
-export default FuritureFields;
+export const CategorySchema = new Schema(FurnitureCategoryField);
+
+const CategoryModel = model(TAG_DEFINE.SCHEMA.CATEGORY, CategorySchema);
+export default CategoryModel;

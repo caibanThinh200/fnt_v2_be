@@ -52,8 +52,10 @@ const TAG_DEFINE = {
         },
         PRODUCT: {
             create: "Thêm sản phẩm",
-            getList: "Lấy danh sách sản phẩm"
-        }
+            getList: "Lấy danh sách sản phẩm",
+            update: "Cập nhật sản phẩm",
+            getDetail: "Lấy chi tiết sản phẩm"
+        },
     }
 }
 

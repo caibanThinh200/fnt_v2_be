@@ -1,12 +1,20 @@
-import { Product } from "../../Factory/interface";
+import { generateData } from "../../Factory/interface";
 import logger from "../../config/logger";
 import TAG_DEFINE from '../../Constant/define';
 
-export abstract class ProductModel implements Product {
+export abstract class ProductResponse implements generateData {
     private _id: any;
     private name: any;
+    private description: any;
+    private quantity: any;
+    private saled_count: any;
+    private discount_percent: any;
     private price: any;
+    private status: any;
     private type: any;
+    private madeIn: any;
+    private created_at: any;
+    private updated_at: any;
 
     constructor(data: any) {
         this.setData(data);
@@ -15,54 +23,14 @@ export abstract class ProductModel implements Product {
     setData(data: any): void {
         this._id = data._id.toString() || "";
         this.name = data.name || "";
-        this.type = data.type || "";
+        this.description = data.description || "";
+        this.quantity = data.quantity || 0;
+        this.saled_count = data.saled_count || 0;
+        this.discount_percent = data.discount_percent || 0;
         this.price = data.price || 0;
+        this.status = data.status || 0;
+        this.name = data.name || "";
+        this.created_at = data.created_at || null;
+        this.updated_at = data.updated_at || null;
     }
-}
-
-export const ProductBaseField = {
-    name: {
-        type: String,
-        required: true
-    },
-    description: {
-        type: String,
-        maxLength: 100
-    },
-    quanity: {
-        type: Number,
-        default: 0
-    },
-    saled_count: {
-        type: Number,
-        default: 0
-    },
-    discount_percent: {
-        type: Number,
-        default: 0
-    },
-    price: {
-        type: Number,
-        required: true
-    },
-    status: {
-        type: String,
-        default: TAG_DEFINE.STATUS.unactive
-    },
-    type: {
-        required: true,
-        type: String,
-    },
-    madeIn: {
-        type: String,
-        require: true
-    },
-    created_at: {
-        type: Date,
-        default: Date.now()
-    },
-    updated_at: {
-        type: Date,
-        default: null
-    },
-};
+} 
