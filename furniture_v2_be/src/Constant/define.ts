@@ -10,6 +10,7 @@ const TAG_DEFINE = {
         PRODUCT: "Product",
         IMAGE: "Image",
         CATEGORY: "Category",
+        BILL: 'Bill'
     },
     SERVICE: {
         start: "WELCOME TO AZP SERVER",
@@ -74,6 +75,10 @@ const TAG_DEFINE = {
                 failed: "Đăng ký",
             },
         },
+        BILL: {
+            CREATE: "Tạo hóa đơn",
+            GET_LIST: "Lấy danh sách hóa đơn"
+        }
     },
     STORE: {
         FURNITURE: "furniture",

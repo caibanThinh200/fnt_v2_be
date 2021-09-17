@@ -16,6 +16,9 @@ const PATH: any = {
         login: "/login",
         register: "/register",
     },
+    BILL: {
+        baseURL: "/bill",
+    }
 };
 
 export default PATH;

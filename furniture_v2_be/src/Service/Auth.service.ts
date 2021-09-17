@@ -7,7 +7,7 @@ import jwt from 'jsonwebtoken'
 
 export default class AuthService {
     public static async RegisterService(req: any) {
-        const type = req.headers.type;
+        const type = req.headers['type'];
         try {
             const userFactory = UserFactory.createUser(req.body, type);
             const user = UserFactory.createSchema(userFactory, type);
@@ -34,7 +34,7 @@ export default class AuthService {
     }
 
     public static async LoginService(req: any) {
-        const type = req.headers.type;
+        const type = req.headers['type'];
         const { username, password } = req.body;
         try {
             const existingUser: any = await UserFactory.getSchema(type).findOne({username});
