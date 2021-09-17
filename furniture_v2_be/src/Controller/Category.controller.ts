@@ -48,6 +48,7 @@ class CategoryController {
     public static async GetDetailCategoryController(req: Request, res: Response) {
         try {
             const result = await CategoryService.GetDetailCategoryService(req);
+            console.log(result)
             res.status(400).json({
                 status: TAG_DEFINE.STATUS.sucess,
                 error: null,
@@ -64,7 +65,7 @@ class CategoryController {
             });
         }
     }
-    
+
     public static async UpdateCategoryController(req: Request, res: Response) {
         try {
             const result = await CategoryService.UpdateCategoryService(req);
@@ -80,6 +81,27 @@ class CategoryController {
                 error: {
                     code: 500,
                     mesage: CommonFunction.getActionResult(TAG_DEFINE.RESULT.CATEGORY.update, 500)
+                }
+            });
+        }
+    }
+
+    public static async DeleteCategoryController(req: Request, res: Response){
+        try {
+            const result = await CategoryService.DeleteCategoryService(req);
+            console.log(result);
+            res.status(200).json({
+                status: TAG_DEFINE.STATUS.sucess,
+                error: null,
+                result,
+            });
+        } catch (error) {
+            logger.error(error);
+            res.status(400).json({
+                status: TAG_DEFINE.STATUS.failed,
+                error: {
+                    code: 500,
+                    mesage: CommonFunction.getActionResult(TAG_DEFINE.RESULT.CATEGORY.delete, 500)
                 }
             });
         }

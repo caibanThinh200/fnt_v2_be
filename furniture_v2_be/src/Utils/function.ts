@@ -30,7 +30,7 @@ class CommonFunction {
     static getActionResult(value: string, status: any) {
         return value + TAG_DEFINE.RESULT[status === 200 ? 200 : 500]
     }
-    
+
     static generateJSONObj(value: any) {
         return JSON.parse(JSON.stringify(value));
     }

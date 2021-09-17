@@ -55,17 +55,20 @@ const TAG_DEFINE = {
             getList: "Lấy danh sách sản phẩm",
             update: "Cập nhật sản phẩm",
             getDetail: "Lấy chi tiết sản phẩm",
+            delete: "Xóa sản phẩm"
         },
         CATEGORY: {
             create: "Thêm danh mục",
             getList: "Lấy danh sách danh mục",
             update: "Cập nhật danh mục",
             getDetail: "Lấy chi tiết danh mục",
+            delete: "Xóa danh mục"
         },
         AUTH: {
             LOGIN: {
                 success: "Đăng nhập thành công",
                 failed: "Đăng nhập",
+                
             },
             REGISTER: {
                 success: "Đăng ký thành công",

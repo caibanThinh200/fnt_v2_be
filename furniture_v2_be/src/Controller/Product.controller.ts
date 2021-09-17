@@ -64,7 +64,7 @@ class ProductController {
             });
         }
     }
-    
+
     public static async UpdateProductController(req: Request, res: Response) {
         try {
             const result = await ProductService.UpdateProductService(req);
@@ -80,6 +80,26 @@ class ProductController {
                 error: {
                     code: 500,
                     mesage: CommonFunction.getActionResult(TAG_DEFINE.RESULT.PRODUCT.update, 500)
+                }
+            });
+        }
+    }
+
+    public static async DeleteProductController(req: Request, res: Response){
+        try {
+            const result = await ProductService.DeleteProductService(req);
+            res.status(400).json({
+                status: TAG_DEFINE.STATUS.sucess,
+                error: null,
+                result
+            });
+        } catch(e) {
+            logger.error(e);
+            res.status(400).json({
+                status: TAG_DEFINE.STATUS.failed,
+                error: {
+                    code: 500,
+                    mesage: CommonFunction.getActionResult(TAG_DEFINE.RESULT.PRODUCT.delete, 500)
                 }
             });
         }

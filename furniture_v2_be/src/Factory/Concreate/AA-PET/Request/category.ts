@@ -1,15 +1,13 @@
-import  ProductRequest from '../../../../Mapping/Request/ProductRequest';
+import CategoryRequest from "../../../../Mapping/Request/CategoryRequest";
 import logger from '../../../../config/logger';
-class AAStoreRequest extends ProductRequest {
-
+class AAStoreRequest extends CategoryRequest {
     constructor(data: any) {
-        super(data)
+        super(data);
         this.setAAStoreData(data);
     }
 
     setAAStoreData(data: any) {
         this.setData(data);
-
     }
 }
 

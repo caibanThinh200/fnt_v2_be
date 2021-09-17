@@ -8,7 +8,6 @@ class AuthController {
     public static async Login(req: Request, res: Response) {
         try {
             const result = await AuthService.LoginService(req);
-            console.log(result)
             res.status(200).json({
                 status: TAG_DEFINE.STATUS.sucess,
                 error: null,

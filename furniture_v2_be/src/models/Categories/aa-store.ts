@@ -6,10 +6,6 @@ import CommonFunction from '../../Utils/function';
 
 const AACategoryField = {
     ...CategoryBaseField,
-    code: {
-        require: true,
-        type: String
-    },
     // image: {
     //     type: ImageSchema
     // }

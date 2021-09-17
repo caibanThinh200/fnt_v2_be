@@ -5,6 +5,8 @@ import FurnitureSchema from '../../models/Categories/furniture';
 
 import AAPetRequest from "../Concreate/AA-PET/Request/category";
 import AAPetResponse from "../Concreate/AA-PET/Response/category";
+import AAPetSchema from '../../models/Categories/aa-store';
+
 import TAG_DEFINE from "../../Constant/define";
 
 export class CategoryFactory {
@@ -34,19 +36,19 @@ export class CategoryFactory {
         switch (type) {
             case TAG_DEFINE.STORE.FURNITURE:
                 return new FurnitureSchema(data);
-            // case TAG_DEFINE.STORE.AA_PET:
-            //     return new AAPetRequest(data);
+            case TAG_DEFINE.STORE.AA_PET:
+                return new AAPetSchema(data);
             default:
                 return new FurnitureSchema(data);
         }
     }
-    
+
     public static getSchema(type) {
         switch (type) {
             case TAG_DEFINE.STORE.FURNITURE:
                 return FurnitureSchema;
-            // case TAG_DEFINE.STORE.AA_PET:
-            //     return AAPetResponse;
+            case TAG_DEFINE.STORE.AA_PET:
+                return AAPetSchema;
             default:
                 return FurnitureSchema;
         }

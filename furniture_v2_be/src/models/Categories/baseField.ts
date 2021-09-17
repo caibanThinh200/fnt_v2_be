@@ -1,14 +1,14 @@
 export default {
     name: {
         type: String,
-        required: true
+        required: true,
     },
     created_at: {
         type: Date,
-        default: Date.now()
+        default: Date.now(),
     },
     updated_at: {
         type: Date,
-        default: null
-    }
+        default: null,
+    },
 };
