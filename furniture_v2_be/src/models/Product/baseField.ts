@@ -2,6 +2,7 @@ export const ProductBaseField = {
     name: {
         type: String,
         required: true,
+        unique: true,
     },
     description: {
         type: String,

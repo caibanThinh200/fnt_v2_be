@@ -6,6 +6,15 @@ import mongoose from "mongoose";
 const {Schema} = mongoose;
 
 const User = new Schema({
+    username:{
+        type: String,
+        required: true,
+        unique: true,
+    },
+    password:{
+        type: String,
+        required: true,
+    },
     fullname: {
         type: String,
         required: true
@@ -16,7 +25,8 @@ const User = new Schema({
     },
     email: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     social: {
         type: String,
@@ -27,17 +37,18 @@ const User = new Schema({
         default: 0
     },
     vouchers: {
-        type: [VoucherSchema],
+        type: Array,
         default: []
     },
     paymentList: {
-        type: [PaymentSchema],
+        type: Array,
         default: []
     },
     bills: {
-
+        type: [],
+        default: []
     }
 })
 
-const UserSchema = mongoose.model(TAG_DEFINE.SCHEMA.USER, User);
+const UserSchema = mongoose.model(TAG_DEFINE.SCHEMA.USER, User, 'user');
 export default UserSchema;

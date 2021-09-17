@@ -68,7 +68,6 @@ const TAG_DEFINE = {
             LOGIN: {
                 success: "Đăng nhập thành công",
                 failed: "Đăng nhập",
-                
             },
             REGISTER: {
                 success: "Đăng ký thành công",

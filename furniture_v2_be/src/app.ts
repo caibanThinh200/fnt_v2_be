@@ -39,5 +39,3 @@ const server: Server = createServer(app);
 server.listen(PORT, () => logger.info(TAG_DEFINE.SERVER.start.replace("%s", PORT.toString())));
 
 export default app;
-
-

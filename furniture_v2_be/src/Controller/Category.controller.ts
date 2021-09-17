@@ -48,7 +48,6 @@ class CategoryController {
     public static async GetDetailCategoryController(req: Request, res: Response) {
         try {
             const result = await CategoryService.GetDetailCategoryService(req);
-            console.log(result)
             res.status(400).json({
                 status: TAG_DEFINE.STATUS.sucess,
                 error: null,
