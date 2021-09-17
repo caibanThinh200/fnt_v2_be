@@ -1,5 +1,5 @@
 import { generateData } from "../interface";
-import FurnitureCategoryRequest from "../Concreate/Furniture/Response/category";
+import FurnitureCategoryRequest from "../Concreate/Furniture/Request/category";
 import FurnitureResponse from "../Concreate/Furniture/Response/category";
 import FurnitureSchema from '../../models/Categories/furniture';
 

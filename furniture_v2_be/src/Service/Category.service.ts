@@ -26,7 +26,7 @@ class CategoryService {
         try {
             const type = req.headers['type'];
             const category = await CategoryFactory.getSchema(type).find({type});
-            const categoryFactory = category.map(item => categoryFactory.getcategory(item, type));
+            const categoryFactory = category.map(item => CategoryFactory.getCategory(item, type));
             return categoryFactory;
         } catch(e) {
             logger.error(e);
@@ -52,16 +52,16 @@ class CategoryService {
         try {
             const {type} = req.query || "";
             const {id} = req.params || "";
-            const currentcategory = await this.GetDetailCategoryService(req);
-            const filters = currentcategory[0] || {};
+            const currentCategory = await this.GetDetailCategoryService(req);
+            const filters = currentCategory[0] || {};
             const newRequest = {
-                ...currentcategory[0], 
+                ...currentCategory[0], 
                 ...req.body
             };
-            const updatecategory = CategoryFactory.createCategory(newRequest, req.query);
+            const updateCategory = CategoryFactory.createCategory(newRequest, req.query);
             const updateResult = await CategoryFactory.getSchema(type)
             .find(filters)
-            .updateOne(updatecategory)
+            .updateOne(updateCategory)
             .then(() => CommonFunction.getActionResult(TAG_DEFINE.RESULT.CATEGORY.update, 200))
             .catch((err) => {
                 logger.error(err);
