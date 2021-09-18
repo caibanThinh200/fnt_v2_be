@@ -1,9 +1,10 @@
 import express from 'express';
 import controller from '../Controller/Auth.controller';
+import PATH from '../Constant/url';
 
-const router = express.Router();
+const router = express();
 
-router.post('/login', controller.Login);
-router.post('/register', controller.Register);
+router.post(PATH.AUTH.login, controller.Login)
+router.post(PATH.AUTH.register, controller.Register)
 
 export default router;
