@@ -9,4 +9,6 @@ const Product_controller_1 = __importDefault(require("../Controller/Product.cont
 const route = express_1.default.Router();
 route.post(url_1.default.APP.start, Product_controller_1.default.AddProductController);
 route.get(url_1.default.APP.start, Product_controller_1.default.GetListProductController);
+route.get(url_1.default.APP.params.replace("params", "id"), Product_controller_1.default.GetDetailProductController);
+route.put(url_1.default.APP.params.replace("params", "id"), Product_controller_1.default.UpdateProductController);
 exports.default = route;

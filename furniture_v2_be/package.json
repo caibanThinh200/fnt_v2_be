@@ -4,7 +4,6 @@
   "description": "",
   "main": "/dist/app.js",
   "scripts": {
-    "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
     "build": "tsc",
     "start": "nodemon --exec ts-node src/app.ts",
     "server": "nodemon ./build/app.js",

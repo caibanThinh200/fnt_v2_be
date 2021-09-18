@@ -3,14 +3,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const Product_service_1 = __importDefault(require("../Service/Product.service"));
+const SocialMedia_service_1 = __importDefault(require("../Service/SocialMedia.service"));
 const logger_1 = __importDefault(require("../config/logger"));
 const define_1 = __importDefault(require("../Constant/define"));
 const function_1 = __importDefault(require("../Utils/function"));
-class ProductController {
-    static async AddProductController(req, res) {
+class SocialMediaController {
+    static async AddSocialMediaController(req, res) {
         try {
-            const result = await Product_service_1.default.AddProductService(req);
+            const result = await SocialMedia_service_1.default.AddSocialMediaService(req);
             res.status(200).json({
                 status: define_1.default.STATUS.sucess,
                 error: null,
@@ -23,14 +23,14 @@ class ProductController {
                 status: define_1.default.STATUS.failed,
                 error: {
                     code: 500,
-                    mesage: function_1.default.getActionResult(define_1.default.RESULT.PRODUCT.create, 500)
+                    mesage: function_1.default.getActionResult(define_1.default.RESULT.SOCIAL_MEDIA.create, 500)
                 }
             });
         }
     }
-    static async GetListProductController(req, res) {
+    static async GetListSocialMediaController(req, res) {
         try {
-            const result = await Product_service_1.default.GetListProductService(req);
+            const result = await SocialMedia_service_1.default.GetListSocialMediaService(req);
             res.status(200).json({
                 status: define_1.default.STATUS.sucess,
                 error: null,
@@ -43,14 +43,14 @@ class ProductController {
                 status: define_1.default.STATUS.failed,
                 error: {
                     code: 500,
-                    mesage: function_1.default.getActionResult(define_1.default.RESULT.PRODUCT.getList, 500)
+                    mesage: function_1.default.getActionResult(define_1.default.RESULT.SOCIAL_MEDIA.getList, 500)
                 }
             });
         }
     }
-    static async GetDetailProductController(req, res) {
+    static async GetDetailSocialMediaController(req, res) {
         try {
-            const result = await Product_service_1.default.GetDetailProductService(req);
+            const result = await SocialMedia_service_1.default.GetDetailSocialMediaService(req);
             res.status(200).json({
                 status: define_1.default.STATUS.sucess,
                 error: null,
@@ -63,14 +63,14 @@ class ProductController {
                 status: define_1.default.STATUS.failed,
                 error: {
                     code: 500,
-                    mesage: function_1.default.getActionResult(define_1.default.RESULT.PRODUCT.getDetail, 500)
+                    mesage: function_1.default.getActionResult(define_1.default.RESULT.SOCIAL_MEDIA.getDetail, 500)
                 }
             });
         }
     }
-    static async UpdateProductController(req, res) {
+    static async UpdateSocialMediaController(req, res) {
         try {
-            const result = await Product_service_1.default.UpdateProductService(req);
+            const result = await SocialMedia_service_1.default.UpdateSocialMediaService(req);
             res.status(200).json({
                 status: define_1.default.STATUS.sucess,
                 error: null,
@@ -83,10 +83,10 @@ class ProductController {
                 status: define_1.default.STATUS.failed,
                 error: {
                     code: 500,
-                    mesage: function_1.default.getActionResult(define_1.default.RESULT.PRODUCT.update, 500)
+                    mesage: function_1.default.getActionResult(define_1.default.RESULT.SOCIAL_MEDIA.update, 500)
                 }
             });
         }
     }
 }
-exports.default = ProductController;
+exports.default = SocialMediaController;

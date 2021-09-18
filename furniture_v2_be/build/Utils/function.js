@@ -31,5 +31,8 @@ class CommonFunction {
     static generateJSONObj(value) {
         return JSON.parse(JSON.stringify(value));
     }
+    static getStoreSchema(value, store) {
+        return `${store} ${value}`;
+    }
 }
 exports.default = CommonFunction;

@@ -4,11 +4,24 @@ const PATH = {
     APP: {
         start: "/",
         params: "/:params",
-        404: "*"
+        404: "*",
     },
-    USER: {},
     PRODUCT: {
         baseURL: "/product"
+    },
+    CATEGORY: {
+        baseURL: "/cate"
+    },
+    AUTH: {
+        baseURL: "/auth",
+        login: "/login",
+        register: "/register",
+    },
+    SOCIAL_MEDIA: {
+        baseURL: "/media",
+    },
+    BILL: {
+        baseURL: "/bill"
     }
 };
 exports.default = PATH;
