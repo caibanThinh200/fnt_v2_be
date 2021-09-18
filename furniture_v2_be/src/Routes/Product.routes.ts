@@ -9,6 +9,6 @@ route.post(PATH.APP.start, ProductController.AddProductController);
 route.get(PATH.APP.start, ProductController.GetListProductController);
 route.get(PATH.APP.params.replace("params", "id"), ProductController.GetDetailProductController);
 route.put(PATH.APP.params.replace("params", "id"), ProductController.UpdateProductController);
-route.delete(PATH.APP.params.replace("params", "id"), ProductController.DeleteProductController);
+// route.delete(PATH.APP.params.replace("params", "id"), ProductController.DeleteProductController);
 
 export default route;
