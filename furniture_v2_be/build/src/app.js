@@ -31,7 +31,7 @@ app.get(url_1.default.APP.start, (req, res) => {
 app.get(url_1.default.APP[404], (req, res) => {
     res.send(define_1.default.CODE[404].replace("%s", function_1.default.capitalizeFirstLetter("API")));
 });
-const PORT = typeof (process.env.PORT_SERVER) !== "number" ? function_1.default.formatInt(process.env.PORT_SERVER) : process.env.PORT_SERVER;
+const PORT = typeof (process.env.PORT) !== "number" ? function_1.default.formatInt(process.env.PORT) : process.env.PORT;
 const server = (0, http_1.createServer)(app);
 server.listen(PORT, () => logger_1.default.info(define_1.default.SERVER.start.replace("%s", PORT.toString())));
 exports.default = app;
