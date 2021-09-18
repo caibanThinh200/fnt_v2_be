@@ -8,8 +8,8 @@ class CategoryService {
 
     public static async AddCategoryService(req: any) {
         try {
-            const categoryFactory = CategoryFactory.createCategory(req.body, req.headers['type']);
-            const category = CategoryFactory.createSchema(categoryFactory, req.headers['type'])
+            const categoryFactory = CategoryFactory.createCategory(req.body, req.headers.type);
+            const category = CategoryFactory.createSchema(categoryFactory, req.headers.type)
             const result = await category.save()
             .then(() => CommonFunction.getActionResult(TAG_DEFINE.RESULT.CATEGORY.create, 200))
             .catch(e => {
@@ -24,7 +24,7 @@ class CategoryService {
 
     public static async GetListCategoryService(req: any) {
         try {
-            const type = req.headers['type'];
+            const type = req.headers.type;
             const category = await CategoryFactory.getSchema(type).find({type});
             const categoryFactory = category.map(item => CategoryFactory.getCategory(item, type));
             return categoryFactory;
@@ -55,7 +55,7 @@ class CategoryService {
             const currentcategory = await this.GetDetailCategoryService(req);
             const filters = currentcategory[0] || {};
             const newRequest = {
-                ...currentcategory[0], 
+                ...currentcategory[0],
                 ...req.body
             };
             const updatecategory = CategoryFactory.createCategory(newRequest, req.query);

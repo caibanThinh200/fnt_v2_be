@@ -8,8 +8,8 @@ class SocialMediaService {
 
     public static async AddSocialMediaService(req: any) {
         try {
-            const socialMediaFactory = SocialMediaFactory.createSocialMedia(req.body, req.headers['type']);
-            const socialMedia = SocialMediaFactory.createSchema(socialMediaFactory, req.headers['type'])
+            const socialMediaFactory = SocialMediaFactory.createSocialMedia(req.body, req.headers.type);
+            const socialMedia = SocialMediaFactory.createSchema(socialMediaFactory, req.headers.type)
             const result = await socialMedia.save()
             .then(() => CommonFunction.getActionResult(TAG_DEFINE.RESULT.SOCIAL_MEDIA.create, 200))
             .catch(e => {
@@ -24,7 +24,7 @@ class SocialMediaService {
 
     public static async GetListSocialMediaService(req: any) {
         try {
-            const type = req.headers['type'];
+            const type = req.headers.type;
             const socialMedia = await SocialMediaFactory.getSchema(type).find({type});
             const socialMediaFactory = socialMedia.map(item => SocialMediaFactory.getSocialMedia(item, type));
             return socialMediaFactory;
@@ -55,7 +55,7 @@ class SocialMediaService {
             const currentSocialMedia = await this.GetDetailSocialMediaService(req);
             const filters = currentSocialMedia[0] || {};
             const newRequest = {
-                ...currentSocialMedia[0], 
+                ...currentSocialMedia[0],
                 ...req.body
             };
             const updateSocialMedia = SocialMediaFactory.createSocialMedia(newRequest, req.query);

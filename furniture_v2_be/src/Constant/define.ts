@@ -88,7 +88,7 @@ const TAG_DEFINE = {
             update: "Cập nhật hóa đơn",
             getDetail: "Lấy chi tiết hóa đơn",
         },
-        
+
     },
     STORE: {
         FURNITURE: "Furniture",

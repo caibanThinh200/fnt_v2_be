@@ -1,10 +1,10 @@
-//Furniture
+// Furniture
 import { generateData } from "../interface";
 import FurnitureBillRequest from "../Concreate/Furniture/Request/bill";
 import FurnitureResponse from "../Concreate/Furniture/Response/bill";
 import FurnitureSchema from '../../models/Bill/furniture';
 
-//AA-store
+// AA-store
 // import AAPetRequest from "../Concreate/AA-PET/Request/bill";
 // import AAPetResponse from "../Concreate/AA-PET/Response/bill";
 // import AAPetSchema from "../../models/Categories/aa-store"
@@ -44,7 +44,7 @@ export class BillFactory {
                 return new FurnitureSchema(data);
         }
     }
-    
+
     public static getSchema(type) {
         switch (type) {
             case TAG_DEFINE.STORE.FURNITURE:

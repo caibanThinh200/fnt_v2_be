@@ -64,7 +64,7 @@ class CategoryController {
             });
         }
     }
-    
+
     public static async UpdateCategoryController(req: Request, res: Response) {
         try {
             const result = await CategoryService.UpdateCategoryService(req);

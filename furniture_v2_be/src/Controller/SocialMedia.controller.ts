@@ -64,7 +64,7 @@ class SocialMediaController {
             });
         }
     }
-    
+
     public static async UpdateSocialMediaController(req: Request, res: Response) {
         try {
             const result = await SocialMediaService.UpdateSocialMediaService(req);

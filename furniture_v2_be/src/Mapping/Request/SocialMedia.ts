@@ -7,7 +7,7 @@ export abstract class SocialMediaRequest implements generateData {
     private thumb: any
     private created_at: any;
     private updated_at: any
-// 
+//
     constructor(data: any) {
         this.setData(data);
     }

@@ -32,4 +32,4 @@ export default abstract class ProductResponse implements generateData {
         this.created_at = data.created_at || new Date();
         this.updated_at = data.updated_at || null;
     }
-} 
+}

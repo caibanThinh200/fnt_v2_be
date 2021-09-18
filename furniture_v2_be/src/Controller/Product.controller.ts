@@ -64,7 +64,7 @@ class ProductController {
             });
         }
     }
-    
+
     public static async UpdateProductController(req: Request, res: Response) {
         try {
             const result = await ProductService.UpdateProductService(req);

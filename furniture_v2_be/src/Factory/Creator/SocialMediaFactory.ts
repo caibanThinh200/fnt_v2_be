@@ -1,10 +1,10 @@
-//Furniture
+// Furniture
 import { generateData } from "../interface";
 import FurnitureRequest from "../Concreate/Furniture/Response/social-media";
 import FurnitureResponse from "../Concreate/Furniture/Response/social-media";
 import FurnitureSchema from '../../models/SocialMedia/furniture';
 
-//AA-store
+// AA-store
 import AAPetRequest from "../Concreate/AA-PET/Request/social-media";
 import AAPetResponse from "../Concreate/AA-PET/Response/social-media";
 import AAPetSchema from "../../models/SocialMedia/aa-pets"
@@ -44,7 +44,7 @@ export class SocialMediaFactory {
                 return new FurnitureSchema(data);
         }
     }
-    
+
     public static getSchema(type) {
         switch (type) {
             case TAG_DEFINE.STORE.FURNITURE:
