@@ -28,9 +28,9 @@ app.get(PATH.APP[404], (req: Request, res: Response) => {
     res.send(TAG_DEFINE.CODE[404].replace("%s", CommonUtils.capitalizeFirstLetter("API")));
 });
 
-const PORT : number = typeof(process.env.PORT_SERVER) !== "number" ? CommonUtils.formatInt(process.env.PORT_SERVER) : process.env.PORT_SERVER || 3500;
+const PORT : number = typeof(process.env.PORT_SERVER) !== "number" ? CommonUtils.formatInt(process.env.PORT_SERVER) : process.env.PORT_SERVER;
 const server: Server = createServer(app);
-server.listen(PORT, () => logger.info(TAG_DEFINE.SERVER.start.replace("%s", PORT.toString())));
+server.listen(PORT || 3500, () => logger.info(TAG_DEFINE.SERVER.start.replace("%s", PORT.toString())));
 
 export default app;
 
