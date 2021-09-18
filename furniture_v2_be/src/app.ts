@@ -10,15 +10,9 @@ import PATH from './Constant/url';
 import bodyParser from "body-parser";
 import router from './Routes/index.routes'
 
-dataConfig().then((err: any) => {
-    if(err) {
-        logger.error(TAG_DEFINE.RESULT.DATABASE.connect.failed, err)
-    } else {
-        logger.info(TAG_DEFINE.RESULT.DATABASE.connect.success);
-    }
-});
-
 const app = express();
+
+dataConfig.getInstance();
 
 app.use(bodyParser.raw());
 app.use(bodyParser.urlencoded({extended: false}))

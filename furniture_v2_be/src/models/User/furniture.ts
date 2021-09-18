@@ -14,7 +14,7 @@ interface UserDocument extends mongoose.Document {
     gender: string;
 }
 
-const UserSchema = new Schema({
+export const UserSchema = new Schema({
     ...BaseField,
 });
 

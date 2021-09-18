@@ -4,7 +4,6 @@ const PATH: any = {
         params: "/:params",
         404: "*",
     },
-    USER: {},
     PRODUCT: {
         baseURL: "/product"
     },
@@ -16,6 +15,12 @@ const PATH: any = {
         login: "/login",
         register: "/register",
     },
+    SOCIAL_MEDIA: {
+        baseURL: "/media",
+    },
+    BILL: {
+        baseURL: "/bill"
+    }
 };
 
 export default PATH;

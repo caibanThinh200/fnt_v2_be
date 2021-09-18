@@ -1,29 +1,29 @@
 //Furniture
 import { generateData } from "../interface";
-import FurnitureCategoryRequest from "../Concreate/Furniture/Request/category";
-import FurnitureResponse from "../Concreate/Furniture/Response/category";
-import FurnitureSchema from '../../models/Categories/furniture';
+import FurnitureRequest from "../Concreate/Furniture/Response/social-media";
+import FurnitureResponse from "../Concreate/Furniture/Response/social-media";
+import FurnitureSchema from '../../models/SocialMedia/furniture';
 
 //AA-store
-import AAPetRequest from "../Concreate/AA-PET/Request/category";
-import AAPetResponse from "../Concreate/AA-PET/Response/category";
-import AAPetSchema from "../../models/Categories/aa-store"
+import AAPetRequest from "../Concreate/AA-PET/Request/social-media";
+import AAPetResponse from "../Concreate/AA-PET/Response/social-media";
+import AAPetSchema from "../../models/SocialMedia/aa-pets"
 
 import TAG_DEFINE from "../../Constant/define";
 
-export class CategoryFactory {
-    public static createCategory(data: any, type: string): generateData {
+export class SocialMediaFactory {
+    public static createSocialMedia(data: any, type: string): generateData {
         switch(type) {
             case TAG_DEFINE.STORE.FURNITURE:
-                return new FurnitureCategoryRequest(data);
+                return new FurnitureRequest(data);
             case TAG_DEFINE.STORE.AA_PET:
                 return new AAPetRequest(data);
             default:
-                return new FurnitureCategoryRequest(data);
+                return new FurnitureRequest(data);
         }
     }
 
-    public static getCategory(data: any, type: string): generateData {
+    public static getSocialMedia(data: any, type: string): generateData {
         switch(type) {
             case TAG_DEFINE.STORE.FURNITURE:
                 return new FurnitureResponse(data);

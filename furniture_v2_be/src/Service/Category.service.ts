@@ -26,7 +26,7 @@ class CategoryService {
         try {
             const type = req.headers['type'];
             const category = await CategoryFactory.getSchema(type).find({type});
-            const categoryFactory = category.map(item => categoryFactory.getcategory(item, type));
+            const categoryFactory = category.map(item => CategoryFactory.getCategory(item, type));
             return categoryFactory;
         } catch(e) {
             logger.error(e);

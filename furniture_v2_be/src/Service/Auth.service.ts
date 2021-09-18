@@ -78,4 +78,44 @@ export default class AuthService {
             logger.error(error);
         }
     }
+
+    public static async GetDetailUserService(req: any) {
+        try {
+            const {type} = req.query || "";
+            const {id} = req.params || "";
+            const user = await UserFactory.getSchema(type).find({
+                type,
+                _id: id
+            });
+            const userFactory = user.map(item => UserFactory.getUser(item, type));
+            return userFactory;
+        } catch(e) {
+            logger.error(e);
+        }
+    }
+
+    public static async UpdateUserService(req: any) {
+        try {
+            const {type} = req.query || "";
+            const {id} = req.params || "";
+            const currentUser = await this.GetDetailUserService(req);
+            const filters = currentUser[0] || {};
+            const newRequest = {
+                ...currentUser[0], 
+                ...req.body
+            };
+            const updateUser = UserFactory.createUser(newRequest, req.query);
+            const updateResult = await UserFactory.getSchema(type)
+            .find(filters)
+            .updateOne(updateUser)
+            .then(() => CommonFunction.getActionResult(TAG_DEFINE.RESULT.AUTH.update, 200))
+            .catch((err) => {
+                logger.error(err);
+                return CommonFunction.getActionResult(TAG_DEFINE.RESULT.AUTH.update, 500);
+            })
+            return updateResult;
+        } catch(e) {
+            logger.error(e);
+        }
+    }
 }

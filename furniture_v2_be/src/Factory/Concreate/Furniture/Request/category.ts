@@ -1,6 +1,6 @@
-import  ProductRequest from '../../../../Mapping/Request/ProductRequest';
 import logger from '../../../../config/logger';
-class FurnitureRequest extends ProductRequest {
+import { CategoryRequest } from '../../../../Mapping/Request/CategoryRequest';
+class FurnitureRequest extends CategoryRequest {
     private code: any;
     private image: any;
 

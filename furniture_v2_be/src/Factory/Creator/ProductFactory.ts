@@ -13,8 +13,6 @@ import AAPetProductSchema from '../../models/Product/aa-pet'
 import AAPetUserSchema from "../../models/User/aa-pet";
 import TAG_DEFINE from '../../Constant/define';
 
-
-
 export class ProductFactory {
     public static createProduct(data: any, type: string): generateData {
         switch(type) {

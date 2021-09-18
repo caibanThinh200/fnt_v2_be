@@ -51,7 +51,6 @@ class ProductService {
     public static async UpdateProductService(req: any) {
         try {
             const {type} = req.query || "";
-            const {id} = req.params || "";
             const currentProduct = await this.GetDetailProductService(req);
             const filters = currentProduct[0] || {};
             const newRequest = {
