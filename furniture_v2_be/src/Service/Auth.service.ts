@@ -3,14 +3,22 @@ import TAG_DEFINE from "../Constant/define";
 import CommonFunction from "../Utils/function";
 import { UserFactory } from "../Factory/Creator/UserFactory";
 import bcrypt from "bcrypt";
-import jwt from 'jsonwebtoken'
+import jwt from "jsonwebtoken";
 
 export default class AuthService {
     public static async RegisterService(req: any) {
-        const type = req.headers['type'];
+        const type = req.headers["type"];
         try {
             const userFactory = UserFactory.createUser(req.body, type);
+
+            //hash Password
+            await CommonFunction.hashPassword(userFactory);
+
+            //Validate Gender 
+            CommonFunction.validateGender(userFactory);
+            
             const user = UserFactory.createSchema(userFactory, type);
+
             const result = await user
                 .save()
                 .then(() =>
@@ -34,20 +42,25 @@ export default class AuthService {
     }
 
     public static async LoginService(req: any) {
-        const type = req.headers['type'];
+        const type = req.headers["type"];
         const { username, password } = req.body;
         try {
-            const existingUser: any = await UserFactory.getSchema(type).findOne({username});
-            if (!existingUser){
+            const existingUser: any = await UserFactory.getSchema(type).findOne(
+                { username }
+            );
+            if (!existingUser) {
                 return CommonFunction.getActionResult(
                     TAG_DEFINE.RESULT.AUTH.LOGIN.failed,
                     401
                 );
             }
 
-            const comparePassword = await bcrypt.compare(password, existingUser.password);
+            const comparePassword = await bcrypt.compare(
+                password,
+                existingUser.password
+            );
 
-            if (!comparePassword){
+            if (!comparePassword) {
                 return CommonFunction.getActionResult(
                     TAG_DEFINE.RESULT.AUTH.LOGIN.failed,
                     401
@@ -61,8 +74,8 @@ export default class AuthService {
                     password: undefined,
                 },
                 process.env.SECRET_JWT,
-                {expiresIn: '1 day'}
-            )
+                { expiresIn: "1 day" }
+            );
 
             const result = CommonFunction.getActionResult(
                 TAG_DEFINE.RESULT.AUTH.LOGIN.success,
@@ -72,8 +85,7 @@ export default class AuthService {
             return {
                 result,
                 accessToken: token,
-            }
-
+            };
         } catch (error) {
             logger.error(error);
         }

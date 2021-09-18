@@ -28,7 +28,5 @@ export default  {
     },
     gender: {
         type: String,
-        required: true,
-        default: "Male"
     }
 }

@@ -53,6 +53,8 @@ class ProductService {
             
             const product = await ProductFactory.getSchema(type).findById(id);
 
+            CommonFunction.UpdateTime(product)
+
             lodash.extend(product, body)
 
             const result = await product.save()

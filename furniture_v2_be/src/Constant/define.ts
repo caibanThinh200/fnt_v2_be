@@ -77,7 +77,10 @@ const TAG_DEFINE = {
         },
         BILL: {
             CREATE: "Tạo hóa đơn",
-            GET_LIST: "Lấy danh sách hóa đơn"
+            GET_LIST: "Lấy danh sách hóa đơn",
+            GET_DETAIL: "Lấy hóa đơn",
+            UPDATE: "Cập nhật hóa đơn",
+            DELETE: "Xóa hóa đơn"
         }
     },
     STORE: {

@@ -73,6 +73,8 @@ class CategoryService {
 
             const category = await CategoryFactory.getSchema(type).findOne({_id: id});
 
+            CommonFunction.UpdateTime(category)
+
             lodash.extend(category, body)
 
             const result = await category.save()

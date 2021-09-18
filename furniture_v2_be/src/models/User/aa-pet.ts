@@ -11,25 +11,14 @@ interface UserDocument extends mongoose.Document {
     email: string;
     phone: string;
     address: string;
-    gender: string;
+    gender: number;
 }
 
 const UserSchema = new Schema({
     ...BaseField,
 });
 
-UserSchema.pre("save", async function (next) {
-    const user = this as UserDocument;
-    const salt = await bcrypt.genSalt(10);
-
-    const hash = await bcrypt.hash(user.password, salt);
-
-    user.password = hash;
-
-    return next();
-});
-
-const User = model(
+const User = model<UserDocument>(
     CommonFunction.getStoreSchema(
         TAG_DEFINE.SCHEMA.USER,
         TAG_DEFINE.STORE.AA_PET
