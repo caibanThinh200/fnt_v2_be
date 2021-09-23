@@ -9,6 +9,7 @@ import dataConfig from "./config/mongodb";
 import PATH from './Constant/url';
 import bodyParser from "body-parser";
 import router from './Routes/index.routes'
+import cors from 'cors';
 
 dataConfig().then((err: any) => {
     if(err) {
@@ -23,6 +24,7 @@ const app = express();
 app.use(bodyParser.raw());
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json());
+app.use(cors());
 
 router(app);
 

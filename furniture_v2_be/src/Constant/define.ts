@@ -67,11 +67,13 @@ const TAG_DEFINE = {
         },
         AUTH: {
             LOGIN: {
-                success: "Đăng nhập thành công",
+                success: "Đăng nhập",
                 failed: "Đăng nhập",
+                exist: "Tài khoản không tồn tại",
+                wrong_pass: "Sai mật khẩu",
             },
             REGISTER: {
-                success: "Đăng ký thành công",
+                success: "Đăng ký",
                 failed: "Đăng ký",
             },
         },

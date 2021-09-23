@@ -49,10 +49,7 @@ export default class AuthService {
                 { username }
             );
             if (!existingUser) {
-                return CommonFunction.getActionResult(
-                    TAG_DEFINE.RESULT.AUTH.LOGIN.failed,
-                    401
-                );
+                return TAG_DEFINE.RESULT.AUTH.LOGIN.exist;
             }
 
             const comparePassword = await bcrypt.compare(
@@ -61,10 +58,7 @@ export default class AuthService {
             );
 
             if (!comparePassword) {
-                return CommonFunction.getActionResult(
-                    TAG_DEFINE.RESULT.AUTH.LOGIN.failed,
-                    401
-                );
+                return TAG_DEFINE.RESULT.AUTH.LOGIN.wrong_pass;
             }
 
             // JWT
