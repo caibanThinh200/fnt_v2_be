@@ -1,5 +1,5 @@
 import logger from '../../../../config/logger';
-import { BillRequest } from '../../../../Mapping/Request/BillRequest';
+import BillRequest from '../../../../Mapping/Request/BillRequest';
 import FurnitureUserRequest from "./user";
 import FurnitureProductRequest from "./product";
 class FurnitureRequest extends BillRequest {

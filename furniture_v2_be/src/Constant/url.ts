@@ -10,6 +10,9 @@ const PATH: any = {
     CATEGORY: {
         baseURL: "/cate"
     },
+    CATEGORY_DETAIL: {
+        baseURL: "/cate-detail"
+    },
     AUTH: {
         baseURL: "/auth",
         login: "/login",

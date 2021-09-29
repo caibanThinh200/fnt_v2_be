@@ -43,11 +43,13 @@ export default class AuthService {
 
     public static async LoginService(req: any) {
         const type = req.headers["type"];
+        
         const { username, password } = req.body;
         try {
             const existingUser: any = await UserFactory.getSchema(type).findOne(
                 { username }
             );
+
             if (!existingUser) {
                 return TAG_DEFINE.RESULT.AUTH.LOGIN.exist;
             }

@@ -1,5 +1,5 @@
 import logger from '../../../../config/logger';
-import { CategoryRequest } from '../../../../Mapping/Request/CategoryRequest';
+import CategoryRequest from '../../../../Mapping/Request/CategoryRequest';
 class FurnitureRequest extends CategoryRequest {
     private code: any;
     private image: any;

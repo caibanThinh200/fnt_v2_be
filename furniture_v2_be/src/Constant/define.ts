@@ -10,8 +10,9 @@ const TAG_DEFINE = {
         PRODUCT: "Product",
         IMAGE: "Image",
         CATEGORY: "Category",
+        CATEGORY_DETAIL: "CategoryDetail",
         BILL: "Bill",
-        SOCIAL_MEDIA: "Social media"
+        SOCIAL_MEDIA: "Social media",
     },
     SERVICE: {
         start: "WELCOME TO AZP SERVER",
@@ -57,14 +58,21 @@ const TAG_DEFINE = {
             getList: "Lấy danh sách sản phẩm",
             update: "Cập nhật sản phẩm",
             getDetail: "Lấy chi tiết sản phẩm",
-            delete: "Xóa sản phẩm"
+            delete: "Xóa sản phẩm",
         },
         CATEGORY: {
             create: "Thêm danh mục",
             getList: "Lấy danh sách danh mục",
             update: "Cập nhật danh mục",
             getDetail: "Lấy chi tiết danh mục",
-            delete: "Xóa danh mục"
+            delete: "Xóa danh mục",
+        },
+        CATEGORY_DETAIL: {
+            create: "Thêm chi tiết danh mục",
+            getList: "Lấy danh sách chi tiết danh mục",
+            update: "Cập nhật chi tiết danh mục",
+            getDetail: "Lấy chi tiết danh mục",
+            delete: "Xóa chi tiết danh mục",
         },
         AUTH: {
             getDetail: "Lấy chi tiết tài khoản",
@@ -91,13 +99,12 @@ const TAG_DEFINE = {
             getList: "Lấy danh sách hóa đơn",
             update: "Cập nhật hóa đơn",
             getDetail: "Lấy chi tiết hóa đơn",
-            delete: "Xóa hóa đơn"
+            delete: "Xóa hóa đơn",
         },
-
     },
     STORE: {
         FURNITURE: "Furniture",
-        AA_PET: "AA-pet",
+        AA_PET: "aa-pet",
     },
 };
 

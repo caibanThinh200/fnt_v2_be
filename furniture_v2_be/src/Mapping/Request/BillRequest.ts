@@ -1,7 +1,7 @@
 import { generateData } from '../../Factory/interface';
 import TAG_DEFINE from '../../Constant/define';
 
-export abstract class BillRequest implements generateData {
+export default abstract class BillRequest implements generateData {
     private total: any
     private created_at: any
 
