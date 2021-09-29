@@ -24,7 +24,7 @@ class CategoryService {
     public static async GetListCategoryService(req: any) {
         try {
             const type = req.headers.type;
-            const category = await CategoryFactory.getSchema(type).find({type});
+            const category = await CategoryFactory.getSchema(type).find();
             const categoryFactory = category.map(item => CategoryFactory.getCategory(item, type));
             return categoryFactory;
         } catch(e) {
@@ -37,7 +37,6 @@ class CategoryService {
             const {type} = req.query || "";
             const {id} = req.params || "";
             const category = await CategoryFactory.getSchema(type).find({
-                type,
                 _id: id
             });
             const categoryFactory = category.map(item => CategoryFactory.getCategory(item, type));
