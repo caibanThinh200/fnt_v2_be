@@ -8,8 +8,8 @@ class BillService {
 
     public static async AddBillService(req: any) {
         try {
-            const billFactory = BillFactory.createBill(req.body, req.headers.type);
-            const bill = BillFactory.createSchema(billFactory, req.headers.type)
+            const billFactory = BillFactory.createBill(req.body, req.headers['type']);
+            const bill = BillFactory.createSchema(billFactory, req.headers['type'])
             const result = await bill.save()
             .then(() => CommonFunction.getActionResult(TAG_DEFINE.RESULT.BILL.create, 200))
             .catch(e => {
@@ -24,7 +24,7 @@ class BillService {
 
     public static async GetListBillService(req: any) {
         try {
-            const type = req.headers.type;
+            const type = req.headers['type'];
             const bill = await BillFactory.getSchema(type).find({type});
             const billFactory = bill.map(item => BillFactory.getBill(item, type));
             return billFactory;
@@ -35,7 +35,7 @@ class BillService {
 
     public static async GetDetailBillService(req: any) {
         try {
-            const {type} = req.query || "";
+            const type = req.headers['type'];
             const {id} = req.params || "";
             const bill = await BillFactory.getSchema(type).find({
                 type,

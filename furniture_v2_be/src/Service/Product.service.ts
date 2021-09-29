@@ -8,8 +8,8 @@ class ProductService {
 
     public static async AddProductService(req: any) {
         try {
-            const productFactory = ProductFactory.createProduct(req.body, req.headers.type);
-            const product = ProductFactory.createSchema(productFactory, req.headers.type)
+            const productFactory = ProductFactory.createProduct(req.body, req.headers['type']);
+            const product = ProductFactory.createSchema(productFactory, req.headers['type'])
             const result = await product.save()
             .then(() => CommonFunction.getActionResult(TAG_DEFINE.RESULT.PRODUCT.create, 200))
             .catch(e => {
@@ -24,8 +24,8 @@ class ProductService {
 
     public static async GetListProductService(req: any) {
         try {
-            const type = req.headers.type;
-            const product = await ProductFactory.getSchema(type).find({type});
+            const type = req.headers['type'];
+            const product = await ProductFactory.getSchema(type).find({});
             const productFactory = product.map(item => ProductFactory.getProduct(item, type));
             return productFactory;
         } catch(e) {
@@ -47,7 +47,7 @@ class ProductService {
 
     public static async UpdateProductService(req: any) {
         try {
-            const {type} = req.query || "";
+            const type = req.headers["type"];
             const currentProduct = await this.GetDetailProductService(req);
             const filters = currentProduct[0] || {};
             const newRequest = {
