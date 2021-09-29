@@ -8,7 +8,8 @@ const AACategoryField = {
     ...CategoryBaseField,
     code: {
         require: true,
-        type: String
+        type: String,
+        ref: "Categories"
     },
     // image: {
     //     type: ImageSchema

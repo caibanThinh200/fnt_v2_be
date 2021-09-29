@@ -1,7 +1,7 @@
 import logger from '../../../../Config/logger';
-import { SocialMediaRequest } from '../../../../Mapping/Request/SocialMedia';
-class FurnitureRequest extends SocialMediaRequest {
-
+import { AccessoryRequest } from '../../../../Mapping/Request/AcessoryRequest';
+class FurnitureRequest extends AccessoryRequest {
+    private color: any;
     constructor(data: any) {
         super(data)
         this.setFurnitureData(data);
@@ -9,6 +9,7 @@ class FurnitureRequest extends SocialMediaRequest {
 
     setFurnitureData(data: any) {
         this.setData(data);
+        this.color = data.color || [];
     }
 }
 

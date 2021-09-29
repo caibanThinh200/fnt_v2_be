@@ -1,5 +1,5 @@
 import  {CategoryRequest}from '../../../../Mapping/Request/CategoryRequest';
-import logger from '../../../../config/logger';
+import logger from '../../../../Config/logger';
 class AAStoreRequest extends CategoryRequest {
 
     constructor(data: any) {

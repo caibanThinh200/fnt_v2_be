@@ -16,6 +16,11 @@ interface UserDocument extends mongoose.Document {
 
 const UserSchema = new Schema({
     ...BaseField,
+    username: {
+        type: String,
+        required: true,
+        unique: true,
+    },
 });
 
 UserSchema.pre("save", async function (next) {
@@ -29,7 +34,7 @@ UserSchema.pre("save", async function (next) {
     return next();
 });
 
-const User = model(
+const UserModel = model(
     CommonFunction.getStoreSchema(
         TAG_DEFINE.SCHEMA.USER,
         TAG_DEFINE.STORE.AA_PET
@@ -37,4 +42,4 @@ const User = model(
     UserSchema
 );
 
-export default User;
+export default UserModel;

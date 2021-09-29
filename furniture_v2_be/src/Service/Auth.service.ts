@@ -1,15 +1,16 @@
-import logger from "../config/logger";
+import logger from "../Config/logger";
 import TAG_DEFINE from "../Constant/define";
 import CommonFunction from "../Utils/function";
 import { UserFactory } from "../Factory/Creator/UserFactory";
 import bcrypt from "bcrypt";
 import jwt from 'jsonwebtoken'
+import e, { Request } from "express";
 
 export default class AuthService {
     public static async RegisterService(req: any) {
-        const type = req.headers.type;
+        const type = req.headers["type"];
         try {
-            const userFactory = UserFactory.createUser(req.body, type);
+            const userFactory = UserFactory.createUser(req.body, CommonFunction.capitalizeFirstLetter(type));
             const user = UserFactory.createSchema(userFactory, type);
             const result = await user
                 .save()
@@ -35,45 +36,33 @@ export default class AuthService {
 
     public static async LoginService(req: any) {
         const type = req.headers.type;
-        const { username, password } = req.body;
+        const { email, password } = req.body;
         try {
-            const existingUser: any = await UserFactory.getSchema(type).findOne({username});
-            if (!existingUser){
+            const existingUser: any = await UserFactory.getSchema(type).findOne({email});
+            const comparePassword = await existingUser && bcrypt.compare(password, existingUser?.password);
+            if (!existingUser || !comparePassword) {
                 return CommonFunction.getActionResult(
                     TAG_DEFINE.RESULT.AUTH.LOGIN.failed,
-                    401
+                    500
                 );
-            }
-
-            const comparePassword = await bcrypt.compare(password, existingUser.password);
-
-            if (!comparePassword){
-                return CommonFunction.getActionResult(
-                    TAG_DEFINE.RESULT.AUTH.LOGIN.failed,
-                    401
+            } else {
+                // JWT
+                const token = jwt.sign(
+                    {
+                        _id: existingUser._id
+                    },
+                    process.env.SECRET_JWT,
+                    {expiresIn: '1 day'}
+                )
+                const result = CommonFunction.getActionResult(
+                    TAG_DEFINE.RESULT.AUTH.LOGIN.success,
+                    200
                 );
+                return {
+                    result,
+                    accessToken: token,
+                }
             }
-
-            // JWT
-            const token = jwt.sign(
-                {
-                    ...existingUser._doc,
-                    password: undefined,
-                },
-                process.env.SECRET_JWT,
-                {expiresIn: '1 day'}
-            )
-
-            const result = CommonFunction.getActionResult(
-                TAG_DEFINE.RESULT.AUTH.LOGIN.success,
-                200
-            );
-
-            return {
-                result,
-                accessToken: token,
-            }
-
         } catch (error) {
             logger.error(error);
         }
@@ -115,6 +104,22 @@ export default class AuthService {
             })
             return updateResult;
         } catch(e) {
+            logger.error(e);
+        }
+    }
+
+    public static async GetUserByJWT(req: Request) {
+        try {
+            const token: string =  (req.header("Authorization") as string).replace("Bearer ", "");
+            const type = req.headers["type"];
+            if(token) {
+                const userId = jwt.verify(token, process.env.SECRET_JWT);
+                const userInfo = userId && await UserFactory.getSchema(type).find({_id: userId._id}) || {};
+                return userInfo ? UserFactory.getUser(userInfo[0], (type as string))  : null;
+            } else {
+                return null;
+            }
+        } catch(e: any) {
             logger.error(e);
         }
     }

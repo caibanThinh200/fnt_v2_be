@@ -1,16 +1,15 @@
-import logger from '../config/logger';
+import logger from '../Config/logger';
 import TAG_DEFINE from '../Constant/define';
 import CommonFunction from "../Utils/function";
 import { CategoryFactory } from '../Factory/Creator/CategoryFactory';
-
 
 class CategoryService {
 
     public static async AddCategoryService(req: any) {
         try {
             const categoryFactory = CategoryFactory.createCategory(req.body, req.headers.type);
-            const category = CategoryFactory.createSchema(categoryFactory, req.headers.type)
-            const result = await category.save()
+            const rootCategory = CategoryFactory.createSchema(categoryFactory, req.headers.type)
+            const result = await rootCategory.save()
             .then(() => CommonFunction.getActionResult(TAG_DEFINE.RESULT.CATEGORY.create, 200))
             .catch(e => {
                 logger.error(e);

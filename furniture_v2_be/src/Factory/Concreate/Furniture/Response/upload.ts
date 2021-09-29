@@ -1,9 +1,8 @@
-import { CategoryResponse } from '../../../../Mapping/Response/CategoryResponse';
 import logger from '../../../../Config/logger';
-class FurnitureResponse extends CategoryResponse {
-    private code: any;
+import { UploadResponse } from '../../../../Mapping/Response/UploadResponse';
+class FurnitureResponse extends UploadResponse {
+    private code: string;
     private image: any;
-    private childCate: any;
 
     constructor(data: any) {
         super(data)
@@ -13,7 +12,6 @@ class FurnitureResponse extends CategoryResponse {
     setFurnitureData(data: any) {
         this.setData(data);
         this.code = data.code || "";
-        this.childCate = (data.childCate || []).length > 0 ? data.childCate.map(item => new FurnitureResponse(item)) : [];
         this.image = data.image || "";
     }
 }
