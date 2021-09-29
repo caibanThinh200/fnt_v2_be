@@ -16,7 +16,7 @@ export abstract class UploadRequest implements generateData {
         this.url = data.url || "";
         this.name = data.name || "";
         this.role = data.role || "";
-        this.created_at = data.created_at || null;
+        this.created_at = data.created_at || Date.now();
         this.updated_at = data.updated_at || null;
     }
 }

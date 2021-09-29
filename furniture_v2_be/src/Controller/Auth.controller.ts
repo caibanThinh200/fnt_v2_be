@@ -51,6 +51,46 @@ class AuthController {
             });
         }
     }
+
+    public static async GetDetailUserController(req: Request, res: Response) {
+        try {
+            const result = await AuthService.GetDetailUserService(req);
+            res.status(200).json({
+                status: TAG_DEFINE.STATUS.sucess,
+                error: null,
+                result
+            });
+        } catch(e) {
+            logger.error(e);
+            res.status(400).json({
+                status: TAG_DEFINE.STATUS.failed,
+                error: {
+                    code: 500,
+                    mesage: CommonFunction.getActionResult(TAG_DEFINE.RESULT.AUTH.getDetail, 500)
+                }
+            });
+        }
+    }
+
+    public static async UpdateUserController(req: Request, res: Response) {
+        try {
+            const result = await AuthService.UpdateUserService(req);
+            res.status(200).json({
+                status: TAG_DEFINE.STATUS.sucess,
+                error: null,
+                result
+            });
+        } catch(e) {
+            logger.error(e);
+            res.status(400).json({
+                status: TAG_DEFINE.STATUS.failed,
+                error: {
+                    code: 500,
+                    mesage: CommonFunction.getActionResult(TAG_DEFINE.RESULT.AUTH.getDetail, 500)
+                }
+            });
+        }
+    }
 }
 
 export default AuthController;

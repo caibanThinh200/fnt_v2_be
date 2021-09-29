@@ -1,0 +1,12 @@
+@import "../_variable.scss";
+
+.furniture_page-layout {
+    background-color: $light !important;
+    &__title {
+        color: $wood;
+        border-bottom: $wood solid 2px;
+    }
+    &__breadcrumb {
+        font-family: 'Poppins', sans-serif;
+    }
+}

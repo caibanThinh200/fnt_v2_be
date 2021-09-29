@@ -1,12 +1,12 @@
 import { UserModel } from "../../../../Mapping/Request/UserRequest";
 
-export default class AAPetModel extends UserModel {
+export default class FurnitureModel extends UserModel {
     constructor(data: any) {
         super(data);
-        this.setAAPetData(data);
+        this.setFurnitureData(data);
     }
 
-    setAAPetData(data: any) {
+    setFurnitureData(data: any) {
         this.setData(data);
     }
 }

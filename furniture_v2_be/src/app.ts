@@ -9,17 +9,11 @@ import dataConfig from "./config/mongodb";
 import PATH from './Constant/url';
 import bodyParser from "body-parser";
 import router from './Routes/index.routes'
-import cors from 'cors';
-
-dataConfig().then((err: any) => {
-    if(err) {
-        logger.error(TAG_DEFINE.RESULT.DATABASE.connect.failed, err)
-    } else {
-        logger.info(TAG_DEFINE.RESULT.DATABASE.connect.success);
-    }
-});
+import cors from "cors"
 
 const app = express();
+
+dataConfig.getInstance();
 
 app.use(bodyParser.raw());
 app.use(bodyParser.urlencoded({extended: false}))
@@ -36,7 +30,7 @@ app.get(PATH.APP[404], (req: Request, res: Response) => {
     res.send(TAG_DEFINE.CODE[404].replace("%s", CommonUtils.capitalizeFirstLetter("API")));
 });
 
-const PORT : number = typeof(process.env.PORT_SERVER) !== "number" ? CommonUtils.formatInt(process.env.PORT_SERVER) : process.env.PORT_SERVER;
+const PORT : number = typeof(process.env.PORT) !== "number" ? CommonUtils.formatInt(process.env.PORT) : process.env.PORT;
 const server: Server = createServer(app);
 server.listen(PORT, () => logger.info(TAG_DEFINE.SERVER.start.replace("%s", PORT.toString())));
 

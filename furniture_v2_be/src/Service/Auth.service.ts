@@ -7,7 +7,7 @@ import jwt from "jsonwebtoken";
 
 export default class AuthService {
     public static async RegisterService(req: any) {
-        const type = req.headers["type"];
+        const type = req.headers.type;
         try {
             const userFactory = UserFactory.createUser(req.body, type);
 
@@ -42,7 +42,7 @@ export default class AuthService {
     }
 
     public static async LoginService(req: any) {
-        const type = req.headers["type"];
+        const type = req.headers.type;
         const { username, password } = req.body;
         try {
             const existingUser: any = await UserFactory.getSchema(type).findOne(
@@ -68,8 +68,8 @@ export default class AuthService {
                     password: undefined,
                 },
                 process.env.SECRET_JWT,
-                { expiresIn: "1 day" }
-            );
+                {expiresIn: '1 day'}
+            )
 
             const result = CommonFunction.getActionResult(
                 TAG_DEFINE.RESULT.AUTH.LOGIN.success,
@@ -79,9 +79,50 @@ export default class AuthService {
             return {
                 result,
                 accessToken: token,
-            };
+            }
+
         } catch (error) {
             logger.error(error);
+        }
+    }
+
+    public static async GetDetailUserService(req: any) {
+        try {
+            const {type} = req.query || "";
+            const {id} = req.params || "";
+            const user = await UserFactory.getSchema(type).find({
+                type,
+                _id: id
+            });
+            const userFactory = user.map(item => UserFactory.getUser(item, type));
+            return userFactory;
+        } catch(e) {
+            logger.error(e);
+        }
+    }
+
+    public static async UpdateUserService(req: any) {
+        try {
+            const {type} = req.query || "";
+            const {id} = req.params || "";
+            const currentUser = await this.GetDetailUserService(req);
+            const filters = currentUser[0] || {};
+            const newRequest = {
+                ...currentUser[0],
+                ...req.body
+            };
+            const updateUser = UserFactory.createUser(newRequest, req.query);
+            const updateResult = await UserFactory.getSchema(type)
+            .find(filters)
+            .updateOne(updateUser)
+            .then(() => CommonFunction.getActionResult(TAG_DEFINE.RESULT.AUTH.update, 200))
+            .catch((err) => {
+                logger.error(err);
+                return CommonFunction.getActionResult(TAG_DEFINE.RESULT.AUTH.update, 500);
+            })
+            return updateResult;
+        } catch(e) {
+            logger.error(e);
         }
     }
 }

@@ -28,5 +28,15 @@ export default  {
     },
     gender: {
         type: String,
+        required: true,
+        default: "Male"
+    },
+    created_at: {
+        type: Date,
+        default: Date.now()
+    },
+    updated_at: {
+        type: Date,
+        default: null
     }
 }

@@ -1,0 +1,8 @@
+@import "./_variable.scss";
+
+.furniture_categories {
+    &__title {
+        transition: all 1s;
+        border-bottom: $dark 3px solid
+    }
+}
