@@ -1,7 +1,7 @@
 import { generateData } from '../../Factory/interface';
 import TAG_DEFINE from '../../Constant/define';
 
-export abstract class UploadRequest implements generateData {
+export abstract class UploadResponse implements generateData {
     private _id: any
     private url: any;
     private role: any;

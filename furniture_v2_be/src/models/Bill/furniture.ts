@@ -1,7 +1,7 @@
 import { Schema, model } from 'mongoose';
 import TAG_DEFINE from '../../Constant/define';
 import  BillBaseField from './baseField';
-import { ImageSchema } from '../Images/furniture';
+import { ImageSchema } from '../Upload/furniture';
 import CommonFunction from '../../Utils/function';
 import {FurnitureProductSchema} from '../Product/furniture';
 import { UserSchema } from '../User/furniture';

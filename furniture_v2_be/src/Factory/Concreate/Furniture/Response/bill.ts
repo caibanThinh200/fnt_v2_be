@@ -1,5 +1,6 @@
-import logger from '../../../../config/logger';
+import logger from '../../../../Config/logger';
 import { BillResponse } from '../../../../Mapping/Response/BillResponse';
+import { FurnitureUserResponse, FurnitureProductResponse } from './index';
 class FurnitureResponse extends BillResponse {
     private user: any;
     private products: any;
@@ -11,8 +12,8 @@ class FurnitureResponse extends BillResponse {
 
     setFurnitureData(data: any) {
         this.setData(data);
-        this.user = data.user || "";
-        this.products = data.products || "";
+        this.user = new FurnitureUserResponse(data.user) || {}
+        this.products = (data.products || []).map(item => new FurnitureProductResponse(item)) || [];
     }
 }
 

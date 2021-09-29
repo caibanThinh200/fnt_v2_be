@@ -1,5 +1,5 @@
 import {CategorySchema} from "../Categories/furniture";
-import ImageModel, {ImageSchema} from '../Images/furniture';
+import ImageModel, {ImageSchema} from '../Upload/furniture';
 import { ProductBaseField } from './baseField';
 import { Schema, model } from 'mongoose';
 import TAG_DEFINE from '../../Constant/define';

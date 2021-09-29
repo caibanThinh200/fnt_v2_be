@@ -1,5 +1,5 @@
 import lodash from "lodash";
-import logger from "../config/logger";
+import logger from "../Config/logger";
 import TAG_DEFINE from "../Constant/define";
 import CommonFunction from "../Utils/function";
 import CategoryDetailFactory from "../Factory/Creator/CategoryDetailFactory";

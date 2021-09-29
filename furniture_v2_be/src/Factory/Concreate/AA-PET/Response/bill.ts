@@ -1,4 +1,4 @@
-import BillResponse from '../../../../Mapping/Response/BillResponse';
+import {BillResponse} from '../../../../Mapping/Response/BillResponse';
 
 export default class AAPetResponse extends BillResponse {
 

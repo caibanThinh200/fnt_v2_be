@@ -1,4 +1,4 @@
-import logger from "../config/logger";
+import logger from "../Config/logger";
 import TAG_DEFINE from "../Constant/define";
 import CommonFunction from "../Utils/function";
 import { CategoryFactory } from "../Factory/Creator/CategoryFactory";
@@ -8,9 +8,9 @@ class CategoryService {
     public static async AddCategoryService(req: any) {
         const type = req.headers["type"];
         try {
-            const categoryFactory = CategoryFactory.createCategory(req.body, type);
-            const category = CategoryFactory.createSchema(categoryFactory, type)
-            const result = await category.save()
+            const categoryFactory = CategoryFactory.createCategory(req.body, req.headers.type);
+            const rootCategory = CategoryFactory.createSchema(categoryFactory, req.headers.type)
+            const result = await rootCategory.save()
             .then(() => CommonFunction.getActionResult(TAG_DEFINE.RESULT.CATEGORY.create, 200))
             .catch(e => {
                 logger.error(e);
@@ -34,12 +34,10 @@ class CategoryService {
     }
 
     public static async GetDetailCategoryService(req: any) {
+        const type = req.headers["type"];
+        const { id } = req.params || "";
         try {
-            const type = req.headers["type"];
-            const { id } = req.params || "";
-            const category = await CategoryFactory.getSchema(type).findOne({
-                _id: id,
-            });
+            const category = await CategoryFactory.getSchema(type).findById(id);
             const categoryFactory = CategoryFactory.getCategory(category, type);
             return categoryFactory;
         } catch (e) {

@@ -13,6 +13,7 @@ const TAG_DEFINE = {
         CATEGORY_DETAIL: "CategoryDetail",
         BILL: "Bill",
         SOCIAL_MEDIA: "Social media",
+        ACCESSORY: "Accessory"
     },
     SERVICE: {
         start: "WELCOME TO AZP SERVER",
@@ -39,10 +40,11 @@ const TAG_DEFINE = {
             visa: "VS",
             momo: "MO",
         },
-        404: "%s not found",
     },
     ERROR: {
         start: "Server failed",
+        404: "%s not found",
+        401: "Invalid %s"
     },
     RESULT: {
         200: " thành công",
@@ -106,6 +108,18 @@ const TAG_DEFINE = {
         FURNITURE: "Furniture",
         AA_PET: "aa-pet",
     },
+    VALIDATION: {
+        USER: {
+            name: "Họ tên không hợp lệ",
+            phone: "SDT không hợp lệ",
+            address: "Địa chỉ không hợp lệ",
+            password: "Mật khẩu không hợp lệ",
+            email: "Email không hợp lệ",
+            unavailableEmail: "Email đã được đăng ký",
+            unavailablePhone: "SDT đã được sử dụng",
+            invalidUser: "Email hoặc mật khẩu không hợp lệ",
+        }
+    }
 };
 
 export default TAG_DEFINE;
