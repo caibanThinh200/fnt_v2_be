@@ -10,7 +10,7 @@ class AAPetModel extends ProductModel {
 
     setFurnitureData(data: any) {
         this.setData(data);
-        this.category_detail_id = data.category_detail_id || "";
+        this.category_detail_id = data?.category_detail_id || "";
     }
 }
 

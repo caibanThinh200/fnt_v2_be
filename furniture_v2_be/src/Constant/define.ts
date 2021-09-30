@@ -122,4 +122,8 @@ const TAG_DEFINE = {
     }
 };
 
+export const DEFINE_INFOMATION = {
+    PRODUCT_EXCEL: "UploadFiles/product.xlsx"
+}
+
 export default TAG_DEFINE;

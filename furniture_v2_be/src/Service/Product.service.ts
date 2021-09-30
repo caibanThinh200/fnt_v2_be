@@ -3,8 +3,27 @@ import TAG_DEFINE from '../Constant/define';
 import CommonFunction from "../Utils/function";
 import { ProductFactory } from '../Factory/Creator/ProductFactory';
 import lodash from 'lodash';
+import { Request } from 'express';
+import ExcelGenerator from '../Config/excelParser';
+import FurnitureModel from '../models/Product/furniture';
+import { DEFINE_INFOMATION } from '../Constant/define';
 
 class ProductService {
+
+    public static async AddProductByExcelService(req: any) {
+        try {
+            const initProduct = ProductFactory.createProduct(null, req.headers['type']);
+            const dataField = {
+                path: DEFINE_INFOMATION.PRODUCT_EXCEL,
+                objects: Object.keys(initProduct)
+            }
+            const listData = new ExcelGenerator(dataField)["data"]["Sheet1"]
+            return Promise.all(listData.map(async item => await this.AddProductService({...req, body: item})))
+        } catch(e) {
+            console.log(e);
+            return false;
+        }
+    }
 
     public static async AddProductService(req: any) {
         try {

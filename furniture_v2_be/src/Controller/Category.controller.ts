@@ -4,7 +4,7 @@ import TAG_DEFINE from '../Constant/define';
 import CommonFunction from '../Utils/function';
 import {Request, Response} from "express"
 
-class CategoryController {
+class CategoryController { 
     public static async AddCategoryController(req: Request, res: Response) {
         try {
             const result = await CategoryService.AddCategoryService(req);

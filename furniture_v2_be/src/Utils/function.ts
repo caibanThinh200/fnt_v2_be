@@ -109,6 +109,19 @@ class CommonFunction {
             }
         })
     }
+
+    static getAlphabetObject(objectKeys: any) {
+        const alphabet = 'abcdefghijklmnopqrstuvwxyz'.toUpperCase().split('');
+        let obj = {};
+        alphabet.map((char, n) => {
+            objectKeys.length > 0 && objectKeys.map((key, k) => {
+                if(n === k) {
+                    obj = {...obj, [char]: key};
+                }    
+            })
+        })
+        return obj;
+    }
 }
 
 export default CommonFunction;

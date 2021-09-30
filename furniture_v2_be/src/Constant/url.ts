@@ -6,7 +6,8 @@ const PATH: any = {
         upload: "/fnt-media"
     },
     PRODUCT: {
-        baseURL: "/product"
+        baseURL: "/product",
+        excel: "/excel"
     },
     CATEGORY: {
         baseURL: "/cate"
