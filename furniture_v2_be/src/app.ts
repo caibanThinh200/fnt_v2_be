@@ -5,7 +5,7 @@ import CommonUtils from "./Utils/function";
 import logger from './config/logger';
 import colors, { red } from "colors";
 import TAG_DEFINE from './Constant/define';
-import dataConfig from "./config/mongodb";
+import dataConfig from "./Config/mongodb";
 import PATH from './Constant/url';
 import bodyParser from "body-parser";
 import router from './Routes/index.routes'
