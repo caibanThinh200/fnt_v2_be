@@ -14,9 +14,7 @@ class FurnitureRequest extends BillRequest {
     setFurnitureData(data: any) {
         this.setData(data);
         this.user = new FurnitureUserRequest(data.user || {}) || "";
-        this.products =
-            data.products.map((item) => new FurnitureProductRequest(item)) ||
-            [];
+        this.products = data.products.map((item) => new FurnitureProductRequest(item)) || [];
     }
 }
 

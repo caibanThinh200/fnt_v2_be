@@ -37,8 +37,12 @@ class CategoryService {
         const type = req.headers["type"];
         const { id } = req.params || "";
         try {
-            const category = await CategoryFactory.getSchema(type).findById(id);
-            const categoryFactory = CategoryFactory.getCategory(category, type);
+            const {type} = req.query || "";
+            const {id} = req.params || "";
+            const category = await CategoryFactory.getSchema(type).find({
+                _id: id
+            });
+            const categoryFactory = category.map(item => CategoryFactory.getCategory(item, type));
             return categoryFactory;
         } catch (e) {
             logger.error(e);

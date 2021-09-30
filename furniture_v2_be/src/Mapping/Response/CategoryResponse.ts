@@ -1,5 +1,6 @@
-import { generateData } from "../../Factory/interface";
-import TAG_DEFINE from "../../Constant/define";
+import { generateData } from '../../Factory/interface';
+import TAG_DEFINE from '../../Constant/define';
+import ProductResponse from './ProductResponse';
 
 export abstract class CategoryResponse implements generateData {
     private _id: any;
@@ -18,3 +19,4 @@ export abstract class CategoryResponse implements generateData {
         this.updated_at = data.updated_at || null;
     }
 }
+

@@ -39,14 +39,8 @@ export default class AuthService {
         const type = req.headers.type;
         const { email, password, username } = req.body;
         try {
-            let existingUser: any = await UserFactory.getSchema(type).findOne({email});
-
-            if (!existingUser){
-                existingUser = await UserFactory.getSchema(type).findOne({username});
-            }
-
-            const comparePassword = existingUser && (await bcrypt.compare(password, existingUser?.password));
-            
+            const existingUser: any = await UserFactory.getSchema(type).findOne({email});
+            const comparePassword = existingUser && await bcrypt.compare(password, existingUser?.password);
             if (!existingUser || !comparePassword) {
                 return CommonFunction.getActionResult(
                     TAG_DEFINE.RESULT.AUTH.LOGIN.failed,
