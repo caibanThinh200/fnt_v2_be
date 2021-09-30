@@ -1,0 +1,26 @@
+@import '__variable.scss';
+.furniture-cart {
+    box-shadow: 3px 2px 10px 2px #bfbfbf;
+    .ant-image {
+        display: block;
+    }
+    .ant-card-head {
+        border-bottom: none !important;
+        padding-left: 10px;
+    }
+    &__title {
+        color: $title;
+    }
+    &__quantity {
+        background-color: $border;
+        height: 32px !important;
+        width: auto;
+        line-height: 35px;
+        &--minus {
+            border-radius: 50%;
+        }
+        &--plus {
+            border-radius: 50%;
+        }
+    }
+}

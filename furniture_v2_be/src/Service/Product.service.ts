@@ -1,4 +1,4 @@
-import logger from '../config/logger';
+import logger from '../Config/logger';
 import TAG_DEFINE from '../Constant/define';
 import CommonFunction from "../Utils/function";
 import { ProductFactory } from '../Factory/Creator/ProductFactory';
@@ -8,9 +8,8 @@ class ProductService {
 
     public static async AddProductService(req: any) {
         try {
-            const type = req.headers["type"];
-            const productFactory = ProductFactory.createProduct(req.body, type);
-            const product = ProductFactory.createSchema(productFactory, type)
+            const productFactory = ProductFactory.createProduct(req.body, req.headers['type']);
+            const product = ProductFactory.createSchema(productFactory, req.headers['type'])
             const result = await product.save()
             .then(() => CommonFunction.getActionResult(TAG_DEFINE.RESULT.PRODUCT.create, 200))
             .catch(e => {
@@ -26,7 +25,7 @@ class ProductService {
     public static async GetListProductService(req: any) {
         try {
             const type = req.headers['type'];
-            const product = await ProductFactory.getSchema(type).find();
+            const product = await ProductFactory.getSchema(type).find({});
             const productFactory = product.map(item => ProductFactory.getProduct(item, type));
             return productFactory;
         } catch(e) {
@@ -49,18 +48,18 @@ class ProductService {
     public static async UpdateProductService(req: any) {
         try {
             const type = req.headers["type"];
-            const {body, params: {id}} = req
-            
-            const product = await ProductFactory.getSchema(type).findById(id);
-
-            CommonFunction.UpdateTime(product)
-
-            lodash.extend(product, body)
-
-            const result = await product.save()
-            .then(() => {
-                return CommonFunction.getActionResult(TAG_DEFINE.RESULT.PRODUCT.update, 200);
-            }).catch(err => {
+            const currentProduct = await this.GetDetailProductService(req);
+            const filters = currentProduct[0] || {};
+            const newRequest = {
+                ...currentProduct[0],
+                ...req.body
+            };
+            const updateProduct = ProductFactory.createProduct(newRequest, req.query);
+            const updateResult = await ProductFactory.getSchema(type)
+            .find(filters)
+            .updateOne(updateProduct)
+            .then(() => CommonFunction.getActionResult(TAG_DEFINE.RESULT.PRODUCT.update, 200))
+            .catch((err) => {
                 logger.error(err);
 
                 return CommonFunction.getActionResult(
@@ -69,7 +68,7 @@ class ProductService {
                 );
             })
 
-            return result;
+            return updateResult;
         } catch(e) {
             logger.error(e);
         }

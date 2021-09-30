@@ -14,4 +14,5 @@ const AACategoryField = {
 export const CategorySchema = new Schema(AACategoryField);
 
 const CategoryModel = model(CommonFunction.getStoreSchema(TAG_DEFINE.SCHEMA.CATEGORY, TAG_DEFINE.STORE.AA_PET), CategorySchema);
+
 export default CategoryModel;

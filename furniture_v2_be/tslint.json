@@ -5,7 +5,15 @@
     ],
     "jsRules": {},
     "rules": {
-        "trailing-comma": [ false ]
+        "trailing-comma": [ false ],
+        "variable-name": {
+            "options": [
+              "ban-keywords",
+              "check-format",
+              "allow-leading-underscore",
+              "allow-pascal-case"
+            ]
+        }
     },
     "rulesDirectory": []
 }

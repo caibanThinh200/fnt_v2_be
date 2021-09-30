@@ -3,11 +3,6 @@ export default  {
         type: String,
         required: true,
     },
-    username: {
-        type: String,
-        required: true,
-        unique: true,
-    },
     password: {
         type: String,
         required: true,
@@ -28,5 +23,15 @@ export default  {
     },
     gender: {
         type: String,
+        required: true,
+        default: "Male"
+    },
+    created_at: {
+        type: Date,
+        default: Date.now()
+    },
+    updated_at: {
+        type: Date,
+        default: null
     }
 }

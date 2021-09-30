@@ -1,0 +1,35 @@
+@import "__variable.scss";
+.furniture_header {
+    &__nav-wrapper {
+        padding-left: 100px;
+        padding-right: 100px;
+        z-index: 1;
+        &--right {
+            margin-left: auto;
+        }
+    }
+    &__nav-link {
+        list-style: none;
+        font-family: 'Poppins', sans-serif;
+        cursor: pointer;
+        &--home h5 {
+            color: $light;
+        }
+        &--logo {
+            font-weight: 700;
+            font-size: 4em;
+            text-transform: uppercase;
+            letter-spacing: 2;
+        }
+    }
+    &__nav-link h5:hover {
+        background-color: $dark;
+        color: $light;
+        transition: all 0.5s;
+    }
+    &__nav-link--home h5:hover {
+        background-color: $light;
+        color: $dark;
+        transition: all 0.5s;
+    }
+}

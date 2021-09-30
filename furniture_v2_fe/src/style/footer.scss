@@ -1,0 +1,13 @@
+@import '__variable.scss';
+.furniture_footer {
+    &__wrapper {
+        background-repeat: no-repeat;
+        background-size: cover;
+        min-height: 75px;
+        position: sticky;
+        top: 100%
+    }
+    &__title {
+        color: $light
+    }
+}

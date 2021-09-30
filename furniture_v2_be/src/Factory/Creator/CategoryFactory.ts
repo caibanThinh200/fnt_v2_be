@@ -1,11 +1,13 @@
+// Furniture
 import { generateData } from "../interface";
 import FurnitureCategoryRequest from "../Concreate/Furniture/Request/category";
 import FurnitureResponse from "../Concreate/Furniture/Response/category";
 import FurnitureSchema from '../../models/Categories/furniture';
 
+// AA-store
 import AAPetRequest from "../Concreate/AA-PET/Request/category";
 import AAPetResponse from "../Concreate/AA-PET/Response/category";
-import AAPetSchema from '../../models/Categories/aa-store';
+import AAPetSchema from "../../models/Categories/aa-store"
 
 import TAG_DEFINE from "../../Constant/define";
 

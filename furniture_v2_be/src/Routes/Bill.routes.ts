@@ -1,12 +1,12 @@
-import express from 'express';
-import controller from '../Controller/Bill.controller';
-import PATH from '../Constant/url'
-const router = express.Router();
+import express, {Router} from "express";
+import PATH from '../Constant/url';
+import BillController from '../Controller/Bill.controller';
+import logger from '../Config/logger';
 
-router.get(PATH.APP.start, controller.GetListBill);
-router.get(PATH.APP.params.replace("params", "id"), controller.GetDetailBill)
-router.post(PATH.APP.start, controller.CreateBill);
-router.put(PATH.APP.params.replace("params", "id"), controller.UpdateBill);
-router.delete(PATH.APP.params.replace("params", "id"), controller.DeleteBill);
+const route: Router = express.Router();
 
-export default router;
+route.post(PATH.APP.start, BillController.AddBillController);
+route.get(PATH.APP.start, BillController.GetListBillController);
+route.get(PATH.APP.params.replace("params", "id"), BillController.GetDetailBillController);
+
+export default route;

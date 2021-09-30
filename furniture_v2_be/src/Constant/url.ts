@@ -3,21 +3,29 @@ const PATH: any = {
         start: "/",
         params: "/:params",
         404: "*",
+        upload: "/fnt-media"
     },
-    USER: {},
     PRODUCT: {
         baseURL: "/product"
     },
     CATEGORY: {
         baseURL: "/cate"
     },
+    CATEGORY_DETAIL: {
+        baseURL: "/cate-detail"
+    },
     AUTH: {
+        detail: "/detail/:id",
         baseURL: "/auth",
         login: "/login",
         register: "/register",
+        infoJWT: "/token"
+    },
+    SOCIAL_MEDIA: {
+        baseURL: "/media",
     },
     BILL: {
-        baseURL: "/bill",
+        baseURL: "/bill"
     }
 };
 

@@ -4,7 +4,6 @@ export abstract class UserModel implements generateData {
     private _id: any;
     private name: string;
     private email: string;
-    private username: string;
     private password: string;
     private address: string;
     private phone: string;
@@ -15,13 +14,12 @@ export abstract class UserModel implements generateData {
     }
 
     setData(data: any): void {
-        this._id = data._id;
-        this.name = data.name;
-        this.email = data.email;
-        this.username = data.username;
-        this.password = data.password;
-        this.address = data.address;
-        this.phone = data.phone;
-        this.gender = data.gender;
+        this._id = data._id || "";
+        this.name = data.name || "";
+        this.email = data.email || "";
+        this.password = data.password || "";
+        this.address = data.address || "";
+        this.phone = data.phone || "";
+        this.gender = data.gender || "Male";
     }
 }

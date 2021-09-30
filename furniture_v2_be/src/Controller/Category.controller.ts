@@ -1,5 +1,5 @@
 import CategoryService from '../Service/Category.service';
-import logger from '../config/logger';
+import logger from '../Config/logger';
 import TAG_DEFINE from '../Constant/define';
 import CommonFunction from '../Utils/function';
 import {Request, Response} from "express"
@@ -8,7 +8,7 @@ class CategoryController {
     public static async AddCategoryController(req: Request, res: Response) {
         try {
             const result = await CategoryService.AddCategoryService(req);
-            res.status(400).json({
+            res.status(200).json({
                 status: TAG_DEFINE.STATUS.sucess,
                 error: null,
                 result
@@ -28,7 +28,7 @@ class CategoryController {
     public static async GetListCategoryController(req: Request, res: Response) {
         try {
             const result = await CategoryService.GetListCategoryService(req);
-            res.status(400).json({
+            res.status(200).json({
                 status: TAG_DEFINE.STATUS.sucess,
                 error: null,
                 result
@@ -48,7 +48,7 @@ class CategoryController {
     public static async GetDetailCategoryController(req: Request, res: Response) {
         try {
             const result = await CategoryService.GetDetailCategoryService(req);
-            res.status(400).json({
+            res.status(200).json({
                 status: TAG_DEFINE.STATUS.sucess,
                 error: null,
                 result
@@ -68,7 +68,7 @@ class CategoryController {
     public static async UpdateCategoryController(req: Request, res: Response) {
         try {
             const result = await CategoryService.UpdateCategoryService(req);
-            res.status(400).json({
+            res.status(200).json({
                 status: TAG_DEFINE.STATUS.sucess,
                 error: null,
                 result
