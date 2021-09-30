@@ -1,12 +1,14 @@
 import logger from '../../../../Config/logger';
 import { CategoryRequest } from '../../../../Mapping/Request/CategoryRequest';
 import FurnitureProductRequest from "./product";
+import { v4 } from 'uuid';
 
 class FurnitureRequest extends CategoryRequest {
     private code: any;
     private image: any;
     private childCate: any;
     private products: any;
+    private _id: string;
 
     constructor(data: any) {
         super(data)
@@ -15,6 +17,7 @@ class FurnitureRequest extends CategoryRequest {
 
     setFurnitureData(data: any) {
         this.setData(data);
+        this._id = v4() || "";
         this.code = data.code || "";
         this.products = this.generateCategoryProducts(data, []) || [];
         this.childCate = (data?.childCate || []).map(item => new FurnitureRequest(item)) || [];

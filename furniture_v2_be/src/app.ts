@@ -10,7 +10,11 @@ import PATH from './Constant/url';
 import bodyParser from "body-parser";
 import router from './Routes/index.routes'
 import cors from "cors"
+import xlsx from "node-xlsx";
+import fs from "fs";
 
+const workSheetsFromBuffer = xlsx.parse(fs.readFileSync(`${__dirname}/UploadFiles/data.xlsx`));
+console.log(workSheetsFromBuffer[0].data);
 const app = express();
 
 dataConfig.getInstance();
