@@ -65,6 +65,25 @@ class ProductController {
         }
     }
 
+    public static async GetFilterProductController(req: Request, res: Response) {
+        try {
+            const result = await ProductService.GetFilterProductService(req);
+            res.status(200).json({
+                status: TAG_DEFINE.STATUS.sucess,
+                error: null,
+                result
+            });
+        } catch(e) {
+            res.status(400).json({
+                status: TAG_DEFINE.STATUS.failed,
+                error: {
+                    code: 500,
+                    mesage: CommonFunction.getActionResult(TAG_DEFINE.RESULT.PRODUCT.getList, 500)
+                }
+            });
+        }
+    }
+
     public static async GetDetailProductController(req: Request, res: Response) {
         try {
             const result = await ProductService.GetDetailProductService(req);

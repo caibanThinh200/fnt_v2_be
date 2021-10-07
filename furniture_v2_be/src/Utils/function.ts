@@ -122,6 +122,14 @@ class CommonFunction {
         })
         return obj;
     }
+
+    static generateTreeData(data, existingChildren) {
+        data.forEach(o => {
+            existingChildren.push(o);
+            o?.childCate && this.generateTreeData(o?.childCate, existingChildren);
+        });
+        return existingChildren;
+    }
 }
 
 export default CommonFunction;

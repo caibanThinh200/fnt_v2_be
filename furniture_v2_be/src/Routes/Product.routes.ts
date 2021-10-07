@@ -7,9 +7,9 @@ const route: Router = express.Router();
 
 route.post(PATH.APP.start, ProductController.AddProductController);
 route.get(PATH.APP.start, ProductController.GetListProductController);
-route.get(PATH.APP.params.replace("params", "id"), ProductController.GetDetailProductController);
-route.put(PATH.APP.params.replace("params", "id"), ProductController.UpdateProductController);
+route.get(PATH.PRODUCT.detail, ProductController.GetDetailProductController);
+route.put(PATH.PRODUCT.detail, ProductController.UpdateProductController);
 route.post(PATH.PRODUCT.excel, ProductController.AddProductByExcelController);
-// route.delete(PATH.APP.params.replace("params", "id"), ProductController.DeleteProductController);
+route.get(PATH.PRODUCT.filter, ProductController.GetFilterProductController);
 
 export default route;

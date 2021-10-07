@@ -7,7 +7,9 @@ const PATH: any = {
     },
     PRODUCT: {
         baseURL: "/product",
-        excel: "/excel"
+        excel: "/excel",
+        filter: "/filter",
+        detail: "/detail/:id"
     },
     CATEGORY: {
         baseURL: "/cate"

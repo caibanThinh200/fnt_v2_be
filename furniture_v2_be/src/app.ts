@@ -10,10 +10,6 @@ import PATH from './Constant/url';
 import bodyParser from "body-parser";
 import router from './Routes/index.routes'
 import cors from "cors"
-import xlsx from "node-xlsx";
-import fs from "fs";
-import exceltoJSON from "convert-excel-to-json"
-import ExcelGenerator from './Config/excelParser';
 
 const app = express();
 
