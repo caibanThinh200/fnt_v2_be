@@ -13,7 +13,7 @@ const TAG_DEFINE = {
         CATEGORY_DETAIL: "CategoryDetail",
         BILL: "Bill",
         SOCIAL_MEDIA: "Social media",
-        ACCESSORY: "Accessory"
+        ACCESSORY: "Accessory",
     },
     SERVICE: {
         start: "WELCOME TO AZP SERVER",
@@ -44,7 +44,7 @@ const TAG_DEFINE = {
     ERROR: {
         start: "Server failed",
         404: "%s not found",
-        401: "Invalid %s"
+        401: "Invalid %s",
     },
     RESULT: {
         200: " thành công",
@@ -82,13 +82,9 @@ const TAG_DEFINE = {
             LOGIN: {
                 success: "Đăng nhập",
                 failed: "Đăng nhập",
-                exist: "Tài khoản không tồn tại",
-                wrong_pass: "Sai mật khẩu",
+                exist: "Tài khoản hoặc mật khẩu không đúng",
             },
-            REGISTER: {
-                success: "Đăng ký",
-                failed: "Đăng ký",
-            },
+            REGISTER: "Đăng ký",
         },
         SOCIAL_MEDIA: {
             create: "Thêm mạng xã hội",
@@ -118,8 +114,8 @@ const TAG_DEFINE = {
             unavailableEmail: "Email đã được đăng ký",
             unavailablePhone: "SDT đã được sử dụng",
             invalidUser: "Email hoặc mật khẩu không hợp lệ",
-        }
-    }
+        },
+    },
 };
 
 export const DEFINE_INFOMATION = {

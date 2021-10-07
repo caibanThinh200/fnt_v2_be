@@ -29,8 +29,14 @@ class CommonFunction {
         return Object.keys(object).find((key: any) => object[key] === value);
     }
 
-    static getActionResult(value: string, status: any) {
-        return value + TAG_DEFINE.RESULT[status === 200 ? 200 : 500];
+    static getActionResult(result: any, code: number, error:any, value?: string) {
+        const num: number = code <= 500 && code >= 400 ? 500 : 200;
+
+        return {
+            code,
+            result: result === null ? value + TAG_DEFINE.RESULT[num] : result,
+            error: error === null ? null : error.message
+        }
     }
 
     static generateJSONObj(value: any) {

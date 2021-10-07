@@ -1,14 +1,9 @@
-import logger from '../Config/logger';
-import TAG_DEFINE from '../Constant/define';
-import CommonFunction from "../Utils/function";
-import { ProductFactory } from '../Factory/Creator/ProductFactory';
-import lodash from 'lodash';
-import { Request } from 'express';
 import ExcelGenerator from '../Config/excelParser';
-import FurnitureModel from '../models/Product/furniture';
-import { DEFINE_INFOMATION } from '../Constant/define';
+import logger from '../Config/logger';
+import TAG_DEFINE, { DEFINE_INFOMATION } from '../Constant/define';
 import { CategoryFactory } from '../Factory/Creator/CategoryFactory';
-import { Model, Schema } from 'mongoose';
+import { ProductFactory } from '../Factory/Creator/ProductFactory';
+import CommonFunction from "../Utils/function";
 
 class ProductService {
 
@@ -32,14 +27,15 @@ class ProductService {
             const productFactory = ProductFactory.createProduct(req.body, req.headers['type']);
             const product = ProductFactory.createSchema(productFactory, req.headers['type'])
             const result = await product.save()
-            .then(() => CommonFunction.getActionResult(TAG_DEFINE.RESULT.PRODUCT.create, 200))
+            .then(() => CommonFunction.getActionResult(null, 201, null, TAG_DEFINE.RESULT.PRODUCT.create))
             .catch(e => {
                 logger.error(e);
-                return CommonFunction.getActionResult(TAG_DEFINE.RESULT.PRODUCT.create, 500);
+                return CommonFunction.getActionResult(null, 403, e, TAG_DEFINE.RESULT.PRODUCT.create);
             });
             return result;
         } catch(e) {
             logger.error(e);
+            return CommonFunction.getActionResult(null, 400, e, TAG_DEFINE.RESULT.PRODUCT.create);
         }
     }
 
@@ -48,7 +44,7 @@ class ProductService {
             const type = req.headers['type'];
             const product = await ProductFactory.getSchema(type).find({});
             const productFactory = product.map(item => ProductFactory.getProduct(item, type));
-            return productFactory;
+            return CommonFunction.getActionResult(productFactory, 200, null);
         } catch(e) {
             logger.error(e);
         }
@@ -68,7 +64,7 @@ class ProductService {
                     }
                 })
             }
-            const filterProduct = arr.map(async id => {
+            const filterProduct = arr.result.map(async id => {
                 const product = await ProductFactory.getSchema(type).findOne({_id: id});
                 return ProductFactory.getProduct(product, type);
             });
@@ -86,9 +82,10 @@ class ProductService {
             const {id} = req.params || "";
             const product = await ProductFactory.getSchema(type).findById(id)
             const productFactory = ProductFactory.getProduct(product, type);
-            return productFactory;
+            return CommonFunction.getActionResult(productFactory, 200, null);
         } catch(e) {
             logger.error(e);
+            return CommonFunction.getActionResult(null, 400, e, TAG_DEFINE.RESULT.PRODUCT.getDetail);
         }
     }
 
@@ -105,18 +102,16 @@ class ProductService {
             const updateResult = await ProductFactory.getSchema(type)
             .find(filters)
             .updateOne(updateProduct)
-            .then(() => CommonFunction.getActionResult(TAG_DEFINE.RESULT.PRODUCT.update, 200))
+            .then(() => CommonFunction.getActionResult(null, 200, null, TAG_DEFINE.RESULT.PRODUCT.update))
             .catch((err) => {
                 logger.error(err);
 
-                return CommonFunction.getActionResult(
-                    TAG_DEFINE.RESULT.PRODUCT.update,
-                    500
-                );
+                return CommonFunction.getActionResult(null, 403, err, TAG_DEFINE.RESULT.PRODUCT.update);
             })
             return updateResult;
         } catch(e) {
             logger.error(e);
+            return CommonFunction.getActionResult(null, 400, e, TAG_DEFINE.RESULT.PRODUCT.update);
         }
     }
 
@@ -129,21 +124,16 @@ class ProductService {
 
             const result = await product.findByIdAndDelete(id)
             .then(() => {
-                return CommonFunction.getActionResult(
-                    TAG_DEFINE.RESULT.PRODUCT.delete,
-                    200
-                );
+                return CommonFunction.getActionResult(null, 200, null, TAG_DEFINE.RESULT.PRODUCT.delete);
             }).catch(err => {
                 logger.error(err)
-                return CommonFunction.getActionResult(
-                    TAG_DEFINE.RESULT.PRODUCT.delete,
-                    500
-                );
+                return CommonFunction.getActionResult(null, 403, err, TAG_DEFINE.RESULT.PRODUCT.delete);
             })
-
+            
             return result;
         } catch (error) {
             logger.error(error);
+            return CommonFunction.getActionResult(null, 400, error, TAG_DEFINE.RESULT.PRODUCT.delete);
         }
     }
 }
