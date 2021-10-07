@@ -5,6 +5,7 @@ import { ImageSchema } from '../Upload/furniture';
 import CommonFunction from '../../Utils/function';
 import tree from "mongoose-data-tree";
 import mongoose from 'mongoose';
+import { FurnitureProductSchema } from '../Product/furniture';
 
 const FurnitureCategoryField = {
     ...CategoryBaseField,
@@ -16,9 +17,13 @@ const FurnitureCategoryField = {
     childCate: {
         type: []
     },
+    name: {
+        type: String,
+        unique: false
+    },
     products: {
-        type: [String],
-        ref: "furniture products"
+        type: [Schema.Types.ObjectId],
+        ref: CommonFunction.getStoreSchema(TAG_DEFINE.SCHEMA.PRODUCT, TAG_DEFINE.STORE.FURNITURE)
     }
     // image: {
     //     type: ImageSchema

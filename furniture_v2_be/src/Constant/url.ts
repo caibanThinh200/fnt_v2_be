@@ -6,10 +6,16 @@ const PATH: any = {
         upload: "/fnt-media"
     },
     PRODUCT: {
-        baseURL: "/product"
+        baseURL: "/product",
+        excel: "/excel",
+        filter: "/filter",
+        detail: "/detail/:id"
     },
     CATEGORY: {
         baseURL: "/cate"
+    },
+    CATEGORY_DETAIL: {
+        baseURL: "/cate-detail"
     },
     AUTH: {
         detail: "/detail/:id",

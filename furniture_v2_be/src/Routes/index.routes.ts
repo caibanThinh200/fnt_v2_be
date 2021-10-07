@@ -1,10 +1,11 @@
-import ProductRoute from './Product.routes';
-import AuthRoute from './Auth.routes';
+import ProductRoute from "./Product.routes";
+import AuthRoute from "./Auth.routes";
 import CateRoute from "./Category.routes";
 import SocialMediaRoute from "./SocialMedia.routes";
 import BillRoute from "./Bill.routes";
-import {Express} from 'express';
-import PATH from '../Constant/url';
+import CategoryDetailRoute from "./CategoryDetail.routes";
+import { Express } from "express";
+import PATH from "../Constant/url";
 
 export default (app: Express) => {
     app.use(PATH.PRODUCT.baseURL, ProductRoute);
@@ -12,4 +13,5 @@ export default (app: Express) => {
     app.use(PATH.AUTH.baseURL, AuthRoute);
     app.use(PATH.SOCIAL_MEDIA.baseURL, SocialMediaRoute);
     app.use(PATH.BILL.baseURL, BillRoute);
+    app.use(PATH.CATEGORY_DETAIL.baseURL, CategoryDetailRoute);
 };

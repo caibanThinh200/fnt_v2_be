@@ -6,11 +6,6 @@ import CommonFunction from '../../Utils/function';
 
 const AACategoryField = {
     ...CategoryBaseField,
-    code: {
-        require: true,
-        type: String,
-        ref: "Categories"
-    },
     // image: {
     //     type: ImageSchema
     // }
@@ -19,4 +14,5 @@ const AACategoryField = {
 export const CategorySchema = new Schema(AACategoryField);
 
 const CategoryModel = model(CommonFunction.getStoreSchema(TAG_DEFINE.SCHEMA.CATEGORY, TAG_DEFINE.STORE.AA_PET), CategorySchema);
+
 export default CategoryModel;

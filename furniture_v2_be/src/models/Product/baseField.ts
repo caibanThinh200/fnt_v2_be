@@ -2,10 +2,12 @@ export const ProductBaseField = {
     name: {
         type: String,
         required: true,
+        unique: true,
     },
     description: {
         type: String,
         maxLength: 100,
+        default: ''
     },
     quantity: {
         type: Number,
@@ -23,15 +25,6 @@ export const ProductBaseField = {
     price: {
         type: Number,
         required: true,
-    },
-    status: {
-        type: String,
-        default: 0,
-    },
-
-    madeIn: {
-        type: String,
-        require: true,
     },
     created_at: {
         type: Date,

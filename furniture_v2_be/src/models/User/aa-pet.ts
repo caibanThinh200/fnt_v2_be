@@ -11,7 +11,7 @@ interface UserDocument extends mongoose.Document {
     email: string;
     phone: string;
     address: string;
-    gender: string;
+    gender: number;
 }
 
 const UserSchema = new Schema({
