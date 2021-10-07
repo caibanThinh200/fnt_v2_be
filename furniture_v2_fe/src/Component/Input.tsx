@@ -1,6 +1,6 @@
 import { Input as AntInput, InputNumber as AntInputNumber } from "antd"
 import { getRestProps } from "../Util/functions"
-
+import React from 'react'
 interface Props extends Omit<getRestProps, "restProps"> {
     
 }

@@ -7,6 +7,7 @@ import Wrapper from "../../Component/Wrapper"
 import { getRestProps } from "../../Util/functions"
 import "../../style/productDetail.scss";
 import clsx from 'clsx';
+import React from 'react'
 
 interface Props extends Omit<getRestProps, "restProps"> {
     className?: String

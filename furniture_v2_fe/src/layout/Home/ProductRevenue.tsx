@@ -4,6 +4,7 @@ import Wrapper from "../../Component/Wrapper";
 import TAG_DEFINE from "../../constant/tagDefine";
 import { getRestProps } from "../../Util/functions";
 import { ReactComponentProps } from '../../Util/inteface';
+import React from 'react'
 
 const ProductRevenue: React.FC<ReactComponentProps> = props => {
     return (

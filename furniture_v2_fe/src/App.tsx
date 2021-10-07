@@ -11,6 +11,7 @@ import { useState } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css'; 
 import dotenv from "dotenv";
+import React from 'react'
 AOS.init();
 
 dotenv.config();

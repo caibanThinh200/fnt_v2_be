@@ -6,6 +6,7 @@ import TAG_DEFINE from "../../constant/tagDefine";
 import ProductRevenue from "./ProductRevenue";
 import ServiceIntro from "./ServiceIntro";
 import { ReactComponentProps } from "../../Util/inteface";
+import React from 'react'
 
 const Homepage: React.FC<ReactComponentProps> = props => {
     return (

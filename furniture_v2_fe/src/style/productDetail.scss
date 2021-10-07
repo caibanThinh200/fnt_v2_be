@@ -39,3 +39,24 @@
         outline: none;
     }
 }
+
+.detail-item{
+    border-bottom: 1px solid #eee;
+    align-items: center;
+    height: 50px;
+    h6{
+        width: 180px;
+        margin-bottom: 0;
+        font-size: 18px;
+    }
+    p{
+        color: gray;
+        margin-bottom: 0;
+        font-size: 16px;
+    };
+}
+.product-description{
+    padding: 20px;
+    border-radius: 6px;
+    box-shadow: 1px 6px 15px rgba(0,0,0,0.1);
+}

@@ -11,6 +11,7 @@ import { Action, Dispatch } from 'redux';
 import { getListAllCategoryAction } from '../../action/categoryAction';
 import { connect } from "react-redux";
 import { getListAllProductAction } from '../../action/productAction';
+import React from 'react'
 
 interface Props extends Omit<getRestProps, "restProps"> {
 

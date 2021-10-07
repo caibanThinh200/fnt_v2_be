@@ -5,6 +5,7 @@ import { Parallax, Background } from "react-parallax";
 import Image from "../../Component/Image";
 import { getRestProps } from "../../Util/functions";
 import { ReactComponentProps } from '../../Util/inteface';
+import React from 'react'
 
 const Banner: React.FC<ReactComponentProps> = (props) => {
   return (

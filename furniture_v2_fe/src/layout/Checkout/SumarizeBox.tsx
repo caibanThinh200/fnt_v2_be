@@ -1,6 +1,7 @@
 import { Button, Divider, Input } from "antd";
 import Wrapper from "../../Component/Wrapper";
 import TAG_DEFINE from "../../constant/tagDefine";
+import React from 'react'
 
 const SumarizeBox: React.FC = props => {
     return (

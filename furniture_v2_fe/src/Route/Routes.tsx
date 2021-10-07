@@ -2,6 +2,7 @@ import Homepage from "../layout/Home/index";
 import Product from "../layout/Product/index";
 import Cart from "../layout/Checkout/index";
 import ProductDetail from '../layout/ProductDetail/index';
+import React from 'react'
 
 export const ROUTES: any = {
     HOMEPAGE: {

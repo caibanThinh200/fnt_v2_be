@@ -7,7 +7,7 @@ import * as Func from "../Util/functions"
 import { useState } from "react";
 import { Link, match } from "react-router-dom";
 import useBreadcrumbs, {BreadcrumbsRoute} from 'use-react-router-breadcrumbs';
-
+import React from 'react'
 interface Props {
     sider?: any, 
     children: any, 

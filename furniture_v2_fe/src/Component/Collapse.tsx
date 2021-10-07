@@ -5,7 +5,7 @@ interface Props {
     children: React.ReactNode,
     data: any
 }
-
+import React from 'react'
 const Collapse: React.FC<Props> = ({children, data, ...rest}: Props) => {
     const [dataPanel, setDataPanel] = useState(data);
     

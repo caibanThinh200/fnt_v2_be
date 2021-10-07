@@ -2,6 +2,8 @@ import Wrapper from '../../Component/Wrapper';
 import { ReactComponentProps } from '../../Util/inteface';
 import { Tag, Radio } from 'antd';
 import Input from '../../Component/Input';
+import React from 'react'
+
 const ProductInfo: React.FC<ReactComponentProps> = props => {
     return <Wrapper className="pl-5 p-4">
         <Wrapper className="mb-5">

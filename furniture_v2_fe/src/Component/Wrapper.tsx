@@ -2,6 +2,7 @@ import clsx from "clsx";
 import { useState, useEffect } from "react";
 import "../style/component/Wrapper.scss"
 import { getRestProps } from '../Util/functions';
+import React from 'react'
 
 interface Props extends Omit<getRestProps, "restProps">{
     children?: any, 
