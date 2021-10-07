@@ -7,6 +7,7 @@ import Collapse from "../../Component/Collapse";
 import Tree from "../../Component/Tree";
 import { useState } from "react";
 import { getRestProps } from "../../Util/functions";
+import React from 'react'
 
 interface Props extends Omit<getRestProps, "restProps"> {
 

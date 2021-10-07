@@ -1,6 +1,7 @@
 import { Tree as AntTree } from "antd";
 import { useEffect, useState } from "react";
 import {generateDataToTree, getNodePath, hasPath, endingAt} from "../Util/functions";
+import React from 'react'
 
 interface Props {
     data: any, 

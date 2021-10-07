@@ -1,6 +1,7 @@
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
+import React from 'react'
 
 // Import Swiper styles
 import 'swiper/swiper.scss';
@@ -29,7 +30,6 @@ const ProductDemo: React.FC<Props> = (props: Props) => {
                 </h3>
             </Wrapper>
             <Swiper
-        
                 slidesPerView={4}
                 navigation
                 pagination={{ clickable: true }}
@@ -37,8 +37,8 @@ const ProductDemo: React.FC<Props> = (props: Props) => {
             >
                 <Wrapper className="row pt-5 pl-5">
                     {
-                        [0, 1, 2, 3, 4].map(item => 
-                            <SwiperSlide className="col-3 pt-5">
+                        [0, 1, 2, 3, 4].map((item, index) => 
+                            <SwiperSlide key={index} className="col-3 pt-5">
                                 <Card
                                     className="p-5"
                                     hoverable

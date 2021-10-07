@@ -10,6 +10,8 @@ import { getRestProps } from "../../Util/functions";
 import { Action, Dispatch } from 'redux';
 import { getListAllCategoryAction } from '../../action/categoryAction';
 import { connect } from "react-redux";
+import { getListAllProductAction } from '../../action/productAction';
+import React from 'react'
 
 interface Props extends Omit<getRestProps, "restProps"> {
 
@@ -22,6 +24,7 @@ const Product: React.FC<Props> = props => {
 
     useEffect(() => {
         props.getListAll();
+        props.getListProduct();
     }, []);
 
     const onFilterChange = (e: any) => {
@@ -58,27 +61,33 @@ const Product: React.FC<Props> = props => {
     }
 
     return (
-        <Wrapper className={clsx(props.className)}>
+        <Wrapper className={clsx(props.className, "pt-5")}>
             <PageLayout
                 sider={<Categories {...props}
                         onExpandChange={onExpandChange} 
                         onFilterChange={onFilterChange}
                     />}
                 title={TAG_DEFINE.PAGE.PRODUCT.title}
+                contentClassname="ml-5"
                 breadcrumb
             >
-                <ProductList pagination tagResult={tagResult} filterResult={filterSelected}/>
+                <ProductList {...props} 
+                    pagination 
+                    tagResult={tagResult} 
+                    filterResult={filterSelected}/>
             </PageLayout>
         </Wrapper>
     )
 }
 
 const mapStateToProps = (state: any) => ({
-    categories: state.categoryReducer.categories
+    categories: state.categoryReducer.categories,
+    products: state.productReducer.products
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-    getListAll: (data: any) => dispatch(getListAllCategoryAction())
+    getListAll: (data: any) => dispatch(getListAllCategoryAction()),
+    getListProduct: (data: any) => dispatch(getListAllProductAction())
 })
  
 export default connect(mapStateToProps, mapDispatchToProps)(Product);

@@ -12,6 +12,7 @@ import Form, {Function} from "../../Component/Form";
 import Tabs from "../../Component/Tab";
 import { Action } from 'redux';
 import { Tabs as AntTab } from 'antd';
+import React from 'react'
 
 interface Props extends Omit<getRestProps, "restProps"> {
     visible: boolean

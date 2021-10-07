@@ -12,3 +12,11 @@ export interface ApiResponse extends Omit<getRestProps, "restProps"> {
     statusText?: string,
     success?: boolean
 }
+
+export interface ReactComponentProps extends Omit<getRestProps, "restProps"> {
+    className?: string,
+    style?: Object,
+    children?: React.ReactNode,
+    key?: string | number,
+    ref?: string
+}

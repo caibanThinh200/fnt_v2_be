@@ -3,12 +3,10 @@ import ProductDemo from "../../Component/ProductDemo";
 import Wrapper from "../../Component/Wrapper";
 import TAG_DEFINE from "../../constant/tagDefine";
 import { getRestProps } from "../../Util/functions";
+import { ReactComponentProps } from '../../Util/inteface';
+import React from 'react'
 
-interface Props extends Omit<getRestProps, "restProps"> {
-
-}
-
-const ProductRevenue: React.FC<Props> = props => {
+const ProductRevenue: React.FC<ReactComponentProps> = props => {
     return (
         <Wrapper className="container">
             <ProductDemo {...props}

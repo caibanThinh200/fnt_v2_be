@@ -7,5 +7,8 @@ export default {
     },
     CATEGORY: {
         getList: "/cate"
+    },
+    PRODUCT: {
+        getList: "/product/filter"
     }
 }

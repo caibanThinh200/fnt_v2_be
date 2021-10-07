@@ -1,5 +1,6 @@
 import {Tabs as AntTab} from "antd";
 import { getRestProps } from '../Util/functions';
+import React from 'react'
 
 interface Props extends Omit<getRestProps, "restProps"> {
     tabsPane?: any

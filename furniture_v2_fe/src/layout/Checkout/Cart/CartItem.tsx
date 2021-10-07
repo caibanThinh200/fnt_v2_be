@@ -4,6 +4,7 @@ import Image from "../../../Component/Image";
 import Input from "../../../Component/Input";
 import Icon from "../../../Component/Icon";
 import clsx from "clsx";
+import React from 'react'
 
 const CartItem = (props: any) => {
     return (

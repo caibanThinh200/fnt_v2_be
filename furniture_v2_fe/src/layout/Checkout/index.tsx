@@ -5,6 +5,7 @@ import CartList from "./Cart/CartList";
 import "../../style/cart.scss"
 import SumarizeBox from "./SumarizeBox";
 import ContactBox from "./ContactBox";
+import React from 'react'
 
 const Cart: React.FC = props => {
     return (

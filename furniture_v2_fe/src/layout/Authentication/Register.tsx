@@ -5,6 +5,7 @@ import TAG_DEFINE, { formButtonLayout } from "../../constant/tagDefine";
 import Input from "../../Component/Input";
 import { getRestProps } from "../../Util/functions";
 import { FormInstance } from "antd";
+import React from 'react'
 
 interface Props extends Omit<getRestProps, "restProps"> {
     title: string,

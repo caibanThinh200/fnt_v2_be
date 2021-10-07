@@ -1,10 +1,11 @@
 import { Button, Divider, Input } from "antd";
 import Wrapper from "../../Component/Wrapper";
 import TAG_DEFINE from "../../constant/tagDefine";
+import React from 'react'
 
 const SumarizeBox: React.FC = props => {
     return (
-        <Wrapper bordered shadow className="w-100 h-50 p-4 mb-3">
+        <Wrapper bordered shadow className="w-100 p-4 mb-3">
             <Wrapper>
                 <p className="h4 m-0 furniture-cart__title font-weight-bold">{TAG_DEFINE.PAGE.CART.sumarize}</p>
             </Wrapper>
