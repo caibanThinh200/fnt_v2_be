@@ -4,7 +4,6 @@ import Wrapper from "../../../Component/Wrapper";
 import TAG_DEFINE from "../../../constant/tagDefine";
 import ProductItem from "./ProductItem";
 import { getRestProps } from "../../../Util/functions";
-
 interface Props extends Omit<getRestProps, "restProps"> {
 
 }
