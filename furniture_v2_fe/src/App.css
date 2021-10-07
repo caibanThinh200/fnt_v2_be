@@ -2,6 +2,24 @@
   text-align: center;
 }
 
+.center-image {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.radius-retangle {
+  border-radius: 5px;
+}
+
+.clear-both {
+  clear: both;
+}
+
+.push-footer {
+  min-height: calc(100vh - 70px);
+}
+
 .h200 {
     height: 200px;
 }

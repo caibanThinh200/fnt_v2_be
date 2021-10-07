@@ -24,7 +24,7 @@ function App() {
     <Router>
         <NavBar/>
         <Section getLocation={getLocation}/>
-        <Footer className="mt200 footer-stick"/>
+        <Footer className="footer-stick"/>
     </Router>
   );
 }

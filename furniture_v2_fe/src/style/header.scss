@@ -1,9 +1,14 @@
 @import "__variable.scss";
 .furniture_header {
     &__nav-wrapper {
+        height: 80px;
         padding-left: 100px;
         padding-right: 100px;
+        border-bottom: 1px solid $border;
         z-index: 1;
+        &--home {
+            border-bottom: none;
+        }
         &--right {
             margin-left: auto;
         }
@@ -21,6 +26,9 @@
             text-transform: uppercase;
             letter-spacing: 2;
         }
+        h5 {
+            border-radius: 10px;
+        }
     }
     &__nav-link h5:hover {
         background-color: $dark;
@@ -31,5 +39,8 @@
         background-color: $light;
         color: $dark;
         transition: all 0.5s;
+    }
+    &__nav-link--logo:hover {
+        
     }
 }

@@ -4,13 +4,15 @@ import Wrapper from "../../../Component/Wrapper";
 import TAG_DEFINE from "../../../constant/tagDefine";
 import ProductItem from "./ProductItem";
 import { getRestProps } from "../../../Util/functions";
+import { ReactComponentProps } from '../../../Util/inteface';
 
-interface Props extends Omit<getRestProps, "restProps"> {
+const ProductList: React.FC<ReactComponentProps> = props => {
+    const [filterResult, setFilterResult] = useState({tag: ""}),
+    [listProduct, setListProduct] = useState([]);
 
-}
-
-const ProductList: React.FC<Props> = props => {
-    const [filterResult, setFilterResult] = useState({tag: ""});
+    useEffect(() => {
+        setListProduct(props.products);
+    }, [props.products])
 
     useEffect(() => {
         setFilterResult(props.filterResult);
@@ -29,8 +31,8 @@ const ProductList: React.FC<Props> = props => {
                 </Wrapper>
             }
             {
-                [1,2,3,4,5,2,2,2,2].map((item, index) => 
-                    <ProductItem key={index} className="col-3 mr-5 mb-5"/>
+                listProduct.length > 0 && listProduct.map((item, index) => 
+                    <ProductItem key={index} fields={item} className="col-3 mr-5 mb-5"/>
                 )
             }
             <Wrapper className="ml-5">

@@ -35,13 +35,6 @@ export default class ApiService {
         this.parser = options.parser;
     }
 
-    // public getInstance(options: AxiosInstances) {
-    //     if(!ApiService.instance) {
-    //         ApiService.instance = new ApiService(options);
-    //     }
-    //     return ApiService.instance;
-    // }
-
     public createServiceInstance(options: AxiosInstances) {
         if(!options.baseURL) {
             throw new Error(TAG_DEFINE.VALIDATION.require.replace("%s", "Base URL"));
@@ -78,9 +71,7 @@ export default class ApiService {
             const thirdParams = method === Methods.PUT || method === Methods.POST ? config : undefined;
             (this.axiosInstance as any)[method](this.endpoint, secondParams, thirdParams)
             .then((response: any) => {
-               
                 const result = this.parser ? this.parser(response.data) : new ApiResponse({...response, request: data, success: true})
-                console.log(result);
                 resolve(result)
             })
         })

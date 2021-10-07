@@ -9,14 +9,21 @@ import {
 
 const Section = (props: any) => {
     const [routes, setRoutes] = React.useState([]),
-    location= useLocation();
+    location = useLocation();
 
     React.useEffect(() => {
         setRoutes(Object.values(ROUTES));
     }, [])
     
+    const isHideBackground = location.pathname === "/" || location.pathname === "/cart";
+
+    const style = !isHideBackground ? {
+        backgroundImage: "url(/define/banner1.png)",
+        backgroundSize: "cover"
+    } : {};
+
     return (
-        <TransitionGroup>
+        <TransitionGroup className="push-footer" style={(style as any)}>
             <CSSTransition 
                 key={location.key}
                 classNames="fade"

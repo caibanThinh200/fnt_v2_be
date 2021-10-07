@@ -3,7 +3,7 @@ import { createCategoryAction, getListAllCategoryAction, getDetailCategoryAction
 
 
 const initialState = {
-    isFetching: false,
+    isCategoryFetching: false,
     categories: {},
     item: {},
     isSubmit: false,
@@ -12,12 +12,12 @@ const initialState = {
 
 export default createReducer(initialState, reducer => {
     reducer
-        .addCase(createCategoryAction, (state, action) => ({...state, isFetching: true}))
-        .addCase(getListAllCategoryAction, (state, action) => ({...state, isFetching: true}))
-        .addCase(getDetailCategoryAction, (state, action) => ({...state, isFetching: true}))
-        .addCase(updateCategoryAction, (state, action) => ({...state, isFetching: true}))
-        .addCase(createCategorySuccess, (state, action) => ({...state, isFetching: false}))
-        .addCase(getListAllCategorySuccess, (state, action) => ({...state, isFetching: false, categories: (action as any).payload}))
-        .addCase(getDetailCategorySuccess, (state, action) => ({...state, isFetching: false}))
-        .addCase(updateCategorySuccess, (state, action) => ({...state, isFetching: false}))
+        .addCase(createCategoryAction, (state, action) => ({...state, isCategoryFetching: true}))
+        .addCase(getListAllCategoryAction, (state, action) => ({...state, isCategoryFetching: true}))
+        .addCase(getDetailCategoryAction, (state, action) => ({...state, isCategoryFetching: true}))
+        .addCase(updateCategoryAction, (state, action) => ({...state, isCategoryFetching: true}))
+        .addCase(createCategorySuccess, (state, action) => ({...state, isCategoryFetching: false}))
+        .addCase(getListAllCategorySuccess, (state, action) => ({...state, isCategoryFetching: false, categories: (action as any).payload}))
+        .addCase(getDetailCategorySuccess, (state, action) => ({...state, isCategoryFetching: false}))
+        .addCase(updateCategorySuccess, (state, action) => ({...state, isCategoryFetching: false}))
 })

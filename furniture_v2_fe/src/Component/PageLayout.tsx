@@ -5,24 +5,33 @@ import clsx from "clsx";
 import { ROUTES } from "../Route/Routes";
 import * as Func from "../Util/functions"
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, match } from "react-router-dom";
+import useBreadcrumbs, {BreadcrumbsRoute} from 'use-react-router-breadcrumbs';
 
 interface Props {
     sider?: any, 
     children: any, 
     className?: any, 
     breadcrumb?: any, 
+    breadcrumpClassname?: string,
+    contentClassname?: string
     title?: any, 
     subTitle?: any
 }
 
-interface breadCrump {
-    title: string,
-    href: string
+interface Breadcrump {
+    path: string,
+    breadcrump: string
 }
 
-const Layout: React.FC<Props> = ({sider, children, className, breadcrumb, title, subTitle, ...rest}: Props)=> {
-    const {Content, Sider, Header} = AntLayout;
+const Layout: React.FC<Props> = ({sider, children, className, breadcrumb, contentClassname, breadcrumpClassname,title, subTitle, ...rest}: Props)=> {
+    const {Content, Sider, Header} = AntLayout,
+    routes = Object.values(ROUTES).map((item: any) => ({
+        path: item.path,
+        breadcrumb: item.breadcrump
+    })),
+    breadcrumbs = useBreadcrumbs(routes);
+
     const getCurrentBreadCrumpPath = () => {
         let paths = [{
             href: "/",
@@ -42,28 +51,28 @@ const Layout: React.FC<Props> = ({sider, children, className, breadcrumb, title,
         return paths;
     }
 
-    const breadCrumbPath: breadCrump[] = getCurrentBreadCrumpPath();
 
     return (
-        <Wrapper className={clsx(className, "mt-5 container mb-5")} {...rest}>
-            <AntLayout className="row furniture_page-layout p-0">
-                    <Wrapper className="justify-content-center w-100 mb-5">
+        <Wrapper className={clsx(" container", className, !className && "mb-5")} {...rest}>
+            <AntLayout className="row furniture_page-layout p-0 p-5">
+                {
+                    title && <Wrapper className="justify-content-center w-100 mb-5">
                         {
-                            title && <span className={clsx(sider ? "ml-50" : "ml-40","h1 w-100 font-weight-bold furniture_page-layout__title")}>
+                            <span className={clsx(sider ? "ml-50" : "ml-40","h1 w-100 font-weight-bold furniture_page-layout__title")}>
                                 {title}
                             </span>
                         }
                     </Wrapper>
+                }
                 {
-                    breadcrumb && <Breadcrumb className="mb-4 col-12 ml-5">
+                    breadcrumb && <Breadcrumb className={clsx("mb-4 col-12", breadcrumpClassname || "ml-5")}>
                         {
-                            breadCrumbPath.map((bread: breadCrump, index) => 
-                                <Breadcrumb.Item key={index}>
+                            breadcrumbs.map((item, index) => <Breadcrumb.Item key={item.match.url}>
                                     {
-                                        index === breadCrumbPath.length - 1
-                                            ? <span className="furniture_page-layout__breadcrumb">{bread.title}</span> : <Link className="furniture_page-layout__breadcrumb" to={bread.href}>{bread.title}</Link>
+                                        index === breadcrumbs.length - 1 ? <span className="furniture_page-layout__breadcrumb">{item.breadcrumb}</span> : 
+                                            <Link className="furniture_page-layout__breadcrumb" to={item.match.url}>{item.breadcrumb}</Link>
                                     }
-                                </Breadcrumb.Item>    
+                                </Breadcrumb.Item>
                             )
                         }
                     </Breadcrumb>
@@ -74,7 +83,7 @@ const Layout: React.FC<Props> = ({sider, children, className, breadcrumb, title,
                     </Sider>
                 }
                 {
-                    <Content className=" ml-5">
+                    <Content className={clsx(contentClassname)}>
                         {children}
                     </Content>
                 }

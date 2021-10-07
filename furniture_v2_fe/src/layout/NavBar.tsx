@@ -73,9 +73,9 @@ const NavBar: React.FC<Props> = props => {
                         <ul className="row w-100">
                             <Link 
                                 to={"/"}
-                                className={clsx("float-left furniture_header__nav-link furniture_header__nav-link--home ml-5")}>
+                                className={clsx("float-left furniture_header__nav-link--home ml-5")}>
                                 <h5 
-                                    className={clsx("font-weight-bold p-2 furniture_header__nav-link furniture_header__nav-link--logo")}
+                                    className={clsx("font-weight-bold p-2 furniture_header__nav-link--logo")}
                                 >
                                     {TAG_DEFINE.PAGE.LOGO}
                                 </h5>
@@ -129,9 +129,9 @@ const NavBar: React.FC<Props> = props => {
                     <ul className="row d-flex">
                     <Link 
                         to={"/"}
-                        className={clsx("float-left furniture_header__nav-link furniture_header__nav-link ml-5")}>
+                        className={clsx("float-left ml-5")}>
                         <h5 
-                            className={clsx("font-weight-bold p-2 furniture_header__nav-link furniture_header__nav-link--logo")}
+                            className={clsx("font-weight-bold p-2 furniture_header__nav-link--logo")}
                         >
                             {TAG_DEFINE.PAGE.LOGO}
                         </h5>
@@ -182,7 +182,7 @@ const NavBar: React.FC<Props> = props => {
     return (
         <Wrapper 
             // style={{backgroundImage: `url("/wood.png")`}} 
-            className={clsx("w-100 furniture_header__nav-wrapper", isHome ? "position-absolute" : "position-static", props.className)}
+            className={clsx("w-100 furniture_header__nav-wrapper", isHome ? "position-fixed furniture_header__nav-wrapper--home" : "position-static", props.className)}
         >
             {renderNav()}
             <Authentication 
