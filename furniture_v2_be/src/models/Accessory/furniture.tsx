@@ -5,11 +5,7 @@ import CommonFunction from '../../Utils/function';
 import TAG_DEFINE from '../../Constant/define';
 
 const FurnitureFields = {
-    ...BaseField,
-    color: {
-        type: Array,
-        default: ["#f0f0f0"]
-    },
+    ...BaseField
 }
 
 export const FurnitureAcessorySchema = new Schema(FurnitureFields);

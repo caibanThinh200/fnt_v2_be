@@ -4,6 +4,7 @@ import TAG_DEFINE, { DEFINE_INFOMATION } from '../Constant/define';
 import { CategoryFactory } from '../Factory/Creator/CategoryFactory';
 import { ProductFactory } from '../Factory/Creator/ProductFactory';
 import CommonFunction from "../Utils/function";
+import * as _ from "lodash"
 
 class ProductService {
 
@@ -17,7 +18,7 @@ class ProductService {
             const listData = new ExcelGenerator(dataField)["data"]["Sheet1"];
             return Promise.all(listData.map(async item => await this.AddProductService({...req, body: item})))
         } catch(e) {
-            console.log(e);
+            logger.error(e);
             return false;
         }
     }
@@ -69,7 +70,7 @@ class ProductService {
                 return ProductFactory.getProduct(product, type);
             });
             const filterPromise = await Promise.all(filterProduct);
-            return filterPromise.slice(startIndex, endIndex);
+            return CommonFunction.getActionResult(filterPromise.slice(startIndex, endIndex), 200, null);
         } catch(e) {
             logger.error(e);
             return false;
@@ -93,19 +94,31 @@ class ProductService {
         try {
             const type = req.headers["type"];
             const currentProduct = await this.GetDetailProductService(req);
-            const filters = currentProduct[0] || {};
+            const filters = currentProduct?.result || {};
+            let images = [];
+            Object.values(req?.files).map(((m, n) => {
+                return (req.body?.role || []).map((i, k) => {
+                    if(n === k) {
+                        images.push({
+                            ...(m as Object),
+                            role: i,
+                            name: req.body?.name
+                        });
+                    }
+                })
+            }));
             const newRequest = {
-                ...currentProduct[0],
-                ...req.body
+                ...currentProduct?.result,
+                ..._.omit(req.body, ["role"]),
+                images
             };
-            const updateProduct = ProductFactory.createProduct(newRequest, req.query);
+            const updateProduct = ProductFactory.createProduct(newRequest, type);
             const updateResult = await ProductFactory.getSchema(type)
             .find(filters)
             .updateOne(updateProduct)
             .then(() => CommonFunction.getActionResult(null, 200, null, TAG_DEFINE.RESULT.PRODUCT.update))
             .catch((err) => {
                 logger.error(err);
-
                 return CommonFunction.getActionResult(null, 403, err, TAG_DEFINE.RESULT.PRODUCT.update);
             })
             return updateResult;

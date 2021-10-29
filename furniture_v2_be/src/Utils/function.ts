@@ -30,9 +30,11 @@ class CommonFunction {
     }
 
     static getActionResult(result: any, code: number, error:any, value?: string) {
-        const num: number = code <= 500 && code >= 400 ? 500 : 200;
+        const num: number = code <= 500 && code >= 400 ? 500 : 200,
+        status: string = code <= 500 && code >= 400 ? "FAILED" : "SUCCESS";
 
         return {
+            status,
             code,
             result: result === null ? value + TAG_DEFINE.RESULT[num] : result,
             error: error === null ? null : error.message

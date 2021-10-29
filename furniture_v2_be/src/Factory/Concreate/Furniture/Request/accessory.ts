@@ -1,7 +1,7 @@
 import logger from '../../../../Config/logger';
-import { AccessoryRequest } from '../../../../Mapping/Request/AcessoryRequest';
-class FurnitureRequest extends AccessoryRequest {
-    private color: any;
+import {AccessoryRequest}  from '../../../../Mapping/Request/AcessoryRequest';
+class FurnitureTypeProductRequest extends AccessoryRequest {
+
     constructor(data: any) {
         super(data)
         this.setFurnitureData(data);
@@ -9,8 +9,7 @@ class FurnitureRequest extends AccessoryRequest {
 
     setFurnitureData(data: any) {
         this.setData(data);
-        this.color = data?.color || [];
     }
 }
 
-export default FurnitureRequest;
+export default FurnitureTypeProductRequest;

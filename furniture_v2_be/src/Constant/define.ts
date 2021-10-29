@@ -14,6 +14,7 @@ const TAG_DEFINE = {
         BILL: "Bill",
         SOCIAL_MEDIA: "Social media",
         ACCESSORY: "Accessory",
+        PRODUCT_TYPE: "Product-type"
     },
     SERVICE: {
         start: "WELCOME TO AZP SERVER",
@@ -61,6 +62,13 @@ const TAG_DEFINE = {
             update: "Cập nhật sản phẩm",
             getDetail: "Lấy chi tiết sản phẩm",
             delete: "Xóa sản phẩm",
+        },
+        PRODUCT_TYPE: {
+            create: "Thêm loại sản phẩm",
+            getList: "Lấy danh sách loại sản phẩm",
+            update: "Cập nhật loại sản phẩm",
+            getDetail: "Lấy chi tiết loại sản phẩm",
+            delete: "Xóa loại sản phẩm",
         },
         CATEGORY: {
             create: "Thêm danh mục",

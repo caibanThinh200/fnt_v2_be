@@ -6,7 +6,6 @@ import BillFactory from "../Factory/Creator/BillFactory";
 class BillService {
     public static async AddBillService(req: any) {
         try {
-            console.log(req.body);
             const billFactory = BillFactory.createBill(
                 req.body,
                 req.headers["type"]

@@ -1,7 +1,7 @@
 import logger from '../../../../Config/logger';
-import { AccessoryResponse } from '../../../../Mapping/Response/AccessoryResponse';
-class FurnitureResponse extends AccessoryResponse {
-    private color: any;
+import {AccessoryResponse}  from '../../../../Mapping/Response/AccessoryResponse';
+class FurnitureTypeProductResponse extends AccessoryResponse {
+
     constructor(data: any) {
         super(data)
         this.setFurnitureData(data);
@@ -9,8 +9,7 @@ class FurnitureResponse extends AccessoryResponse {
 
     setFurnitureData(data: any) {
         this.setData(data);
-        this.color = data?.color || [];
     }
 }
 
-export default FurnitureResponse;
+export default FurnitureTypeProductResponse;

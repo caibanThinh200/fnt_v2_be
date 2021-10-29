@@ -11,6 +11,9 @@ const PATH: any = {
         filter: "/filter",
         detail: "/detail/:id"
     },
+    PRODUCT_TYPE: {
+        baseURL: "/product-type",
+    },
     CATEGORY: {
         baseURL: "/cate"
     },

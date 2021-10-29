@@ -10,7 +10,6 @@ export default abstract class ProductRequest implements generateData {
     private discount_percent: any;
     private price: any;
     private status: any;
-    private type: any;
     private madeIn: any;
     private created_at: any;
     private updated_at: any;

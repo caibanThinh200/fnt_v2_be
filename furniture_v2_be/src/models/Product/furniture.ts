@@ -22,7 +22,10 @@ const FurnitureFields = {
     feature: {
         type: String,
     },
-
+    type: {
+        type: Number,
+        default: 0
+    },
     madeIn: {
         type: String,
         require: true,
@@ -35,10 +38,10 @@ const FurnitureFields = {
     categories: {
         type: [String],
         ref: CommonFunction.getStoreSchema(TAG_DEFINE.SCHEMA.CATEGORY, TAG_DEFINE.STORE.FURNITURE)
-    }
-    // images: {
-    //     type: [ImageSchema]
-    // },
+    },
+    images: {
+        type: [ImageSchema]
+    },
     // categories: {
     //     type: [CategorySchema]
     // }

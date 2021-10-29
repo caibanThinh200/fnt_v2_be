@@ -3,13 +3,14 @@ import logger from "../../../../Config/logger";
 import FurnitureAccessoryRequest from "./accessory";
 import FurnitureUploadRequest from "./upload";
 class FurnitureRequest extends ProductRequest {
-    private size: any;
-    private productWeight: any;
+    private size: string;
+    private productWeight: number;
     private accessories: any
-    private maxWeight: any;
+    private maxWeight: number;
     private feature: any;
     private images: any;
     private categories: any;
+    private type: number;;
 
     constructor(data: any) {
         super(data);
@@ -18,7 +19,8 @@ class FurnitureRequest extends ProductRequest {
 
     setFurnitureData(data: any) {
         this.setData(data);
-        this.accessories = (data?.accessory || []).map(item => new FurnitureAccessoryRequest(item));
+        this.type = data?.type || 0;
+        // this.accessories = new FurnitureAccessoryRequest(data?.accessory, data?.type);
         this.size = data?.size || "";
         this.productWeight = data?.productWeight || 0;
         this.maxWeight = data?.maxWeight || 0;

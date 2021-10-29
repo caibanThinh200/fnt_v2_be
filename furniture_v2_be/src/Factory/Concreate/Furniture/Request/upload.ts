@@ -1,6 +1,6 @@
 import logger from '../../../../Config/logger';
 import { UploadRequest } from '../../../../Mapping/Request/UploadRequest';
-class FurnitureRequest extends UploadRequest {
+class FurnitureUploadRequest extends UploadRequest {
     private code: any;
     private image: any;
 
@@ -11,9 +11,7 @@ class FurnitureRequest extends UploadRequest {
 
     setFurnitureData(data: any) {
         this.setData(data);
-        this.code = data?.code || "";
-        this.image = data?.image || "";
     }
 }
 
-export default FurnitureRequest;
+export default FurnitureUploadRequest;

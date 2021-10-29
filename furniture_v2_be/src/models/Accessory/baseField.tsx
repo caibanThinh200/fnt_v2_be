@@ -3,8 +3,8 @@ export default {
         type: String,
         require: true,
     },
-    type: {
-        type: String,
+    types: {
+        type: [Number],
         require: true
     },
     created_at: {

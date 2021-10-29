@@ -5,7 +5,7 @@ export default {
     },
     role: {
         type: String,
-        default: "subThumb"
+        default: "2"
     },
     name: {
         type: String,

@@ -8,8 +8,7 @@ class AuthController {
     public static async Login(req: Request, res: Response) {
         try {
             const result = await AuthService.LoginService(req);
-            
-            res.status(200).json(result)
+            res.status(200).json(result);
         } catch (error) {
             logger.error(error);
             res.status(500).json(CommonFunction.getActionResult(null, 500, error, TAG_DEFINE.RESULT.AUTH.LOGIN.failed));
@@ -19,9 +18,6 @@ class AuthController {
     public static async Register(req: Request, res: Response) {
         try {
             const result = await AuthService.RegisterService(req);
-
-            console.log(result)
-            
             res.status(200).json(result);
         } catch (error) {
             logger.error(error);
