@@ -1,9 +1,10 @@
 import { generateData } from "../../Factory/interface";
 import TAG_DEFINE from '../../Constant/define';
+import { Schema } from "mongoose";
 
 export abstract class ProductTypeRequest implements generateData {
     private name: string;
-    private type: number
+    private type: number;
     private created_at: Date;
     private updated_at: Date;
 

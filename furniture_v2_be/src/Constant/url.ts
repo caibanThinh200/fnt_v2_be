@@ -32,6 +32,9 @@ const PATH: any = {
     },
     BILL: {
         baseURL: "/bill"
+    },
+    ACCESSORY: {
+        baseURL: "/accessory"
     }
 };
 

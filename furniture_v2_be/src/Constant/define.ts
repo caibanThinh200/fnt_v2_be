@@ -107,6 +107,13 @@ const TAG_DEFINE = {
             getDetail: "Lấy chi tiết hóa đơn",
             delete: "Xóa hóa đơn",
         },
+        ACCESSORY: {
+            create: "Thêm thuộc tính sản phẩm",
+            getList: "Lấy danh sách thuộc tính sản phẩm",
+            update: "Cập nhật thuộc tính sản phẩm",
+            getDetail: "Lấy chi tiết thuộc tính sản phẩm",
+            delete: "Xóa thuộc tính sản phẩm"
+        }
     },
     STORE: {
         FURNITURE: "Furniture",

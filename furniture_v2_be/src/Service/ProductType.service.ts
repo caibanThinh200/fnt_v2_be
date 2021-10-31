@@ -9,7 +9,7 @@ class ProductTypeService {
     public static async AddProductTypeService(req: any) {
         try {
             const productTypeFactory = ProductTypeFactory.createProductType(req.body, req.headers['type']);
-            const productType = ProductTypeFactory.createSchema(productTypeFactory, req.headers['type'])
+            const productType = ProductTypeFactory.createSchema(productTypeFactory, req.headers['type']);
             const result = await productType.save()
             .then(() => CommonFunction.getActionResult(null, 201, null, TAG_DEFINE.RESULT.PRODUCT_TYPE.create))
             .catch(e => {

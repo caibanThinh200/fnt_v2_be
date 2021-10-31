@@ -1,13 +1,14 @@
-import { model, Schema } from "mongoose";
+import { model, Schema, Types } from "mongoose";
 import TAG_DEFINE from '../../Constant/define';
 import CommonFunction from "../../Utils/function";
 import { ProductTypeBaseField } from "./basefield";
-import { FurnitureAcessorySchema } from '../Accessory/furniture';
+import { AddTypeInAccessory } from '../../Middleware/productType.middleware';
 
 const FurnitureBaseField = {
     ...ProductTypeBaseField,
     attribute: {
-        type: [FurnitureAcessorySchema]
+        type: [Schema.Types.ObjectId],
+        ref: CommonFunction.getStoreSchema(TAG_DEFINE.SCHEMA.ACCESSORY, TAG_DEFINE.STORE.FURNITURE)
     },
     type: {
         type: Number,
@@ -17,5 +18,8 @@ const FurnitureBaseField = {
 }
 
 export const FurnitureProductTypeSchema = new Schema(FurnitureBaseField);
+
+FurnitureProductTypeSchema.post("save", doc => AddTypeInAccessory(doc, TAG_DEFINE.STORE.FURNITURE));
+
 const FurnitureProductTypeModel = model(CommonFunction.getStoreSchema(TAG_DEFINE.SCHEMA.PRODUCT_TYPE, TAG_DEFINE.STORE.FURNITURE), FurnitureProductTypeSchema);
 export default FurnitureProductTypeModel;

@@ -1,11 +1,14 @@
-export default {
+export const AccessoryBaseField = {
     name: {
         type: String,
         require: true,
     },
+    unit: {
+        type: String
+    },
     types: {
         type: [Number],
-        require: true
+        default: []
     },
     created_at: {
         type: Date,
