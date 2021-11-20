@@ -47,7 +47,9 @@ const FurnitureFields = {
     // }
 };
 
-export const FurnitureProductSchema = new Schema(FurnitureFields);
+export const FurnitureProductSchema = new Schema(FurnitureFields, {
+    timestamps: { createdAt: "created_at", updatedAt: "updated_at" },
+});
 const FurnitureModel = model(CommonFunction.getStoreSchema(TAG_DEFINE.SCHEMA.PRODUCT, TAG_DEFINE.STORE.FURNITURE), FurnitureProductSchema)
 
 export default FurnitureModel;

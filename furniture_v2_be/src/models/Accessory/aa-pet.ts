@@ -9,7 +9,7 @@ const AAPetFields = {
     ...AccessoryBaseField,
 };
 
-export const AAPetAccessorySchema = new Schema(AAPetFields);
+export const AAPetAccessorySchema = new Schema(AAPetFields, {timestamps: {createdAt: 'created_at', updatedAt: 'updated_at'}});
 export default mongoose.model(
     CommonFunction.getStoreSchema(
         TAG_DEFINE.SCHEMA.ACCESSORY,

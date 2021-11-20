@@ -15,21 +15,24 @@ const Product = {
     }
 }
 
-const schema = new mongoose.Schema({
-    ...baseField,
-    user_id: {
-        type: String,
-        ref: CommonFunction.getStoreSchema(
-            TAG_DEFINE.SCHEMA.USER,
-            TAG_DEFINE.STORE.AA_PET
-        ),
-        required: true,
+const schema = new mongoose.Schema(
+    {
+        ...baseField,
+        user_id: {
+            type: String,
+            ref: CommonFunction.getStoreSchema(
+                TAG_DEFINE.SCHEMA.USER,
+                TAG_DEFINE.STORE.AA_PET
+            ),
+            required: true,
+        },
+        products: {
+            type: [Product],
+            required: true,
+        },
     },
-    products: {
-        type: [Product],
-        required: true,
-    },
-});
+    { timestamps: { createdAt: "created_at", updatedAt: "updated_at" } }
+);
 
 const Bill = mongoose.model(
     CommonFunction.getStoreSchema(

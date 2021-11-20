@@ -30,7 +30,10 @@ const FurnitureCategoryField = {
     // }
 }
 
-export const CategorySchema = new Schema({...FurnitureCategoryField});
+export const CategorySchema = new Schema(
+    { ...FurnitureCategoryField },
+    { timestamps: { createdAt: "created_at", updatedAt: "updated_at" } }
+);
 CategorySchema.add({
     childCate: {type: [new Schema(FurnitureCategoryField)], default: []}
 })

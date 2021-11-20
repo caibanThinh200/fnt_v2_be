@@ -9,7 +9,7 @@ const FurnitureFields = {
     ...AccessoryBaseField,
 };
 
-export const FurnitureAccessorySchema = new Schema(FurnitureFields);
+export const FurnitureAccessorySchema = new Schema(FurnitureFields, {timestamps: {createdAt: 'created_at', updatedAt: 'updated_at'}});
 export default mongoose.model(
     CommonFunction.getStoreSchema(
         TAG_DEFINE.SCHEMA.ACCESSORY,

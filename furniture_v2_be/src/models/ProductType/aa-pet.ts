@@ -20,7 +20,9 @@ const AAPetBaseField = {
     },
 };
 
-export const AAPetProductTypeSchema = new Schema(AAPetBaseField);
+export const AAPetProductTypeSchema = new Schema(AAPetBaseField, {
+    timestamps: { createdAt: "created_at", updatedAt: "updated_at" },
+});
 
 AAPetProductTypeSchema.post("save", (doc) =>
     AddTypeInAccessory(doc, TAG_DEFINE.STORE.AA_PET)

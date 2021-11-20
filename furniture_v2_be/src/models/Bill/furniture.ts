@@ -19,7 +19,9 @@ const FurnitureBillField = {
     }
 }
 
-export const BillSchema = new Schema(FurnitureBillField);
+export const BillSchema = new Schema(FurnitureBillField, {
+    timestamps: { createdAt: "created_at", updatedAt: "updated_at" },
+});
 
 const CategoryModel = model(CommonFunction.getStoreSchema(TAG_DEFINE.SCHEMA.BILL, TAG_DEFINE.STORE.FURNITURE), BillSchema);
 export default CategoryModel;
