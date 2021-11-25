@@ -14,9 +14,12 @@ interface UserDocument extends mongoose.Document {
     gender: string;
 }
 
-export const UserSchema = new Schema({
-    ...BaseField,
-});
+export const UserSchema = new Schema(
+    {
+        ...BaseField,
+    },
+    { timestamps: { createdAt: "created_at", updatedAt: "updated_at" } }
+);
 
 UserSchema.pre("save", async function (next) {
     const user = this as UserDocument;

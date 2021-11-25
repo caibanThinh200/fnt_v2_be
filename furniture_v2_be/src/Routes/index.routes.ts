@@ -3,7 +3,6 @@ import AuthRoute from "./Auth.routes";
 import CateRoute from "./Category.routes";
 import SocialMediaRoute from "./SocialMedia.routes";
 import BillRoute from "./Bill.routes";
-import CategoryDetailRoute from "./CategoryDetail.routes";
 import ProductTypeRoute from "./ProductType.routes";
 import AccessoryRoute from "./Accessory.routes";
 import { Express } from "express";
@@ -17,5 +16,4 @@ export default (app: Express) => {
     app.use(PATH.SOCIAL_MEDIA.baseURL, SocialMediaRoute);
     app.use(PATH.BILL.baseURL, BillRoute);
     app.use(PATH.ACCESSORY.baseURL, AccessoryRoute);
-    app.use(PATH.CATEGORY_DETAIL.baseURL, CategoryDetailRoute);
 };

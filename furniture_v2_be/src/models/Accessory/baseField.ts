@@ -13,5 +13,6 @@ export const AccessoryBaseField = {
     created_at: {
         type: Date,
         default: Date.now()
-    }
+    },
+    updated_at: Date
 }

@@ -19,7 +19,9 @@ export const ProductField = {
     },
 };
 
-const ProductSchema = new mongoose.Schema(ProductField);
+const ProductSchema = new mongoose.Schema(ProductField, {
+    timestamps: { createdAt: "created_at", updatedAt: "updated_at" },
+});
 
 const Product = mongoose.model(
     CommonFunction.getStoreSchema(TAG_DEFINE.SCHEMA.PRODUCT, TAG_DEFINE.STORE.AA_PET),
