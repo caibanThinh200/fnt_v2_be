@@ -15,6 +15,7 @@ class FurnitureRequest extends ProductRequest {
     constructor(data: any) {
         super(data);
         this.setFurnitureData(data);
+        this.getData();
     }
 
     setFurnitureData(data: any) {
@@ -28,6 +29,8 @@ class FurnitureRequest extends ProductRequest {
         this.images = (data?.images || []).map(item => new FurnitureUploadRequest(item));
         this.categories = data?.categories || "";
     }
+
+    getData = () => this
 }
 
 export default FurnitureRequest;

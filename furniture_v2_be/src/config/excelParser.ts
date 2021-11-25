@@ -3,8 +3,12 @@ import CommonFunction from '../Utils/function';
 import path from "path";
 
 export default class ExcelGenerator {
-    private data: any;
+    public data: any;
+    public instance: ExcelGenerator
     constructor(data) {
+        // if(!this.instance) {
+        //     this.instance = new ExcelGenerator(data);
+        // }
         this.data = this.setExcelData(data) || {};
     }
 

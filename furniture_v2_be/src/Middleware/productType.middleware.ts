@@ -1,7 +1,6 @@
 import { ProductTypeFactory } from '../Factory/Creator/ProductTypeFactory';
 import { AccessoryFactory } from '../Factory/Creator/AccessoryFactory';
 
-
 export const AddTypeInAccessory = async (doc, type) => {
     await AccessoryFactory.getSchema(type)
     .find (
@@ -9,12 +8,14 @@ export const AddTypeInAccessory = async (doc, type) => {
     )
     .then (res => {
         res.map(async item => {
-            const documentAccessorySchema = await AccessoryFactory.getSchema(type).findById(item.id);
-            await documentAccessorySchema.updateOne({
+            await AccessoryFactory.getSchema(type)
+            .findById(item.id)
+            .then(async result => 
+                await result.updateOne({
                 $pull: {
                     types: doc?.type
                 }
-            })
+            }))
         })
     });
     (doc?.attribute || []).map(async id => {

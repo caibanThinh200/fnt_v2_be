@@ -1,6 +1,6 @@
 import logger from '../../../../Config/logger';
 import {AccessoryResponse}  from '../../../../Mapping/Response/AccessoryResponse';
-class FurnitureTypeProductResponse extends AccessoryResponse {
+class FurnitureAccessoryResponse extends AccessoryResponse {
 
     constructor(data: any) {
         super(data)
@@ -12,4 +12,4 @@ class FurnitureTypeProductResponse extends AccessoryResponse {
     }
 }
 
-export default FurnitureTypeProductResponse;
+export default FurnitureAccessoryResponse;

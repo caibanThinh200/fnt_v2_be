@@ -1,6 +1,9 @@
 import { Schema } from 'mongoose';
 import logger from '../../../../Config/logger';
 import {ProductTypeResponse}  from '../../../../Mapping/Response/ProductTypeResponse';
+import FurnitureAccessoryResponse from './accessory';
+import { omit } from "lodash";
+
 class FurnitureTypeProductResponse extends ProductTypeResponse {
     private attribute: Schema.Types.ObjectId[];
     
@@ -11,7 +14,7 @@ class FurnitureTypeProductResponse extends ProductTypeResponse {
 
     setFurnitureData(data: any) {
         this.setData(data);
-        this.attribute = data?.attribute || [];
+        this.attribute = data?.attribute.map(item => omit(new FurnitureAccessoryResponse(item)), ["types"]) || [];
     }
 }
 

@@ -68,8 +68,6 @@ class CategoryService {
                 logger.error(err);
                 return CommonFunction.getActionResult(null, 403, err, TAG_DEFINE.RESULT.CATEGORY.update);
             })
-            
-
             return updateResult;
         } catch (e) {
             logger.error(e);
@@ -93,7 +91,6 @@ class CategoryService {
         } catch (error) {
             logger.error(error);
             return CommonFunction.getActionResult(null, 400, error, TAG_DEFINE.RESULT.CATEGORY.update);
-
         }
     }
 }

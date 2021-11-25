@@ -26,7 +26,7 @@ export default class AuthService {
             return result;
         } catch (error) {
             logger.error(error);
-            return CommonFunction.getActionResult(null, 400, error, TAG_DEFINE.RESULT.AUTH.REGISTER)
+            return CommonFunction.getActionResult(null, 400, error, TAG_DEFINE.RESULT.AUTH.REGISTER);
         }
     }
 
@@ -71,16 +71,12 @@ export default class AuthService {
         try {
             const type = req.headers["type"];
             const { id } = req.params || "";
-            const user = await UserFactory.getSchema(type).find({
+            const user = await UserFactory.getSchema(type).findOne({
                 type,
                 _id: id,
             });
-            const userFactory = user.map((item) =>
-                UserFactory.getUser(item, type)
-            );
-
-            const result = CommonFunction.getActionResult(userFactory, 200, null)
-
+            const userFactory = UserFactory.getUser(user, type);
+            const result = CommonFunction.getActionResult(userFactory, 200, null);
             return result;
         } catch (e) {
             logger.error(e);

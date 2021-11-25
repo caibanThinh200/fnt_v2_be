@@ -2,7 +2,7 @@ import logger from '../Config/logger';
 import TAG_DEFINE from '../Constant/define';
 import CommonFunction from "../Utils/function";
 import { ProductTypeFactory } from '../Factory/Creator/ProductTypeFactory';
-
+import { Document, Schema } from 'mongoose';
 
 class ProductTypeService {
 
@@ -26,7 +26,7 @@ class ProductTypeService {
     public static async GetListProductTypeService(req: any) {
         try {
             const type = req.headers['type'];
-            const productType = await ProductTypeFactory.getSchema(type).find();
+            const productType = await ProductTypeFactory.getSchema(type).find().populate("attribute");
             const productTypeFactory = productType.map(item => ProductTypeFactory.getProductType(item, type));
             return CommonFunction.getActionResult(productTypeFactory, 200, null);
         } catch(e) {

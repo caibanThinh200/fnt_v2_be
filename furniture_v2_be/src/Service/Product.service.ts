@@ -5,6 +5,7 @@ import { CategoryFactory } from '../Factory/Creator/CategoryFactory';
 import { ProductFactory } from '../Factory/Creator/ProductFactory';
 import CommonFunction from "../Utils/function";
 import * as _ from "lodash"
+import { omit } from 'lodash';
 
 class ProductService {
 
@@ -56,7 +57,7 @@ class ProductService {
             const type = req.headers['type'];
             const startIndex = ((req?.query?.page_index || 1) - 1) * (req?.query?.page_size || 10)
             const endIndex = ((req?.query?.page_index || 1)) * (req?.query?.page_size || 10)
-            let arr = await this.GetListProductService(req);
+            let arr = await ProductFactory.getSchema(type).find(omit(req?.query, ["page_size", "page_index", "cate"]));
             const rootCategories = req.query.cate && await CategoryFactory.getSchema(type).find();
             if(req.query.cate) {
                 (CommonFunction.generateTreeData(rootCategories, []) || []).forEach(item => {
@@ -65,7 +66,7 @@ class ProductService {
                     }
                 })
             }
-            const filterProduct = arr.result.map(async id => {
+            const filterProduct = arr.map(async id => {
                 const product = await ProductFactory.getSchema(type).findOne({_id: id});
                 return ProductFactory.getProduct(product, type);
             });
@@ -81,7 +82,7 @@ class ProductService {
         try {
             const type = req.headers["type"];
             const {id} = req.params || "";
-            const product = await ProductFactory.getSchema(type).findById(id)
+            const product = await ProductFactory.getSchema(type).findById(id);
             const productFactory = ProductFactory.getProduct(product, type);
             return CommonFunction.getActionResult(productFactory, 200, null);
         } catch(e) {
@@ -142,7 +143,6 @@ class ProductService {
                 logger.error(err)
                 return CommonFunction.getActionResult(null, 403, err, TAG_DEFINE.RESULT.PRODUCT.delete);
             })
-            
             return result;
         } catch (error) {
             logger.error(error);
