@@ -12,11 +12,13 @@ class ProductService {
     public static async AddProductByExcelService(req: any) {
         try {
             const initProduct = ProductFactory.createProduct(null, req.headers['type']);
+            console.log(initProduct);
             const dataField = {
                 path: DEFINE_INFOMATION.PRODUCT_EXCEL,
                 objects: Object.keys(initProduct)
             }
             const listData = new ExcelGenerator(dataField)["data"]["Sheet1"];
+            console.log(listData);
             return Promise.all(listData.map(async item => await this.AddProductService({...req, body: item})))
         } catch(e) {
             logger.error(e);
@@ -38,6 +40,19 @@ class ProductService {
         } catch(e) {
             logger.error(e);
             return CommonFunction.getActionResult(null, 400, e, TAG_DEFINE.RESULT.PRODUCT.create);
+        }
+    }
+
+    public static async GetInitProductService(req: any) {
+        try {
+            const type = req.headers['type'];
+            let initProduct: any = await ProductFactory.createProduct(null, type);
+            const product = await ProductFactory.getSchema(type).find({});
+            const productFactoryNewCode = product.map(item => ProductFactory.getProduct(item, type)).length + 1;
+            initProduct = {...initProduct, code: productFactoryNewCode}
+            return CommonFunction.getActionResult(initProduct, 200, null);
+        } catch(e) {
+            logger.error(e);
         }
     }
 
@@ -71,7 +86,15 @@ class ProductService {
                 return ProductFactory.getProduct(product, type);
             });
             const filterPromise = await Promise.all(filterProduct);
-            return CommonFunction.getActionResult(filterPromise.slice(startIndex, endIndex), 200, null);
+            const listAll = (await this.GetListProductService(req));
+            const pageCount = CommonFunction.getPageCount(listAll.result.length, req.query.page_size)
+            return {
+                ...CommonFunction.getActionResult(filterPromise.slice(startIndex, endIndex), 200, null),
+                total: listAll.result.length,
+                page_index: parseInt(req.query.page_index) || 1,
+                page_size: parseInt(req.query.page_size) || 10,
+                page_count: pageCount
+            };
         } catch(e) {
             logger.error(e);
             return false;

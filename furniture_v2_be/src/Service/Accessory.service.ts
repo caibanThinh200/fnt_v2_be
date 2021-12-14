@@ -2,6 +2,7 @@ import logger from '../Config/logger';
 import TAG_DEFINE from '../Constant/define';
 import CommonFunction from "../Utils/function";
 import { AccessoryFactory } from '../Factory/Creator/AccessoryFactory';
+import { omit } from 'lodash';
 
 
 class AccessoryService {
@@ -24,6 +25,32 @@ class AccessoryService {
     }
 
     public static async GetListAccessoryService(req: any) {
+        try {
+            const pageIndex =  parseInt(req.query?.page_index) || 1;
+            const pageSize = parseInt(req.query?.page_size) || 10;
+            const startIndex = ((pageIndex || 1) - 1) * (pageSize || 10);
+            const endIndex = ((pageIndex || 1)) * (pageSize || 10);
+            const filterParams = omit(req.query, ["page_size", "page_index"]);
+            const type = req.headers['type'];
+            const acessory = await AccessoryFactory.getSchema(type).find(filterParams);
+            const acessoryFactory = acessory.map(item => AccessoryFactory.getAccessory(item, type));
+            const pagination = {
+                page_index: pageIndex,
+                page_size: pageSize,
+                total: acessoryFactory.length,
+                page_count: CommonFunction.getPageCount(acessory.length, pageSize)
+            };
+            return {
+                ...CommonFunction.getActionResult(acessoryFactory.slice(startIndex, endIndex), 200, null),
+                ...pagination
+            }
+        } catch(e) {
+            logger.error(e);
+            return CommonFunction.getActionResult(null, 400, e, TAG_DEFINE.RESULT.ACCESSORY.getList);
+        }
+    }
+
+    public static async GetListAllAccessoryServer(req: any) {
         try {
             const type = req.headers['type'];
             const acessory = await AccessoryFactory.getSchema(type).find();

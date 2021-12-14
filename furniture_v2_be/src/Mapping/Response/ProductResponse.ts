@@ -8,10 +8,10 @@ export default abstract class ProductResponse implements generateData {
     private description: any;
     private quantity: any;
     private saled_count: any;
-    private discount_percent: any;
+    private discount_value: any;
     private price: any;
     private status: any;
-    private type: any;
+    private type: number;
     private madeIn: any;
     private created_at: any;
     private updated_at: any;
@@ -26,7 +26,8 @@ export default abstract class ProductResponse implements generateData {
         this.description = data?.description || "";
         this.quantity = data?.quantity || 0;
         this.saled_count = data?.saled_count || 0;
-        this.discount_percent = data?.discount_percent || 0;
+        this.type = data?.type || 0;
+        this.discount_value = data?.discount_value || 0;
         this.price = data?.price || 0;
         this.status = data?.status || 0;
         this.created_at = data?.created_at || new Date();

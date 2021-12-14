@@ -4,12 +4,10 @@ import FurnitureUploadResponse from "./upload";
 import { UploadResponse } from '../../../../Mapping/Response/UploadResponse';
 
 class FurnitureResponse extends ProductResponse {
-    private size: any;
-    private productWeight: any;
-    private maxWeight: any;
-    private feature: any;
     private images: any;
+    private isPercent: boolean;
     private categories: any;
+    private code: number;
 
     constructor(data: any) {
         super(data);
@@ -18,10 +16,8 @@ class FurnitureResponse extends ProductResponse {
 
     setFurnitureData(data: any) {
         this.setData(data);
-        this.size = data?.size || "";
-        this.productWeight = data?.productWeight || "";
-        this.maxWeight = data?.maxWeight || "";
-        this.feature = data?.feature || "";
+        this.code = data?. code || 0;
+        this.isPercent = data?.isPercent || false;
         this.images = (data?.images || []).map(item => new FurnitureUploadResponse(item));
         this.categories = data?.categories || "";
     }

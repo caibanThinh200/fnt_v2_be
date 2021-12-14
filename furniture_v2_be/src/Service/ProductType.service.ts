@@ -3,8 +3,26 @@ import TAG_DEFINE from '../Constant/define';
 import CommonFunction from "../Utils/function";
 import { ProductTypeFactory } from '../Factory/Creator/ProductTypeFactory';
 import { Document, Schema } from 'mongoose';
+import { omit } from 'lodash';
+import { DEFINE_INFOMATION } from '../Constant/define';
+import ExcelGenerator from '../Config/excelParser';
 
 class ProductTypeService {
+
+    public static async AddProductTypeByExcelService(req: any) {
+        try {
+            const initProduct = ProductTypeFactory.createProductType(null, req.headers['type']);
+            const dataField = {
+                path: DEFINE_INFOMATION.PRODUCT_EXCEL,
+                objects: Object.keys(initProduct)
+            }
+            const listData = new ExcelGenerator(dataField)["data"]["Sheet1"];
+            return Promise.all(listData.map(async item => await this.AddProductTypeService({...req, body: item})))
+        } catch(e) {
+            logger.error(e);
+            return false;
+        }
+    }
 
     public static async AddProductTypeService(req: any) {
         try {
@@ -23,12 +41,60 @@ class ProductTypeService {
         }
     }
 
+    public static async GetProductTypeCountService(req: any) {
+        try {
+            const type = req.headers['type'];
+            const initProductType = ProductTypeFactory.createProductType(null, type);
+            const totalCount = (await ProductTypeFactory.getSchema(type).find());
+            return CommonFunction.getActionResult({...initProductType, type: totalCount.length + 1}, 200, null)
+        } catch(e) {
+            logger.error(e);
+            return CommonFunction.getActionResult(null, 400, e, TAG_DEFINE.RESULT.PRODUCT_TYPE.getCount);
+        }
+    }
+
+    public static async GetListAllProductTypeService(req: any) {
+        try {
+            const type = req.headers['type'];
+            const productType = await ProductTypeFactory.getSchema(type).find();
+            const productTypeFactory = await productType.map(item => ProductTypeFactory.getProductType(item, type));
+            const pagination = {
+                total: productTypeFactory.length,
+                page_index: 1,
+                page_size: 10,
+                page_count: CommonFunction.getPageCount(productTypeFactory.length, 10)
+            }
+            return {
+                ...CommonFunction.getActionResult(productTypeFactory, 200, null),
+                ...pagination
+            }
+        } catch(e) {
+            logger.error(e);
+            return CommonFunction.getActionResult(null, 400, e, TAG_DEFINE.RESULT.PRODUCT_TYPE.getList);
+        }
+    }
+
     public static async GetListProductTypeService(req: any) {
         try {
             const type = req.headers['type'];
-            const productType = await ProductTypeFactory.getSchema(type).find().populate("attribute");
-            const productTypeFactory = productType.map(item => ProductTypeFactory.getProductType(item, type));
-            return CommonFunction.getActionResult(productTypeFactory, 200, null);
+            const filterParams = omit(req.query, ["page_index", "page_size"])
+            const pageIndex = parseInt(req.query?.page_index) || 1;
+            const pageSize = parseInt(req.query?.page_size) || 10;
+            const startIndex = ((pageIndex || 1) - 1) * (pageSize || 10);
+            const endIndex = ((pageIndex || 1)) * (pageSize || 10);
+            // const productTypeCount = (await ProductTypeFactory.getSchema(type).find()).length;
+            const productType = await ProductTypeFactory.getSchema(type).find(filterParams).populate("attribute")
+            const productTypeFactory = productType.map(item => ProductTypeFactory.getProductType(item, type)).slice(startIndex, endIndex);
+            const pagination = {
+                total: productType.length,
+                page_index: pageIndex,
+                page_size: pageSize,
+                page_count: CommonFunction.getPageCount(productType.length, pageSize)
+            }
+            return {
+                ...CommonFunction.getActionResult(productTypeFactory, 200, null),
+                ...pagination
+            };
         } catch(e) {
             logger.error(e);
             return CommonFunction.getActionResult(null, 400, e, TAG_DEFINE.RESULT.PRODUCT_TYPE.getList);

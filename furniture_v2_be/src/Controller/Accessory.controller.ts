@@ -25,6 +25,16 @@ class AccessoryController {
         }
     }
 
+    public static async GetListAllAccessoryController(req: Request, res: Response) {
+        try {
+            const result = await AccessoryService.GetListAllAccessoryServer(req);
+            res.status(200).json(result);
+        } catch(e) {
+            logger.error(e);
+            res.status(500).json(CommonFunction.getActionResult(null, 500, e, TAG_DEFINE.RESULT.ACCESSORY.getList));
+        }
+    }
+
     public static async GetDetailAccessoryController(req: Request, res: Response) {
         try {
             const result = await AccessoryService.GetDetailAccessoryService(req);

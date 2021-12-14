@@ -8,6 +8,7 @@ const route: Router = express.Router();
 
 route.post(PATH.APP.start, ProductController.AddProductController);
 route.get(PATH.APP.start, ProductController.GetListProductController);
+route.get(PATH.PRODUCT.init, ProductController.GetInitProductController);
 route.get(PATH.PRODUCT.detail, ProductController.GetDetailProductController);
 route.put(PATH.PRODUCT.detail,upload.array("product", 10) ,ProductController.UpdateProductController);
 route.post(PATH.PRODUCT.excel, ProductController.AddProductByExcelController);

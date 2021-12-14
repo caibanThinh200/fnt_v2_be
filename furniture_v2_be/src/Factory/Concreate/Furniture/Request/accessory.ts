@@ -1,6 +1,6 @@
 import logger from '../../../../Config/logger';
 import {AccessoryRequest}  from '../../../../Mapping/Request/AccessoryRequest';
-class FurnitureAccesoryRequest extends AccessoryRequest {
+class FurnitureAccessoryRequest extends AccessoryRequest {
 
     constructor(data: any) {
         super(data)
@@ -12,4 +12,4 @@ class FurnitureAccesoryRequest extends AccessoryRequest {
     }
 }
 
-export default FurnitureAccesoryRequest;
+export default FurnitureAccessoryRequest;

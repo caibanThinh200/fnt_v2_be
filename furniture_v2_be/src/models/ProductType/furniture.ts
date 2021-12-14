@@ -17,7 +17,9 @@ const FurnitureBaseField = {
     }
 }
 
-export const FurnitureProductTypeSchema = new Schema(FurnitureBaseField);
+export const FurnitureProductTypeSchema = new Schema(FurnitureBaseField, {
+    timestamps: { createdAt: "created_at", updatedAt: "updated_at" },
+});
 
 FurnitureProductTypeSchema.post("save", doc => AddTypeInAccessory(doc, TAG_DEFINE.STORE.FURNITURE));
 

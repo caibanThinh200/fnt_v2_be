@@ -7,38 +7,23 @@ import CommonFunction from "../../Utils/function";
 
 const FurnitureFields = {
     ...ProductBaseField,
-    size: {
-        type: String,
-        require: true,
-    },
-    productWeight: {
+    code: {
         type: Number,
-        require: true,
-    },
-    maxWeight: {
-        type: Number,
-        require: true,
-    },
-    feature: {
-        type: String,
+        require: true  
     },
     type: {
         type: Number,
         default: 0
     },
-    madeIn: {
-        type: String,
-        require: true,
-    },
-
     status: {
         type: String,
         default: 0,
     },
-    categories: {
-        type: [String],
-        ref: CommonFunction.getStoreSchema(TAG_DEFINE.SCHEMA.CATEGORY, TAG_DEFINE.STORE.FURNITURE)
-    },
+    // categories: {
+    //     type: [Schema.Types.ObjectId],
+    //     default: [],
+    //     ref: CommonFunction.getStoreSchema(TAG_DEFINE.SCHEMA.CATEGORY, TAG_DEFINE.STORE.FURNITURE)
+    // },
     images: {
         type: [ImageSchema]
     },
@@ -47,7 +32,9 @@ const FurnitureFields = {
     // }
 };
 
-export const FurnitureProductSchema = new Schema(FurnitureFields);
+export const FurnitureProductSchema = new Schema(FurnitureFields, {
+    timestamps: { createdAt: "created_at", updatedAt: "updated_at" },
+});
 const FurnitureModel = model(CommonFunction.getStoreSchema(TAG_DEFINE.SCHEMA.PRODUCT, TAG_DEFINE.STORE.FURNITURE), FurnitureProductSchema)
 
 export default FurnitureModel;

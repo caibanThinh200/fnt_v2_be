@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 export default {
+    // _id: mongoose.Types.ObjectId,
     name: {
         type: String,
         required: true,

@@ -7,6 +7,7 @@ const route: Router = express.Router();
 
 route.post(PATH.APP.start, AccessoryController.AddAccessoryController);
 route.get(PATH.APP.start, AccessoryController.GetListAccessoryController);
+route.get(PATH.ACCESSORY.all, AccessoryController.GetListAllAccessoryController);
 route.get(PATH.APP.params.replace("params", "id"), AccessoryController.GetDetailAccessoryController);
 route.put(PATH.APP.params.replace("params", "id"), AccessoryController.UpdateAccessoryController);
 

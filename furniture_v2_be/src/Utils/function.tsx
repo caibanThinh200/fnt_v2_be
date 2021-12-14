@@ -29,7 +29,7 @@ class CommonFunction {
         return Object.keys(object).find((key: any) => object[key] === value);
     }
 
-    static getActionResult(result: any, code: number, error:any, value?: string) {
+    static getActionResult(result: any[] | any, code: number, error: any, value?: string) {
         const num: number = code <= 500 && code >= 400 ? 500 : 200,
         status: string = code <= 500 && code >= 400 ? "FAILED" : "SUCCESS";
 
@@ -137,6 +137,12 @@ class CommonFunction {
             o?.childCate && this.generateTreeData(o?.childCate, existingChildren);
         });
         return existingChildren;
+    }
+
+    static getPageCount(total: number | any, page_size: number | any) {
+        total = parseInt(total),
+        page_size = parseInt(page_size)
+        return ((total / page_size)) % 1 !== 0 ? Math.floor(total / page_size) + 1 : total / page_size 
     }
 }
 

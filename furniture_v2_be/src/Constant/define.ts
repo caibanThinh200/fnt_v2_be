@@ -65,6 +65,7 @@ const TAG_DEFINE = {
         },
         PRODUCT_TYPE: {
             create: "Thêm loại sản phẩm",
+            getCount: "Lấy số lượng sản phẩm",
             getList: "Lấy danh sách loại sản phẩm",
             update: "Cập nhật loại sản phẩm",
             getDetail: "Lấy chi tiết loại sản phẩm",
@@ -134,7 +135,8 @@ const TAG_DEFINE = {
 };
 
 export const DEFINE_INFOMATION = {
-    PRODUCT_EXCEL: "UploadFiles/product.xlsx"
+    PRODUCT_EXCEL: "UploadFiles/product.xlsx",
+    PRODUCT_TYPE_EXCEL: "UploadFiles/type.xlsx"
 }
 
 export default TAG_DEFINE;

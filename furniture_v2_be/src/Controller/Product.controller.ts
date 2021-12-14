@@ -25,6 +25,16 @@ class ProductController {
         }
     }
 
+    public static async GetInitProductController(req: Request, res: Response) {
+        try {
+            const result = await ProductService.GetInitProductService(req);
+            res.status(200).json(result);
+        } catch(e) {
+            logger.erro(e);
+            res.status(500).json(CommonFunction.getActionResult(null, 500, e, TAG_DEFINE.RESULT.PRODUCT.getList));
+        }
+    }
+
     public static async GetListProductController(req: Request, res: Response) {
         try {
             const result = await ProductService.GetListProductService(req);

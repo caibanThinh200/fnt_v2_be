@@ -12,7 +12,6 @@ export default class AuthService {
         try {
             const userFactory = UserFactory.createUser(req.body, type);
             const user = UserFactory.createSchema(userFactory, type);
-
             const result = await user
                 .save()
                 .then(() =>
@@ -123,7 +122,7 @@ export default class AuthService {
                     (userId &&
                         (await UserFactory.getSchema(type).findById({
                             _id: userId._id,
-                        }))) ||
+                        }).select({password: 0}))) ||
                     {};
                 const result = CommonFunction.getActionResult(userInfo ? UserFactory.getUser(userInfo, type as string) : {}, 200, null);
                 return result;

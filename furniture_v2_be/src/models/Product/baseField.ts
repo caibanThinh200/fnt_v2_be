@@ -18,7 +18,7 @@ export const ProductBaseField = {
         type: Number,
         default: 0,
     },
-    discount_percent: {
+    discount_value: {
         type: Number,
         default: 0,
     },
