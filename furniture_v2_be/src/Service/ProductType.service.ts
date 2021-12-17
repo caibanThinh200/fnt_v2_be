@@ -56,7 +56,7 @@ class ProductTypeService {
     public static async GetListAllProductTypeService(req: any) {
         try {
             const type = req.headers['type'];
-            const productType = await ProductTypeFactory.getSchema(type).find();
+            const productType = await ProductTypeFactory.getSchema(type).find().populate("attribute");
             const productTypeFactory = await productType.map(item => ProductTypeFactory.getProductType(item, type));
             const pagination = {
                 total: productTypeFactory.length,
@@ -107,7 +107,7 @@ class ProductTypeService {
             const {id} = req.params || "";
             const productType = await ProductTypeFactory.getSchema(type).findOne({
                 _id: id
-            });
+            }).populate("attribute");
             const productTypeFactory = ProductTypeFactory.getProductType(productType, type);
             return CommonFunction.getActionResult(productTypeFactory, 200, null);
         } catch(e) {

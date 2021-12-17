@@ -8,6 +8,7 @@ class FurnitureResponse extends ProductResponse {
     private isPercent: boolean;
     private categories: any;
     private code: number;
+    private accessories: any;
 
     constructor(data: any) {
         super(data);
@@ -18,6 +19,7 @@ class FurnitureResponse extends ProductResponse {
         this.setData(data);
         this.code = data?. code || 0;
         this.isPercent = data?.isPercent || false;
+        this.accessories = data?.attribute || {};
         this.images = (data?.images || []).map(item => new FurnitureUploadResponse(item));
         this.categories = data?.categories || "";
     }

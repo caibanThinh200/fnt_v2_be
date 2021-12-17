@@ -14,7 +14,6 @@ import cors from "cors"
 const app = express();
 
 dataConfig.getInstance();
-
 app.use(bodyParser.raw());
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json());

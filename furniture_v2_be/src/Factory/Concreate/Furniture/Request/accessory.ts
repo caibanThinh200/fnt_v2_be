@@ -1,7 +1,7 @@
 import logger from '../../../../Config/logger';
 import {AccessoryRequest}  from '../../../../Mapping/Request/AccessoryRequest';
 class FurnitureAccessoryRequest extends AccessoryRequest {
-
+    private code: number
     constructor(data: any) {
         super(data)
         this.setFurnitureData(data);
@@ -9,6 +9,7 @@ class FurnitureAccessoryRequest extends AccessoryRequest {
 
     setFurnitureData(data: any) {
         this.setData(data);
+        this.code = data.code || 0;
     }
 }
 

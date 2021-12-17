@@ -7,6 +7,10 @@ import { AddTypeInAccessory } from "../../Middleware/productType.middleware";
 
 const FurnitureFields = {
     ...AccessoryBaseField,
+    code: {
+        type: Number,
+        require: true
+    }
 };
 
 export const FurnitureAccessorySchema = new Schema(FurnitureFields, {timestamps: {createdAt: 'created_at', updatedAt: 'updated_at'}});

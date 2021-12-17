@@ -6,19 +6,19 @@ import { ProductFactory } from '../Factory/Creator/ProductFactory';
 import CommonFunction from "../Utils/function";
 import * as _ from "lodash"
 import { omit } from 'lodash';
+import { AccessoryFactory } from '../Factory/Creator/AccessoryFactory';
 
 class ProductService {
 
     public static async AddProductByExcelService(req: any) {
         try {
             const initProduct = ProductFactory.createProduct(null, req.headers['type']);
-            console.log(initProduct);
             const dataField = {
                 path: DEFINE_INFOMATION.PRODUCT_EXCEL,
                 objects: Object.keys(initProduct)
             }
             const listData = new ExcelGenerator(dataField)["data"]["Sheet1"];
-            console.log(listData);
+            CommonFunction.getInstance().testFunc();
             return Promise.all(listData.map(async item => await this.AddProductService({...req, body: item})))
         } catch(e) {
             logger.error(e);
@@ -28,7 +28,14 @@ class ProductService {
 
     public static async AddProductService(req: any) {
         try {
-            const productFactory = ProductFactory.createProduct(req.body, req.headers['type']);
+            let attributeName = {};
+            const listAttribute = Object.keys(req.body?.attribute || {}).map(async item => {
+                const accessory = await (AccessoryFactory.getSchema(req.headers['type']).findOne({_id: item}) as any);
+                attributeName = {...attributeName, [accessory?.name?.toString()]: req.body?.attribute[item]};
+                return attributeName;
+            });
+            await Promise.all(listAttribute)
+            const productFactory = ProductFactory.createProduct({...req.body, attribute: attributeName}, req.headers['type']);
             const product = ProductFactory.createSchema(productFactory, req.headers['type'])
             const result = await product.save()
             .then(() => CommonFunction.getActionResult(null, 201, null, TAG_DEFINE.RESULT.PRODUCT.create))

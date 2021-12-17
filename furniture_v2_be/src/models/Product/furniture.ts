@@ -19,6 +19,7 @@ const FurnitureFields = {
         type: String,
         default: 0,
     },
+    accessories: {},
     // categories: {
     //     type: [Schema.Types.ObjectId],
     //     default: [],

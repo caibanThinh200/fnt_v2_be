@@ -12,6 +12,13 @@ class CommonFunction {
         return CommonFunction.instance;
     }
 
+    static getInstance() {
+        if(!this.instance) {
+            this.instance = new CommonFunction
+        }
+        return CommonFunction.instance;
+    }
+
     // functions
     static formatInt(numberParams: any, defaultNum: number = 0) {
         return isNaN(numberParams) ? defaultNum : numberParams;
@@ -143,6 +150,10 @@ class CommonFunction {
         total = parseInt(total),
         page_size = parseInt(page_size)
         return ((total / page_size)) % 1 !== 0 ? Math.floor(total / page_size) + 1 : total / page_size 
+    }
+
+    testFunc() {
+        console.log(123123);
     }
 }
 
