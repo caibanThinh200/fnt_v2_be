@@ -13,5 +13,7 @@ route.get(PATH.PRODUCT.detail, ProductController.GetDetailProductController);
 route.put(PATH.PRODUCT.detail,upload.array("product", 10) ,ProductController.UpdateProductController);
 route.post(PATH.PRODUCT.excel, ProductController.AddProductByExcelController);
 route.get(PATH.PRODUCT.filter, ProductController.GetFilterProductController);
+route.delete(PATH.APP.params.replace('params', 'id'), ProductController.DeleteProductController);
+route.put(PATH.APP.params.replace("params", "id"), ProductController.UpdateProductController);
 
 export default route;

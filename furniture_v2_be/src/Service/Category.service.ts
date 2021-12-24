@@ -65,7 +65,12 @@ class CategoryService {
             }
 
             const newChild = CategoryFactory.createSchema(req.body, type);
-            (rootCategory as any).AddChildCate(rootCategory, newChild, req.query.nodeId);
+
+            (rootCategory as any).AddChildCate(
+                rootCategory,
+                newChild,
+                req.query.nodeId
+            );
 
             const result = await rootCategory
                 .save()
@@ -234,14 +239,14 @@ class CategoryService {
             const type = req.headers["type"];
             const { id } = req.params || "";
             const currentcategory = await this.GetDetailCategoryService(req);
-            const filters = currentcategory[0] || {};
+            const filters = currentcategory.result || {};
             const newRequest = {
-                ...currentcategory[0],
+                ...currentcategory.result,
                 ...req.body,
             };
             const updatecategory = CategoryFactory.createCategory(
                 newRequest,
-                req.query
+                type
             );
             const updateResult = await CategoryFactory.getSchema(type)
                 .find(filters)

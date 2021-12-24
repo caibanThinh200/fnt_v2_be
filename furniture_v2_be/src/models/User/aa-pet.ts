@@ -12,6 +12,8 @@ interface UserDocument extends mongoose.Document {
     phone: string;
     address: string;
     gender: number;
+    role: string;
+    wishList: [];
 }
 
 const UserSchema = new Schema(
@@ -21,6 +23,14 @@ const UserSchema = new Schema(
             type: String,
             required: true,
             unique: true,
+        },
+        role: String,
+        wishList: {
+            type: [mongoose.Schema.Types.ObjectId],
+            ref: CommonFunction.getStoreSchema(
+                TAG_DEFINE.SCHEMA.PRODUCT,
+                TAG_DEFINE.STORE.AA_PET
+            ),
         },
     },
     { timestamps: { createdAt: "created_at", updatedAt: "updated_at" } }
