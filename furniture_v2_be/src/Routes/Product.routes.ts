@@ -6,6 +6,11 @@ import upload from "../Config/multer";
 
 const route: Router = express.Router();
 
+const thumb = upload.field([
+    {name: 'mainThumb', maxCount: 1},
+    {name: 'subThumb', maxCount: 6},
+])
+
 route.post(PATH.APP.start, ProductController.AddProductController);
 route.get(PATH.APP.start, ProductController.GetListProductController);
 route.get(PATH.PRODUCT.init, ProductController.GetInitProductController);

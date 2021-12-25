@@ -11,6 +11,8 @@ const PATH: any = {
         excel: "/excel",
         filter: "/filter",
         detail: "/detail/:id",
+        categoryId: "/cate/:category_id",
+        categoryDetailId: "/cate-detail/:category_detail_id",
     },
     PRODUCT_TYPE: {
         baseURL: "/product-type",
