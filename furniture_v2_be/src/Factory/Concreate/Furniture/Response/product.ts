@@ -4,9 +4,11 @@ import FurnitureUploadResponse from "./upload";
 import { UploadResponse } from '../../../../Mapping/Response/UploadResponse';
 
 class FurnitureResponse extends ProductResponse {
-    private images: any;
-    private isPercent: boolean;
+    private mainThumb: any;
+    private subThumb: any;
+    private is_percent: boolean;
     private categories: any;
+    private discount_price: number;
     private code: number;
     private accessories: any;
 
@@ -18,9 +20,11 @@ class FurnitureResponse extends ProductResponse {
     setFurnitureData(data: any) {
         this.setData(data);
         this.code = data?. code || 0;
-        this.isPercent = data?.isPercent || false;
-        this.accessories = data?.attribute || {};
-        this.images = (data?.images || []).map(item => new FurnitureUploadResponse(item));
+        this.is_percent = data?.is_percent || false;
+        this.accessories = data?.accessories || {};
+        this.mainThumb = (data?.mainThumb || []).map(item => new FurnitureUploadResponse(item));
+        this.subThumb = (data?.subThumb || []).map(item => new FurnitureUploadResponse(item));
+        this.discount_price = data?.discount_price || 0;
         this.categories = data?.categories || "";
     }
 }

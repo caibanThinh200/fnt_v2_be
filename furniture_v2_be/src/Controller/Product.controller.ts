@@ -84,6 +84,24 @@ class ProductController {
             res.status(500).json(CommonFunction.getActionResult(null, 500, e, TAG_DEFINE.RESULT.PRODUCT.delete));
         }
     }
+    public static async GetProductsByCategoryIdController(req: Request, res: Response){
+        try {
+            const result = await ProductService.GetProductsByCategoryIdService(req);
+            res.status(200).json(result);
+        } catch(e) {
+            logger.error(e);
+            res.status(500).json(CommonFunction.getActionResult(null, 500, e, TAG_DEFINE.RESULT.PRODUCT.delete));
+        }
+    }
+    public static async GetProductsByCategoryDetailIdController(req: Request, res: Response){
+        try {
+            const result = await ProductService.GetProductsByCategoryDetailIdService(req);
+            res.status(200).json(result);
+        } catch(e) {
+            logger.error(e);
+            res.status(500).json(CommonFunction.getActionResult(null, 500, e, TAG_DEFINE.RESULT.PRODUCT.delete));
+        }
+    }
 }
 
 export default ProductController;

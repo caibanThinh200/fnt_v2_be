@@ -15,32 +15,17 @@ export default class AuthService {
             const result = await user
                 .save()
                 .then(() =>
-                    CommonFunction.getActionResult(
-                        null,
-                        201,
-                        null,
-                        TAG_DEFINE.RESULT.AUTH.REGISTER
-                    )
+                    CommonFunction.getActionResult(null, 201, null, TAG_DEFINE.RESULT.AUTH.REGISTER)
                 )
                 .catch((e) => {
                     logger.error(e);
-                    return CommonFunction.getActionResult(
-                        null,
-                        403,
-                        e,
-                        TAG_DEFINE.RESULT.AUTH.REGISTER
-                    );
+                    return CommonFunction.getActionResult(null, 403, e, TAG_DEFINE.RESULT.AUTH.REGISTER);
                 });
 
             return result;
         } catch (error) {
             logger.error(error);
-            return CommonFunction.getActionResult(
-                null,
-                400,
-                error,
-                TAG_DEFINE.RESULT.AUTH.REGISTER
-            );
+            return CommonFunction.getActionResult(null, 400, error, TAG_DEFINE.RESULT.AUTH.REGISTER);
         }
     }
 
@@ -48,25 +33,19 @@ export default class AuthService {
         const type = req.headers.type;
         const { email, password, username } = req.body;
         try {
-            let existingUser: any = await UserFactory.getSchema(type).findOne({
-                email,
-            });
+            let existingUser: any = await UserFactory.getSchema(type).findOne(
+                { email }
+            );
 
-            if (!existingUser)
-                existingUser = await UserFactory.getSchema(type).findOne({
-                    username,
-                });
+            if (!existingUser) existingUser = await UserFactory.getSchema(type).findOne({
+                username
+            })
 
             const comparePassword =
                 existingUser &&
                 (await bcrypt.compare(password, existingUser?.password));
             if (!existingUser || !comparePassword) {
-                return CommonFunction.getActionResult(
-                    null,
-                    403,
-                    null,
-                    TAG_DEFINE.RESULT.AUTH.LOGIN.exist
-                );
+                return CommonFunction.getActionResult(null, 403, null, TAG_DEFINE.RESULT.AUTH.LOGIN.exist);
             } else {
                 // JWT
                 const token = jwt.sign(
@@ -76,23 +55,14 @@ export default class AuthService {
                     process.env.SECRET_JWT,
                     { expiresIn: "1 day" }
                 );
-
-                const result = CommonFunction.getActionResult(
-                    { token },
-                    200,
-                    null
-                );
+                
+                const result = CommonFunction.getActionResult({token}, 200, null);
 
                 return result;
             }
         } catch (error) {
             logger.error(error);
-            return CommonFunction.getActionResult(
-                null,
-                400,
-                error,
-                TAG_DEFINE.RESULT.AUTH.LOGIN.failed
-            );
+            return CommonFunction.getActionResult(null, 400, error, TAG_DEFINE.RESULT.AUTH.LOGIN.failed)
         }
     }
 
@@ -105,20 +75,11 @@ export default class AuthService {
                 _id: id,
             });
             const userFactory = UserFactory.getUser(user, type);
-            const result = CommonFunction.getActionResult(
-                userFactory,
-                200,
-                null
-            );
+            const result = CommonFunction.getActionResult(userFactory, 200, null);
             return result;
         } catch (e) {
             logger.error(e);
-            return CommonFunction.getActionResult(
-                null,
-                400,
-                e,
-                TAG_DEFINE.RESULT.AUTH.getDetail
-            );
+            return CommonFunction.getActionResult(null, 400, e, TAG_DEFINE.RESULT.AUTH.getDetail)
         }
     }
 
@@ -137,21 +98,11 @@ export default class AuthService {
                 .find(filters)
                 .updateOne(updateUser)
                 .then(() =>
-                    CommonFunction.getActionResult(
-                        null,
-                        200,
-                        null,
-                        TAG_DEFINE.RESULT.AUTH.update
-                    )
+                    CommonFunction.getActionResult(null, 200, null, TAG_DEFINE.RESULT.AUTH.update)
                 )
                 .catch((err) => {
                     logger.error(err);
-                    return CommonFunction.getActionResult(
-                        null,
-                        403,
-                        err,
-                        TAG_DEFINE.RESULT.AUTH.update
-                    );
+                    return CommonFunction.getActionResult(null, 403, err, TAG_DEFINE.RESULT.AUTH.update);
                 });
             return updateResult;
         } catch (e) {
@@ -169,34 +120,22 @@ export default class AuthService {
                 const userId = jwt.verify(token, process.env.SECRET_JWT);
                 const userInfo =
                     (userId &&
-                        (await UserFactory.getSchema(type)
-                            .findById({
-                                _id: userId._id,
-                            })
-                            .select({ password: 0 })
-                            .populate("wishList"))) ||
+                        (await UserFactory.getSchema(type).findById({
+                            _id: userId._id,
+                        }).select({password: 0}))) ||
                     {};
-                const result = CommonFunction.getActionResult(
-                    userInfo
-                        ? UserFactory.getUser(userInfo, type as string)
-                        : {},
-                    200,
-                    null
-                );
+                const result = CommonFunction.getActionResult(userInfo ? UserFactory.getUser(userInfo, type as string) : {}, 200, null);
                 return result;
             } else {
-                return CommonFunction.getActionResult({}, 200, {
-                    message: "Have no token",
-                });
+                return CommonFunction.getActionResult(
+                    {},
+                    200,
+                    {message: "Have no token"}
+                );
             }
         } catch (e: any) {
             logger.error(e);
-            return CommonFunction.getActionResult(
-                null,
-                400,
-                e,
-                TAG_DEFINE.RESULT.AUTH.getDetail
-            );
+            return CommonFunction.getActionResult(null, 400, e, TAG_DEFINE.RESULT.AUTH.getDetail)
         }
     }
 }

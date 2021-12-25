@@ -11,8 +11,6 @@ class FurnitureResponse extends UploadResponse {
 
     setFurnitureData(data: any) {
         this.setData(data);
-        this.code = data?.code || "";
-        this.image = data?.image || "";
     }
 }
 

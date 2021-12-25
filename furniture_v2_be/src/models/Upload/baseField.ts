@@ -3,10 +3,6 @@ export default {
         type: String,
         required: true
     },
-    role: {
-        type: String,
-        default: "2"
-    },
     name: {
         type: String,
     },

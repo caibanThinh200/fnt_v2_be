@@ -1,10 +1,10 @@
-import { CategoryResponse } from "../../../../Mapping/Response/CategoryResponse";
-import logger from "../../../../Config/logger";
+import { CategoryResponse } from '../../../../Mapping/Response/CategoryResponse';
+import logger from '../../../../Config/logger';
 class AAStoreResponse extends CategoryResponse {
     childCate: any;
 
     constructor(data: any) {
-        super(data);
+        super(data)
         this.setAAStoreData(data);
     }
 

@@ -19,7 +19,6 @@ class FurnitureResponse extends CategoryResponse {
         this.products = this.generateCategoryProducts(data, [])
         this.childCate = (data?.childCate || []).length > 0 ? data?.childCate.map(item => new FurnitureResponse(item)) : [];
         this.image = data?.image || "";
-        
     }
     
     public generateLeafCategoryProducts(products, arr) {

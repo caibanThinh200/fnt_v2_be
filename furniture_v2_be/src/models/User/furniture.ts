@@ -17,13 +17,6 @@ interface UserDocument extends mongoose.Document {
 export const UserSchema = new Schema(
     {
         ...BaseField,
-        wishList: {
-            type: [mongoose.Schema.Types.ObjectId],
-            ref: CommonFunction.getStoreSchema(
-                TAG_DEFINE.SCHEMA.PRODUCT,
-                TAG_DEFINE.STORE.FURNITURE
-            ),
-        },
     },
     { timestamps: { createdAt: "created_at", updatedAt: "updated_at" } }
 );
