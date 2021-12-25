@@ -1,0 +1,62 @@
+@import "./_variable.scss";
+.furniture-product-detail {
+    &__title {
+        color: $greenWood;
+    }
+    &__price {
+        color: $wood;
+        &--discount {
+            text-decoration: line-through;
+        }
+        &--discount-percent {
+            color: $discount;
+        }
+    }
+    &__quantity {
+        margin-top: -5px;
+        width: 23% !important;
+    }
+    &__main-thumbnail {
+        height: 500px;
+    }
+    &__sub-thumbnail {
+        width: 100px;
+        height: 100px;
+        border: 1px $border solid;
+    }
+    &__button {
+        border-radius: 5px;
+        padding: 20px;
+        border: 1px solid rgb(41, 97, 78);
+        &--add-cart {
+            color: $light;
+            background-color: rgb(41, 97, 78);
+            box-shadow: 2px 2px 10px 2px rgb(41, 97, 78)
+        }
+    }
+    &__button:focus {
+        cursor: pointer;
+        outline: none;
+    }
+}
+
+.detail-item{
+    border-bottom: 1px solid #eee;
+    align-items: center;
+    height: 50px;
+    h6{
+        width: 180px;
+        margin-bottom: 0;
+        font-size: 18px;
+    }
+    p{
+        color: gray;
+        margin-bottom: 0;
+        font-size: 16px;
+    };
+}
+.product-description{
+    padding: 20px;
+    border-radius: 6px;
+    box-shadow: 1px 6px 15px rgba(0,0,0,0.1);
+}
