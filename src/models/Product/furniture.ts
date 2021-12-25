@@ -12,9 +12,11 @@ const FurnitureFields = {
         require: true  
     },
     type: {
-        type: Number,
-        default: 0
+        type: String,
+        require: true
     },
+    is_percent: Boolean,
+    discount_price: Number,
     status: {
         type: String,
         default: 0,
@@ -25,9 +27,8 @@ const FurnitureFields = {
     //     default: [],
     //     ref: CommonFunction.getStoreSchema(TAG_DEFINE.SCHEMA.CATEGORY, TAG_DEFINE.STORE.FURNITURE)
     // },
-    images: {
-        type: [ImageSchema]
-    },
+    subThumb: [ImageSchema],
+    mainThumb: [ImageSchema]
     // categories: {
     //     type: [CategorySchema]
     // }

@@ -3,7 +3,7 @@ import TAG_DEFINE from '../../Constant/define';
 
 export abstract class UploadRequest implements generateData {
     private url: any;
-    private role: any;
+    private field: any;
     private name: any;
     private created_at: any;
     private updated_at: any
@@ -14,8 +14,8 @@ export abstract class UploadRequest implements generateData {
 
     setData(data: any): void {
         this.url = data?.originalname || "";
-        this.name = data?.name || "";
-        this.role = data?.role || "";
+        this.name = data?.filename || "";
+        this.field = data?.fieldname || "";
         this.created_at = data?.created_at || Date.now();
         this.updated_at = data?.updated_at || null;
     }
