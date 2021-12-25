@@ -35,7 +35,6 @@ class ProductService {
             //     return attributeName;
             // });
             // await Promise.all(listAttribute)
-            console.log({...req.body, ...req.files});
             const productFactory = ProductFactory.createProduct({...req.body, ...req.files}, req.headers['type']);
             const product = ProductFactory.createSchema(productFactory, req.headers['type'])
             const result = await product.save()
@@ -131,7 +130,6 @@ class ProductService {
                 ...req.body,
                 ...req.files
             };
-            console.log(currentProduct, req.body, newRequest);
             const updateProduct = ProductFactory.createProduct(newRequest, type);
             const updateResult = await ProductFactory.getSchema(type)
                 .findByIdAndUpdate(req.params?.id, updateProduct)
