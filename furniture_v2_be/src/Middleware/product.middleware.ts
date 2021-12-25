@@ -20,15 +20,15 @@ export const validateProduct = async (
         ]);
 
         const productFactory = ProductFactory.createProduct(
-            req.body,
+            { ...req.body , ...(req as any).files},
             type as string
         );
 
         console.log(productFactory)
 
-        const existingProduct = ProductFactory.getSchema(type).findOne({name: req.body.name})
+        const existingProduct = await ProductFactory.getSchema(type).findOne({name: req.body.name})
 
-        const isValidExisting = existingProduct ? false : true
+        const isValidExisting = Object.keys(existingProduct).length > 0
 
         const isValidName =
             !!(productFactory as any)?.name &&
@@ -39,8 +39,7 @@ export const validateProduct = async (
         const isValidPrice = (productFactory as any).price > 0;
         const isValidMainThumb =
             (req as any).files &&
-            Object.keys((req as any).files).length !== 0 &&
-            Object.getPrototypeOf((req as any).files) !== Object.prototype;
+            Object.keys((req as any).files).length > 0;
 
         switch(false){
             case isValidName: return CommonFunction.responseBadRequest(TAG_DEFINE.VALIDATION.PRODUCT.name, res);

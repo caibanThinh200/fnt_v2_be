@@ -13,7 +13,7 @@ export abstract class CategoryResponse implements generateData {
     }
 
     setData(data: any): void {
-        this._id = data?._id.toString() || "";
+        this._id = data?._id || "";
         this.name = data?.name || "";
         this.created_at = data?.created_at || null;
         this.updated_at = data?.updated_at || null;
