@@ -9,9 +9,9 @@ const storage = multer.diskStorage({
   filename: function (req, file, cb) {
     const filePath = path.join(__dirname, "..", `UploadFiles/${file.originalname}`);
     let uniqueSuffix = "";
-    if (existsSync(filePath)) {
-      rm(filePath, () => console.log("remove " + filePath));
-    }
+    // if (existsSync(filePath)) {
+    //   rm(filePath, () => console.log("remove " + filePath));
+    // }
     uniqueSuffix = (file.originalname.includes("jfif") ? file.originalname.replace("jfif", "png") : file.originalname);
     //new Date().toISOString().replace(/:/g, '-') +
     cb(null, uniqueSuffix)
