@@ -1,5 +1,0 @@
-{
-    "watch": ["src", "build"],
-    "ext": ".ts,.js",
-    "ignore": []
-}

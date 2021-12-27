@@ -4,15 +4,19 @@ export const AccessoryBaseField = {
         require: true,
     },
     unit: {
-        type: String
+        type: String,
     },
     types: {
         type: [Number],
-        default: []
+        default: [],
+    },
+    field: {
+        type: String,
+        require: true,
     },
     created_at: {
         type: Date,
-        default: Date.now()
+        default: Date.now(),
     },
-    updated_at: Date
-}
+    updated_at: Date,
+};

@@ -7,11 +7,11 @@ import logger from "../../Config/logger";
 
 const AACategoryField = {
     ...CategoryBaseField,
-    child_cate: {
+    childCate: {
         type: [
             new Schema({
                 ...CategoryBaseField,
-                child_cate: {
+                childCate: {
                     type: [],
                 },
             }),
@@ -28,17 +28,17 @@ const CategorySchema = new Schema(
 );
 
 CategorySchema.add({
-    child_cate: { type: [new Schema(AACategoryField)], default: [] },
+    childCate: { type: [new Schema(AACategoryField)], default: [] },
 });
 
 class CompositeCategory extends Model {
     AddChildCate(rootCategory, child, nodeId): void {
         if (rootCategory._id.equals(nodeId)) {
-            rootCategory.child_cate.push(child);
+            rootCategory.childCate.push(child);
             // console.log(rootCategory);
             return;
         } else {
-            rootCategory.child_cate.forEach((item) => {
+            rootCategory.childCate.forEach((item) => {
                 this.AddChildCate(item, child, nodeId);
             });
         }
@@ -47,11 +47,11 @@ class CompositeCategory extends Model {
     // RemoveChildCate(rootCategory, nodeId): void {
     //     if (rootCategory._id.equals(nodeId)) {
     //         logger.info('success')
-    //         rootCategory.child_cate = rootCategory.child_cate.filter(item => item._id !== nodeId);
+    //         rootCategory.childCate = rootCategory.childCate.filter(item => item._id !== nodeId);
     //         console.log(rootCategory);
     //         return;
     //     } else {
-    //         rootCategory.child_cate.forEach((item) => {
+    //         rootCategory.childCate.forEach((item) => {
     //             this.RemoveChildCate(item, nodeId);
     //         });
     //     }
@@ -60,9 +60,9 @@ class CompositeCategory extends Model {
     FindChild(rootCategory, nodeId) {
         let result = null;
         if (rootCategory._id.equals(nodeId)) {
-            return rootCategory.child_cate;
+            return rootCategory.childCate;
         } else {
-            rootCategory.child_cate.forEach((item) => {
+            rootCategory.childCate.forEach((item) => {
                 result = this.FindChild(item, nodeId);
             });
         }

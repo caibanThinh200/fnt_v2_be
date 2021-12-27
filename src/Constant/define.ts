@@ -131,6 +131,13 @@ const TAG_DEFINE = {
             unavailablePhone: "SDT đã được sử dụng",
             invalidUser: "Email hoặc mật khẩu không hợp lệ",
         },
+        PRODUCT: {
+            name: "Tên sản phẩm không hợp lệ",
+            price: "Giá sản phẩm không hợp lệ",
+            quantity: "Số lượng sản phẩm không hợp lệ",
+            mainThumb: "Ảnh đại diện không hợp lệ",
+            existing: "Tên sản phẩm đã tồn tại"
+        },
     },
 };
 
