@@ -1,12 +1,11 @@
+import { omit } from 'lodash';
 import ExcelGenerator from '../Config/excelParser';
 import logger from '../Config/logger';
 import TAG_DEFINE, { DEFINE_INFOMATION } from '../Constant/define';
 import { CategoryFactory } from '../Factory/Creator/CategoryFactory';
 import { ProductFactory } from '../Factory/Creator/ProductFactory';
+import DecoratorProduct from '../Utils/DecoratorProduct';
 import CommonFunction from "../Utils/function";
-import * as _ from "lodash"
-import { omit } from 'lodash';
-import { AccessoryFactory } from '../Factory/Creator/AccessoryFactory';
 
 class ProductService {
     public static async AddProductByExcelService(req: any) {
@@ -35,21 +34,18 @@ class ProductService {
 
     public static async AddProductService(req: any) {
         try {
-            let attributeName = {};
-            // const listAttribute = Object.keys(req.body?.attribute || {}).map(async item => {
-            //     const accessory = await (AccessoryFactory.getSchema(req.headers['type']).findOne({_id: item}) as any);
-            //     attributeName = {...attributeName, [accessory?.name?.toString()]: req.body?.attribute[item]};
-            //     return attributeName;
-            // });
-            // await Promise.all(listAttribute)
             const productFactory = ProductFactory.createProduct(
                 { ...req.body, ...req.files },
                 req.headers["type"]
-            );
+                );
+            const decoratorProduct = new DecoratorProduct(req.headers["type"], productFactory);
+            await decoratorProduct.setAttribute(req.body.attribute);
+
             const product = ProductFactory.createSchema(
-                productFactory,
+                decoratorProduct.getProduct(),
                 req.headers["type"]
             );
+            
             const result = await product
                 .save()
                 .then(() =>
@@ -103,6 +99,7 @@ class ProductService {
         try {
             const type = req.headers["type"];
             const product = await ProductFactory.getSchema(type).find({});
+            
             const productFactory = product.map((item) =>
                 ProductFactory.getProduct(item, type)
             );
@@ -169,6 +166,7 @@ class ProductService {
             const type = req.headers["type"];
             const { id } = req.params || "";
             const product = await ProductFactory.getSchema(type).findById(id);
+            
             const productFactory = ProductFactory.getProduct(product, type);
             return CommonFunction.getActionResult(productFactory, 200, null);
         } catch (e) {
