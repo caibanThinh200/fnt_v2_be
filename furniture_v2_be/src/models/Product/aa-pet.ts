@@ -17,13 +17,7 @@ export const ProductField = {
         type: Array,
         default: [],
     },
-    attribute: {
-        type: {
-            _id: false,
-            size: String
-        },
-        default: {}
-    }
+    accessories: {}
 };
 
 const ProductSchema = new mongoose.Schema(ProductField, {

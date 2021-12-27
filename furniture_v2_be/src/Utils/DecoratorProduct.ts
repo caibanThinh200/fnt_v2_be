@@ -24,7 +24,7 @@ export default class DecoratorProduct {
         });
 
         Object.assign(this.product, {
-            attribute: attributeField,
+            accessories: attributeField,
         });
     }
 
