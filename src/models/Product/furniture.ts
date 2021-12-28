@@ -1,11 +1,29 @@
 import {CategorySchema} from "../Categories/furniture";
 import ImageModel, {ImageSchema} from '../Upload/furniture';
 import { ProductBaseField } from './baseField';
-import { Schema, model } from 'mongoose';
+import mongoose, { Schema, model } from 'mongoose';
 import TAG_DEFINE from '../../Constant/define';
 import CommonFunction from "../../Utils/function";
 
-const FurnitureFields = {
+export interface ProductDocument extends mongoose.Document{
+    images: Array<string>
+    accessories: {}
+    name: string,
+    description: string,
+    quantity: number,
+    saled_count: number,
+    discount_value: number,
+    price: number,
+    code: number;
+    type: string;
+    status: number;
+    mainThumb: [];
+    subThumb: [];
+    created_at: Date,
+    updated_at: Date,
+}
+
+export const FurnitureFields = {
     ...ProductBaseField,
     code: {
         type: Number,
