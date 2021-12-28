@@ -24,8 +24,6 @@ export const validateProduct = async (
             type as string
         );
 
-        console.log(productFactory)
-
         const existingProduct = await ProductFactory.getSchema(type).findOne({name: req.body.name})
 
         const isValidExisting = Object.keys(existingProduct).length > 0
