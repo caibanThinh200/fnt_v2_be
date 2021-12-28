@@ -9,6 +9,12 @@ import e, { Request } from "express";
 export default class AuthService {
     public static async RegisterService(req: any) {
         const type = req.headers["type"];
+
+        const salt = await bcrypt.genSalt(10);
+        const hash = await bcrypt.hash(req.body.password, salt);
+
+        req.body.password = hash;
+
         try {
             const userFactory = UserFactory.createUser(req.body, type);
             const user = UserFactory.createSchema(userFactory, type);
