@@ -47,6 +47,11 @@ const PATH: any = {
         baseURL: "/accessory",
         all: "/all",
     },
+    ORDER: {
+        baseURL: '/order',
+        param: '/:orderId',
+        myOrder: '/my-order'
+    }
 };
 
 export default PATH;
