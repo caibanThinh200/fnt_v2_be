@@ -1,6 +1,6 @@
 import { omit } from 'lodash';
-import ExcelGenerator from '../Config/excelParser';
-import logger from '../Config/logger';
+import ExcelGenerator from '../config/excelParser';
+import logger from '../config/logger';
 import TAG_DEFINE, { DEFINE_INFOMATION } from '../Constant/define';
 import { CategoryFactory } from '../Factory/Creator/CategoryFactory';
 import { ProductFactory } from '../Factory/Creator/ProductFactory';

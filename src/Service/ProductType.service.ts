@@ -1,11 +1,11 @@
-import logger from '../Config/logger';
+import logger from '../config/logger';
 import TAG_DEFINE from '../Constant/define';
 import CommonFunction from "../Utils/function";
 import { ProductTypeFactory } from '../Factory/Creator/ProductTypeFactory';
 import { Document, Schema } from 'mongoose';
 import { omit } from 'lodash';
 import { DEFINE_INFOMATION } from '../Constant/define';
-import ExcelGenerator from '../Config/excelParser';
+import ExcelGenerator from '../config/excelParser';
 
 class ProductTypeService {
 

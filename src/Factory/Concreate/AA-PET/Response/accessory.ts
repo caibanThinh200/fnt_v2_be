@@ -1,4 +1,4 @@
-import logger from "../../../../Config/logger";
+import logger from "../../../../config/logger";
 import { AccessoryResponse } from "../../../../Mapping/Response/AccessoryResponse";
 
 class AAPetTypeProductResponse extends AccessoryResponse {

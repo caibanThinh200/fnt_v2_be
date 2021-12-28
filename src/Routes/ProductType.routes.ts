@@ -1,7 +1,7 @@
 import express, {Router} from "express";
 import PATH from '../Constant/url';
 import ProductTypeController from '../Controller/ProductType.controller';
-import logger from '../Config/logger';
+import logger from '../config/logger';
 
 const route: Router = express.Router();
 

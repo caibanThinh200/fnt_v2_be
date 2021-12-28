@@ -1,5 +1,5 @@
 import { Schema } from 'mongoose';
-import logger from '../../../../Config/logger';
+import logger from '../../../../config/logger';
 import {ProductTypeResponse}  from '../../../../Mapping/Response/ProductTypeResponse';
 import FurnitureAccessoryResponse from './accessory';
 import { omit } from "lodash";

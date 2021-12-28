@@ -3,7 +3,7 @@ import TAG_DEFINE from "../../Constant/define";
 import CategoryBaseField from "./baseField";
 import CommonFunction from "../../Utils/function";
 import tree from "mongoose-data-tree";
-import logger from "../../Config/logger";
+import logger from "../../config/logger";
 
 const AACategoryField = {
     ...CategoryBaseField,

@@ -1,5 +1,5 @@
 import { Response } from 'express';
-import logger from '../Config/logger';
+import logger from '../config/logger';
 import TAG_DEFINE from '../Constant/define';
 import bcrypt from "bcrypt";
 

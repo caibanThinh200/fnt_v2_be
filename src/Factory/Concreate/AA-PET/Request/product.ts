@@ -1,5 +1,5 @@
 import ProductRequest from "../../../../Mapping/Request/ProductRequest";
-import logger from "../../../../Config/logger";
+import logger from "../../../../config/logger";
 class AAPetModel extends ProductRequest {
     private category_detail_id: string;
     private images: Array<string>

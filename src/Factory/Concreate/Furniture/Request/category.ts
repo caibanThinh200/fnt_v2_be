@@ -1,4 +1,4 @@
-import logger from '../../../../Config/logger';
+import logger from '../../../../config/logger';
 import CategoryRequest from '../../../../Mapping/Request/CategoryRequest';
 import FurnitureProductRequest from "./product";
 import { v4 } from 'uuid';

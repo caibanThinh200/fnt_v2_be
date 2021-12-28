@@ -1,8 +1,8 @@
 import express, {Router} from "express";
 import PATH from '../Constant/url';
 import CategoryController from '../Controller/Category.controller';
-import logger from '../Config/logger';
-import upload from "../Config/multer";
+import logger from '../config/logger';
+import upload from "../config/multer";
 
 const route: Router = express.Router();
 
