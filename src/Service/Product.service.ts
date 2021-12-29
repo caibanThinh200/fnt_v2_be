@@ -1,10 +1,10 @@
-import { omit } from 'lodash';
-import ExcelGenerator from '../Config/excelParser';
-import logger from '../Config/logger';
-import TAG_DEFINE, { DEFINE_INFOMATION } from '../Constant/define';
-import { CategoryFactory } from '../Factory/Creator/CategoryFactory';
-import { ProductFactory } from '../Factory/Creator/ProductFactory';
-import DecoratorProduct from '../Utils/DecoratorProduct';
+import { omit } from "lodash";
+import ExcelGenerator from "../Config/excelParser";
+import logger from "../Config/logger";
+import TAG_DEFINE, { DEFINE_INFOMATION } from "../Constant/define";
+import { CategoryFactory } from "../Factory/Creator/CategoryFactory";
+import { ProductFactory } from "../Factory/Creator/ProductFactory";
+import DecoratorProduct from "../Utils/DecoratorProduct";
 import CommonFunction from "../Utils/function";
 
 class ProductService {
@@ -37,15 +37,18 @@ class ProductService {
             const productFactory = ProductFactory.createProduct(
                 { ...req.body, ...req.files },
                 req.headers["type"]
-                );
-            const decoratorProduct = new DecoratorProduct(req.headers["type"], productFactory);
+            );
+            const decoratorProduct = new DecoratorProduct(
+                req.headers["type"],
+                productFactory
+            );
             await decoratorProduct.setAttribute(req.body.attribute);
 
             const product = ProductFactory.createSchema(
                 decoratorProduct.getProduct(),
                 req.headers["type"]
             );
-            
+
             const result = await product
                 .save()
                 .then(() =>
@@ -99,7 +102,7 @@ class ProductService {
         try {
             const type = req.headers["type"];
             const product = await ProductFactory.getSchema(type).find({});
-            
+
             const productFactory = product.map((item) =>
                 ProductFactory.getProduct(item, type)
             );
@@ -166,7 +169,7 @@ class ProductService {
             const type = req.headers["type"];
             const { id } = req.params || "";
             const product = await ProductFactory.getSchema(type).findById(id);
-            
+
             const productFactory = ProductFactory.getProduct(product, type);
             return CommonFunction.getActionResult(productFactory, 200, null);
         } catch (e) {

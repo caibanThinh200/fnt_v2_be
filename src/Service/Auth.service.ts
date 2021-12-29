@@ -5,6 +5,7 @@ import { UserFactory } from "../Factory/Creator/UserFactory";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import e, { Request } from "express";
+import _ from "lodash";
 
 export default class AuthService {
     public static async RegisterService(req: any) {
@@ -21,17 +22,32 @@ export default class AuthService {
             const result = await user
                 .save()
                 .then(() =>
-                    CommonFunction.getActionResult(null, 201, null, TAG_DEFINE.RESULT.AUTH.REGISTER)
+                    CommonFunction.getActionResult(
+                        null,
+                        201,
+                        null,
+                        TAG_DEFINE.RESULT.AUTH.REGISTER
+                    )
                 )
                 .catch((e) => {
                     logger.error(e);
-                    return CommonFunction.getActionResult(null, 403, e, TAG_DEFINE.RESULT.AUTH.REGISTER);
+                    return CommonFunction.getActionResult(
+                        null,
+                        403,
+                        e,
+                        TAG_DEFINE.RESULT.AUTH.REGISTER
+                    );
                 });
 
             return result;
         } catch (error) {
             logger.error(error);
-            return CommonFunction.getActionResult(null, 400, error, TAG_DEFINE.RESULT.AUTH.REGISTER);
+            return CommonFunction.getActionResult(
+                null,
+                400,
+                error,
+                TAG_DEFINE.RESULT.AUTH.REGISTER
+            );
         }
     }
 
@@ -39,19 +55,25 @@ export default class AuthService {
         const type = req.headers.type;
         const { email, password, username } = req.body;
         try {
-            let existingUser: any = await UserFactory.getSchema(type).findOne(
-                { email }
-            );
+            let existingUser: any = await UserFactory.getSchema(type).findOne({
+                email,
+            });
 
-            if (!existingUser) existingUser = await UserFactory.getSchema(type).findOne({
-                username
-            })
+            if (!existingUser)
+                existingUser = await UserFactory.getSchema(type).findOne({
+                    username,
+                });
 
             const comparePassword =
                 existingUser &&
                 (await bcrypt.compare(password, existingUser?.password));
             if (!existingUser || !comparePassword) {
-                return CommonFunction.getActionResult(null, 403, null, TAG_DEFINE.RESULT.AUTH.LOGIN.exist);
+                return CommonFunction.getActionResult(
+                    null,
+                    403,
+                    null,
+                    TAG_DEFINE.RESULT.AUTH.LOGIN.exist
+                );
             } else {
                 // JWT
                 const token = jwt.sign(
@@ -61,14 +83,23 @@ export default class AuthService {
                     process.env.SECRET_JWT,
                     { expiresIn: "1 day" }
                 );
-                
-                const result = CommonFunction.getActionResult({token}, 200, null);
+
+                const result = CommonFunction.getActionResult(
+                    { token },
+                    200,
+                    null
+                );
 
                 return result;
             }
         } catch (error) {
             logger.error(error);
-            return CommonFunction.getActionResult(null, 400, error, TAG_DEFINE.RESULT.AUTH.LOGIN.failed)
+            return CommonFunction.getActionResult(
+                null,
+                400,
+                error,
+                TAG_DEFINE.RESULT.AUTH.LOGIN.failed
+            );
         }
     }
 
@@ -81,11 +112,20 @@ export default class AuthService {
                 _id: id,
             });
             const userFactory = UserFactory.getUser(user, type);
-            const result = CommonFunction.getActionResult(userFactory, 200, null);
+            const result = CommonFunction.getActionResult(
+                userFactory,
+                200,
+                null
+            );
             return result;
         } catch (e) {
             logger.error(e);
-            return CommonFunction.getActionResult(null, 400, e, TAG_DEFINE.RESULT.AUTH.getDetail)
+            return CommonFunction.getActionResult(
+                null,
+                400,
+                e,
+                TAG_DEFINE.RESULT.AUTH.getDetail
+            );
         }
     }
 
@@ -93,26 +133,102 @@ export default class AuthService {
         try {
             const type = req.headers["type"];
             const { id } = req.params || "";
-            const currentUser = await this.GetDetailUserService(req);
-            const filters = currentUser[0] || {};
-            const newRequest = {
-                ...currentUser[0],
-                ...req.body,
-            };
-            const updateUser = UserFactory.createUser(newRequest, req.query);
-            const updateResult = await UserFactory.getSchema(type)
-                .find(filters)
-                .updateOne(updateUser)
+
+            const user = await UserFactory.getSchema(type).findById(id);
+
+            _.extend(user, req.body);
+
+            const result = user
+                .save()
                 .then(() =>
-                    CommonFunction.getActionResult(null, 200, null, TAG_DEFINE.RESULT.AUTH.update)
+                    CommonFunction.getActionResult(
+                        null,
+                        200,
+                        null,
+                        TAG_DEFINE.RESULT.AUTH.update
+                    )
                 )
                 .catch((err) => {
                     logger.error(err);
-                    return CommonFunction.getActionResult(null, 403, err, TAG_DEFINE.RESULT.AUTH.update);
+                    return CommonFunction.getActionResult(
+                        null,
+                        403,
+                        err,
+                        TAG_DEFINE.RESULT.AUTH.update
+                    );
                 });
-            return updateResult;
+            return result;
         } catch (e) {
             logger.error(e);
+        }
+    }
+
+    public static async ChangeMyPasswordService(req: any) {
+        const { oldPassword, newPassword } = req.body;
+        try {
+            const currentUser = await this.GetUserByJWT(req);
+
+            const user = await UserFactory.getSchema(
+                req.headers["type"]
+            ).findById(currentUser.result._id);
+
+            if (!user)
+                return CommonFunction.getActionResult(
+                    null,
+                    400,
+                    { message: "Can not find any user" },
+                    TAG_DEFINE.RESULT.AUTH.CHANGE_PASSWORD
+                );
+
+            const comparePassword = await bcrypt.compare(
+                oldPassword,
+                user.password
+            );
+
+            if (!comparePassword)
+                return CommonFunction.getActionResult(
+                    null,
+                    400,
+                    { message: "Invalid old password" },
+                    TAG_DEFINE.RESULT.AUTH.CHANGE_PASSWORD
+                );
+
+            const salt = await bcrypt.genSalt(10);
+            const hash = await bcrypt.hash(newPassword, salt);
+
+            _.extend(user, {
+                password: hash,
+            });
+
+            const result = await user
+                .save()
+                .then(() =>
+                    CommonFunction.getActionResult(
+                        null,
+                        200,
+                        null,
+                        TAG_DEFINE.RESULT.AUTH.CHANGE_PASSWORD
+                    )
+                )
+                .catch((err) => {
+                    logger.error(err);
+                    return CommonFunction.getActionResult(
+                        null,
+                        403,
+                        err,
+                        TAG_DEFINE.RESULT.AUTH.CHANGE_PASSWORD
+                    );
+                });
+
+            return result;
+        } catch (error) {
+            logger.error(e);
+            return CommonFunction.getActionResult(
+                null,
+                400,
+                e,
+                TAG_DEFINE.RESULT.AUTH.CHANGE_PASSWORD
+            );
         }
     }
 
@@ -126,22 +242,33 @@ export default class AuthService {
                 const userId = jwt.verify(token, process.env.SECRET_JWT);
                 const userInfo =
                     (userId &&
-                        (await UserFactory.getSchema(type).findById({
-                            _id: userId._id,
-                        }).select({password: 0}))) ||
+                        (await UserFactory.getSchema(type)
+                            .findById({
+                                _id: userId._id,
+                            })
+                            .select({ password: 0 }))) ||
                     {};
-                const result = CommonFunction.getActionResult(userInfo ? UserFactory.getUser(userInfo, type as string) : {}, 200, null);
+                const result = CommonFunction.getActionResult(
+                    userInfo
+                        ? UserFactory.getUser(userInfo, type as string)
+                        : {},
+                    200,
+                    null
+                );
                 return result;
             } else {
-                return CommonFunction.getActionResult(
-                    {},
-                    200,
-                    {message: "Have no token"}
-                );
+                return CommonFunction.getActionResult({}, 200, {
+                    message: "Have no token",
+                });
             }
         } catch (e: any) {
             logger.error(e);
-            return CommonFunction.getActionResult(null, 400, e, TAG_DEFINE.RESULT.AUTH.getDetail)
+            return CommonFunction.getActionResult(
+                null,
+                400,
+                e,
+                TAG_DEFINE.RESULT.AUTH.getDetail
+            );
         }
     }
 }

@@ -11,7 +11,14 @@ class AuthController {
             res.status(200).json(result);
         } catch (error) {
             logger.error(error);
-            res.status(500).json(CommonFunction.getActionResult(null, 500, error, TAG_DEFINE.RESULT.AUTH.LOGIN.failed));
+            res.status(500).json(
+                CommonFunction.getActionResult(
+                    null,
+                    500,
+                    error,
+                    TAG_DEFINE.RESULT.AUTH.LOGIN.failed
+                )
+            );
         }
     }
 
@@ -21,7 +28,14 @@ class AuthController {
             res.status(200).json(result);
         } catch (error) {
             logger.error(error);
-            res.status(500).json(CommonFunction.getActionResult(null, 500, error, TAG_DEFINE.RESULT.AUTH.REGISTER));
+            res.status(500).json(
+                CommonFunction.getActionResult(
+                    null,
+                    500,
+                    error,
+                    TAG_DEFINE.RESULT.AUTH.REGISTER
+                )
+            );
         }
     }
 
@@ -29,9 +43,16 @@ class AuthController {
         try {
             const result = await AuthService.GetDetailUserService(req);
             res.status(200).json(result);
-        } catch(e) {
+        } catch (e) {
             logger.error(e);
-            res.status(500).json(CommonFunction.getActionResult(null, 500, e, TAG_DEFINE.RESULT.AUTH.getDetail));
+            res.status(500).json(
+                CommonFunction.getActionResult(
+                    null,
+                    500,
+                    e,
+                    TAG_DEFINE.RESULT.AUTH.getDetail
+                )
+            );
         }
     }
 
@@ -39,20 +60,53 @@ class AuthController {
         try {
             const result = await AuthService.UpdateUserService(req);
             res.status(200).json(result);
-        } catch(e) {
+        } catch (e) {
             logger.error(e);
-            res.status(500).json(CommonFunction.getActionResult(null, 500, e, TAG_DEFINE.RESULT.AUTH.update));
+            res.status(500).json(
+                CommonFunction.getActionResult(
+                    null,
+                    500,
+                    e,
+                    TAG_DEFINE.RESULT.AUTH.update
+                )
+            );
+        }
+    }
+    public static async ChangeMyPasswordController(
+        req: Request,
+        res: Response
+    ) {
+        try {
+            const result = await AuthService.ChangeMyPasswordService(req);
+            res.status(200).json(result);
+        } catch (e) {
+            logger.error(e);
+            res.status(500).json(
+                CommonFunction.getActionResult(
+                    null,
+                    500,
+                    e,
+                    TAG_DEFINE.RESULT.AUTH.CHANGE_PASSWORD
+                )
+            );
         }
     }
 
     public static async GetUserByJWTController(req: Request, res: Response) {
         try {
             const result = await AuthService.GetUserByJWT(req);
-            
+
             res.status(200).json(result);
-        } catch(e) {
+        } catch (e) {
             logger.error(e);
-            res.status(500).json(CommonFunction.getActionResult(null, 500, e, TAG_DEFINE.RESULT.AUTH.getDetail));
+            res.status(500).json(
+                CommonFunction.getActionResult(
+                    null,
+                    500,
+                    e,
+                    TAG_DEFINE.RESULT.AUTH.getDetail
+                )
+            );
         }
     }
 }

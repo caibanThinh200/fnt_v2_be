@@ -6,6 +6,10 @@ import baseField from "./baseField";
 
 const OrderSchema = new mongoose.Schema({
   ...baseField,
+  userId: {
+    type: String, 
+    ref: TAG_DEFINE.SCHEMA.USER
+  },
   products: {
     type: [
       {

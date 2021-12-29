@@ -11,17 +11,19 @@ export default class DecoratorProduct {
     public async setAttribute(attributes: any) {
         const ids = Object.keys(attributes);
         const values = Object.values(attributes);
+        let attributeField= {};
 
-        const attributesSchema = await AccessoryFactory.getSchema(this.type)
-            .find()
-            .where("_id")
-            .in(ids);
+        console.log(ids, values);
 
-        const attributeField = {};
-
-        attributesSchema.forEach((att, index) => {
-            Object.assign(attributeField, { [att.field]: values[index] });
-        });
+        for (let i = 0; i < ids.length; i++) {
+            const accessory = await AccessoryFactory.getSchema(
+                this.type
+            ).findById(ids[i]);
+            
+            Object.assign(attributeField, {
+                [accessory.field]: values[i]
+            })
+        }
 
         Object.assign(this.product, {
             accessories: attributeField,

@@ -87,7 +87,7 @@ class OrderService {
     const token = req.headers["authorization"];
 
     try {
-      const decode = jwt.verify(token, process.env.SECRET_JWT);
+      const decode = jwt.verify(token.split(" ")[1], process.env.SECRET_JWT);
 
       const orders = await OrderFactory.getSchema(type).find({
         userId: decode._id,

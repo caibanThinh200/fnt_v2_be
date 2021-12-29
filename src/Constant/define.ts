@@ -95,6 +95,7 @@ const TAG_DEFINE = {
                 exist: "Tài khoản hoặc mật khẩu không đúng",
             },
             REGISTER: "Đăng ký",
+            CHANGE_PASSWORD: "Đổi mật khẩu"
         },
         SOCIAL_MEDIA: {
             create: "Thêm mạng xã hội",
