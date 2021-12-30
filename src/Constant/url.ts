@@ -36,6 +36,7 @@ const PATH: any = {
         login: "/login",
         register: "/register",
         infoJWT: "/token",
+        change_password: '/update/change-password'
     },
     SOCIAL_MEDIA: {
         baseURL: "/media",
@@ -47,6 +48,11 @@ const PATH: any = {
         baseURL: "/accessory",
         all: "/all",
     },
+    ORDER: {
+        baseURL: '/order',
+        param: '/:orderId',
+        myOrder: '/my-order'
+    }
 };
 
 export default PATH;

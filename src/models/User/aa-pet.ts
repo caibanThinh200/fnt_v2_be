@@ -12,6 +12,11 @@ interface UserDocument extends mongoose.Document {
     phone: string;
     address: string;
     gender: number;
+    delivery: {
+        name: string;
+        phone: string;
+        address: string;
+    }
 }
 
 const UserSchema = new Schema(
@@ -22,20 +27,21 @@ const UserSchema = new Schema(
             required: true,
             unique: true,
         },
+        delivery: [{
+            type: {
+                name: String,
+                phone: String,
+                address: String
+            },
+            default: []
+        }],
+        role: {
+            type: String,
+            default: "customer"
+        }
     },
     { timestamps: { createdAt: "created_at", updatedAt: "updated_at" } }
 );
-
-UserSchema.pre("save", async function (next) {
-    const user = this as UserDocument;
-    const salt = await bcrypt.genSalt(10);
-
-    const hash = await bcrypt.hash(user.password, salt);
-
-    user.password = hash;
-
-    return next();
-});
 
 const UserModel = model(
     CommonFunction.getStoreSchema(

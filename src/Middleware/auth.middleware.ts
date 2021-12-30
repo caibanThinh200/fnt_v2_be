@@ -56,3 +56,14 @@ export const ValidateJWT = async (req: Request, res: Response, next: NextFunctio
     }
   })
 }
+
+export const Authorization = async (req: Request, res: Response, next: NextFunction) => {
+  const token = req.header("Authorization").replace("Bearer ", "") || "";
+  jwt.verify(token, process.env.SECRET_JWT, (err, decoded) => {
+    if(err || decoded === 'customer') {
+      return CommonFunction.responseAuthorizeRequest(err.message, res);
+    } else {
+      next();
+    }
+  })
+}

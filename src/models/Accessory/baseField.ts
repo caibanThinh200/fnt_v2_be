@@ -6,10 +6,7 @@ export const AccessoryBaseField = {
     unit: {
         type: String,
     },
-    types: {
-        type: [Number],
-        default: [],
-    },
+
     field: {
         type: String,
         require: true,

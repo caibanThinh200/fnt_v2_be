@@ -5,6 +5,7 @@ import SocialMediaRoute from "./SocialMedia.routes";
 import BillRoute from "./Bill.routes";
 import ProductTypeRoute from "./ProductType.routes";
 import AccessoryRoute from "./Accessory.routes";
+import OrderRoute from './Order.routes'
 import { Express } from "express";
 import PATH from "../Constant/url";
 
@@ -16,4 +17,5 @@ export default (app: Express) => {
     app.use(PATH.SOCIAL_MEDIA.baseURL, SocialMediaRoute);
     app.use(PATH.BILL.baseURL, BillRoute);
     app.use(PATH.ACCESSORY.baseURL, AccessoryRoute);
+    app.use(PATH.ORDER.baseURL, OrderRoute);
 };

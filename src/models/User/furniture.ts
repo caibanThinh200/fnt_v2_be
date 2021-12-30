@@ -21,17 +21,6 @@ export const UserSchema = new Schema(
     { timestamps: { createdAt: "created_at", updatedAt: "updated_at" } }
 );
 
-UserSchema.pre("save", async function (next) {
-    const user = this as UserDocument;
-    const salt = await bcrypt.genSalt(10);
-
-    const hash = await bcrypt.hash(user.password, salt);
-
-    user.password = hash;
-
-    return next();
-});
-
 const User = model(CommonFunction.getStoreSchema(TAG_DEFINE.SCHEMA.USER, TAG_DEFINE.STORE.FURNITURE), UserSchema);
 
 export default User;
