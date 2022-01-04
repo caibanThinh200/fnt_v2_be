@@ -1,7 +1,7 @@
 import express, {Router} from "express";
 import PATH from '../Constant/url';
 import SocialMediaController from '../Controller/SocialMedia.controller';
-import logger from '../Config/logger';
+import logger from '../config/logger';
 
 const route: Router = express.Router();
 

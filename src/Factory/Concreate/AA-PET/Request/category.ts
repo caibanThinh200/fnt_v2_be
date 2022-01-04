@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import CategoryRequest from "../../../../Mapping/Request/CategoryRequest";
-import logger from "../../../../Config/logger";
+import logger from "../../../../config/logger";
 class AAStoreRequest extends CategoryRequest {
     private childCate: any;
     private _id: any;

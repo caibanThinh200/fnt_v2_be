@@ -1,5 +1,5 @@
 import { Schema } from "mongoose";
-import logger from "../../../../Config/logger";
+import logger from "../../../../config/logger";
 import { ProductTypeResponse } from "../../../../Mapping/Response/ProductTypeResponse";
 class AAPetTypeProductResponse extends ProductTypeResponse {
     private attribute: Schema.Types.ObjectId[];

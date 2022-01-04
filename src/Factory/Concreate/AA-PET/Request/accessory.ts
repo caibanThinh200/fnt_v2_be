@@ -1,4 +1,4 @@
-import logger from "../../../../Config/logger";
+import logger from "../../../../config/logger";
 import { AccessoryRequest } from "../../../../Mapping/Request/AccessoryRequest";
 class AAPetAccessoryRequest extends AccessoryRequest {
     types: any[];

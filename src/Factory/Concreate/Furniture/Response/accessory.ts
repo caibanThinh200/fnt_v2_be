@@ -1,4 +1,4 @@
-import logger from "../../../../Config/logger";
+import logger from "../../../../config/logger";
 import { AccessoryResponse } from "../../../../Mapping/Response/AccessoryResponse";
 class FurnitureAccessoryResponse extends AccessoryResponse {
     private code: string;

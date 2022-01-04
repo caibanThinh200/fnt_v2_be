@@ -1,4 +1,4 @@
-import logger from '../../../../Config/logger';
+import logger from '../../../../config/logger';
 import { SocialMediaRequest } from '../../../../Mapping/Request/SocialMedia';
 class FurnitureRequest extends SocialMediaRequest {
 

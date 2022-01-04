@@ -1,5 +1,5 @@
 import { Schema } from 'mongoose';
-import logger from '../../../../Config/logger';
+import logger from '../../../../config/logger';
 import {ProductTypeRequest}  from '../../../../Mapping/Request/ProductTypeRequest';
 class FurnitureTypeProductRequest extends ProductTypeRequest {
     private attribute: Schema.Types.ObjectId[];

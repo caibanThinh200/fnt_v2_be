@@ -1,5 +1,5 @@
 import { CategoryResponse } from '../../../../Mapping/Response/CategoryResponse';
-import logger from '../../../../Config/logger';
+import logger from '../../../../config/logger';
 class AAStoreResponse extends CategoryResponse {
     childCate: any;
 

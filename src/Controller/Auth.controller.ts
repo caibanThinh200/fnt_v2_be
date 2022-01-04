@@ -1,5 +1,5 @@
 import AuthService from "../Service/Auth.service";
-import logger from "../Config/logger";
+import logger from "../config/logger";
 import TAG_DEFINE from "../Constant/define";
 import CommonFunction from "../Utils/function";
 import { Request, Response } from "express";
