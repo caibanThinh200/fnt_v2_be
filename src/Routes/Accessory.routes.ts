@@ -1,7 +1,7 @@
 import express, {Router} from "express";
 import PATH from '../Constant/url';
 import AccessoryController from '../Controller/Accessory.controller';
-import logger from '../config/logger';
+import logger from '../Config/logger';
 
 const route: Router = express.Router();
 

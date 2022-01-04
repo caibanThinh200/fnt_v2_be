@@ -1,8 +1,8 @@
 import express, { Router } from "express";
 import PATH from "../Constant/url";
 import ProductController from "../Controller/Product.controller";
-import logger from "../config/logger";
-import upload from "../config/multer";
+import logger from "../Config/logger";
+import upload from "../Config/multer";
 import { validateProduct } from "../Middleware/product.middleware";
 
 const route: Router = express.Router();

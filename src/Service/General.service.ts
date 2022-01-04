@@ -1,4 +1,4 @@
-import logger from "../config/logger";
+import logger from "../Config/logger";
 import MonthRevenueFactory from "../Factory/Creator/MonthRevenueFactory";
 import CommonFunction from '../Utils/function';
 import TAG_DEFINE from '../Constant/define';

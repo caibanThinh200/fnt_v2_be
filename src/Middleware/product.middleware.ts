@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import upload from "../config/multer";
+import upload from "../Config/multer";
 import TAG_DEFINE from "../Constant/define";
 import { ProductFactory } from "../Factory/Creator/ProductFactory";
 import CommonFunction from "../Utils/function";

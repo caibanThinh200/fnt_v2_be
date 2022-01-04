@@ -1,5 +1,5 @@
 import ProductResponse from "../../../../Mapping/Response/ProductResponse";
-import logger from "../../../../config/logger";
+import logger from "../../../../Config/logger";
 import FurnitureUploadResponse from "./upload";
 import { UploadResponse } from '../../../../Mapping/Response/UploadResponse';
 

@@ -1,5 +1,5 @@
 import ProductTypeService from '../Service/ProductType.service';
-import logger from '../config/logger';
+import logger from '../Config/logger';
 import TAG_DEFINE from '../Constant/define';
 import CommonFunction from '../Utils/function';
 import { Request, Response } from "express"

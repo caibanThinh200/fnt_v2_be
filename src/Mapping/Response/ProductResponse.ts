@@ -1,5 +1,5 @@
 import { generateData } from "../../Factory/interface";
-import logger from "../../config/logger";
+import logger from "../../Config/logger";
 import TAG_DEFINE from '../../Constant/define';
 
 export default abstract class ProductResponse implements generateData {

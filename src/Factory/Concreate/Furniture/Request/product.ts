@@ -1,5 +1,5 @@
 import ProductRequest from "../../../../Mapping/Request/ProductRequest";
-import logger from "../../../../config/logger";
+import logger from "../../../../Config/logger";
 import FurnitureAccessoryRequest from "./accessory";
 import FurnitureUploadRequest from "./upload";
 class FurnitureRequest extends ProductRequest {

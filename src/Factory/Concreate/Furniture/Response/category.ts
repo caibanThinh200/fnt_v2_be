@@ -1,5 +1,5 @@
 import { CategoryResponse } from '../../../../Mapping/Response/CategoryResponse';
-import logger from '../../../../config/logger';
+import logger from '../../../../Config/logger';
 import FurnitureProductResponse from "./product";
 
 class FurnitureResponse extends CategoryResponse {

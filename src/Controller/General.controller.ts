@@ -1,7 +1,7 @@
 import GeneralService from '../Service/General.service';
 import CommonFunction from '../Utils/function';
 import TAG_DEFINE from '../Constant/define';
-import logger from '../config/logger';
+import logger from '../Config/logger';
 class GeneralController {
 
     public static async AddMonthRevenueController(req, res) {

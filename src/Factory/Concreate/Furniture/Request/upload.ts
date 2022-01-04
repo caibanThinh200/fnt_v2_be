@@ -1,4 +1,4 @@
-import logger from '../../../../config/logger';
+import logger from '../../../../Config/logger';
 import { UploadRequest } from '../../../../Mapping/Request/UploadRequest';
 class FurnitureUploadRequest extends UploadRequest {
     private code: any;

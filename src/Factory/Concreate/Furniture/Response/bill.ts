@@ -1,4 +1,4 @@
-import logger from '../../../../config/logger';
+import logger from '../../../../Config/logger';
 import { BillResponse } from '../../../../Mapping/Response/BillResponse';
 import { FurnitureUserResponse, FurnitureProductResponse } from './index';
 class FurnitureResponse extends BillResponse {
