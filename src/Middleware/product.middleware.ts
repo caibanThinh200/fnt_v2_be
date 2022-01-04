@@ -14,20 +14,12 @@ export const validateProduct = async (
     if (type === TAG_DEFINE.STORE.AA_PET) {
         next();
     } else {
-        upload.fields([
-            { name: "mainThumb", maxCount: 1 },
-            { name: "subThumb", maxCount: 6 },
-        ]);
-
         const productFactory = ProductFactory.createProduct(
             { ...req.body , ...(req as any).files},
             type as string
         );
-
-        const existingProduct = await ProductFactory.getSchema(type).findOne({name: req.body.name})
-
-        const isValidExisting = Object.keys(existingProduct).length > 0
-
+        const existingProduct = await ProductFactory.getSchema(type).findOne({name: (productFactory as any).name});
+        const isValidExisting = !existingProduct;
         const isValidName =
             !!(productFactory as any)?.name &&
             (productFactory as any)?.name !== "" &&
@@ -38,7 +30,6 @@ export const validateProduct = async (
         const isValidMainThumb =
             (req as any).files &&
             Object.keys((req as any).files).length > 0;
-
         switch(false){
             case isValidName: return CommonFunction.responseBadRequest(TAG_DEFINE.VALIDATION.PRODUCT.name, res);
             case isValidQuantity: return CommonFunction.responseBadRequest(TAG_DEFINE.VALIDATION.PRODUCT.quantity, res);

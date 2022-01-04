@@ -14,7 +14,8 @@ const TAG_DEFINE = {
         BILL: "Bill",
         SOCIAL_MEDIA: "Social media",
         ACCESSORY: "Accessory",
-        PRODUCT_TYPE: "Product-type"
+        PRODUCT_TYPE: "Product-type",
+        MONTH_REVENUE: "Month-revenue"
     },
     SERVICE: {
         start: "WELCOME TO AZP SERVER",
@@ -114,6 +115,13 @@ const TAG_DEFINE = {
             update: "Cập nhật thuộc tính sản phẩm",
             getDetail: "Lấy chi tiết thuộc tính sản phẩm",
             delete: "Xóa thuộc tính sản phẩm"
+        },
+        MONTH_REVENUE: {
+            create: "Thêm doanh thu tháng",
+            getList: "Lấy danh sách doanh thu tháng",
+            update: "Cập nhật doanh thu tháng",
+            getDetail: "Lấy chi tiết doanh thu tháng",
+            delete: "Xóa doanh thu tháng"
         }
     },
     STORE: {

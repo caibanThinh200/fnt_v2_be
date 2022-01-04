@@ -25,6 +25,16 @@ class BillController {
         }
     }
 
+    public static async GetFilterBillController(req: Request, res: Response) {
+        try {
+            const result = await BillService.GetFilterBillService(req);
+            res.status(200).json(result);
+        } catch(e) {
+            logger.error(e);
+            res.status(400).json(CommonFunction.getActionResult(null, 500, e, TAG_DEFINE.RESULT.BILL.getList));
+        }
+    }
+
     public static async GetDetailBillController(req: Request, res: Response) {
         try {
             const result = await BillService.GetDetailBillService(req);
@@ -32,6 +42,36 @@ class BillController {
         } catch(e) {
             logger.error(e);
             res.status(400).json(CommonFunction.getActionResult(null, 500, e, TAG_DEFINE.RESULT.BILL.getDetail));
+        }
+    }
+
+    public static async GetDetailNonAuthBillController(req: Request, res: Response) {
+        try {
+            const result = await BillService.GetDetailNonAuthBillService(req);
+            res.status(200).json(result);
+        } catch(e) {
+            logger.error(e);
+            res.status(400).json(CommonFunction.getActionResult(null, 500, e, TAG_DEFINE.RESULT.BILL.getDetail));
+        }
+    }
+
+    public static async UpdateBillStatusController(req: Request, res: Response) {
+        try {
+            const result = await BillService.UpdateBillStatusService(req);
+            res.status(200).json(result);
+        } catch(e) {
+            logger.error(e);
+            res.status(400).json(CommonFunction.getActionResult(null, 500, e, TAG_DEFINE.RESULT.BILL.update));
+        }
+    }
+
+    public static async GetBillRevenueController(req: Request, res: Response) {
+        try {
+            const result = await BillService.GetAllBillRevenue(req);
+            res.status(200).json(result);
+        } catch(e) {
+            logger.error(e);
+            res.status(400).json(CommonFunction.getActionResult(null, 500, e, TAG_DEFINE.RESULT.BILL.update));
         }
     }
 }

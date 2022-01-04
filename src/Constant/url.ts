@@ -1,4 +1,4 @@
-const PATH: any = {
+const PATH = {
     APP: {
         start: "/",
         params: "/:params",
@@ -42,11 +42,18 @@ const PATH: any = {
     },
     BILL: {
         baseURL: "/bill",
+        filter: "/filter",
+        nonAuthDetail: "/non-auth/detail/:id",
+        revenue: '/revenue'
     },
     ACCESSORY: {
         baseURL: "/accessory",
         all: "/all",
     },
+    GENERAL: {
+        baseURL: "/general",
+        
+    }
 };
 
 export default PATH;

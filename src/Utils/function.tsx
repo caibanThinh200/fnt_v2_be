@@ -151,10 +151,6 @@ class CommonFunction {
         page_size = parseInt(page_size)
         return ((total / page_size)) % 1 !== 0 ? Math.floor(total / page_size) + 1 : total / page_size 
     }
-
-    testFunc() {
-        console.log(123123);
-    }
 }
 
 export default CommonFunction;

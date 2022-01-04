@@ -30,7 +30,7 @@ class ProductController {
             const result = await ProductService.GetInitProductService(req);
             res.status(200).json(result);
         } catch(e) {
-            logger.erro(e);
+            logger.error(e);
             res.status(500).json(CommonFunction.getActionResult(null, 500, e, TAG_DEFINE.RESULT.PRODUCT.getList));
         }
     }

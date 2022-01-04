@@ -1,9 +1,11 @@
 import { generateData } from '../../Factory/interface';
-import TAG_DEFINE from '../../Constant/define';
 
-export default abstract class BillRequest implements generateData {
-    private total: any
-    private created_at: any
+export default abstract class MonthRevenueRequest implements generateData {
+    private month: number
+    private total: number
+    private target: number
+    private percent_kpi: number
+    private created_at: Date
 
     constructor(data: any) {
         this.setData(data);
@@ -11,7 +13,10 @@ export default abstract class BillRequest implements generateData {
 
     setData(data: any): void {
         // !isNaN(data?.total) ? data?.total > 0 ? data?.total : (data?.products || []).reduce((i, k) => i + k.price * k.buy_quantity, 0) : (data?.products || []).reduce((i, k) => i + k.price * k.buy_quantity, 0);
+        this.month = data?.month || new Date().getMonth() + 1;
         this.total = data?.total || 0;
+        this.target = data?.target || 0;
+        this.percent_kpi = (data?.total / data.target) * 100 || 0;
         this.created_at = data?.created_at || Date.now();
     }
 }

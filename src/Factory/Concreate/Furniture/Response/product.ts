@@ -10,6 +10,7 @@ class FurnitureResponse extends ProductResponse {
     private categories: any;
     private discount_price: number;
     private code: number;
+    private buy_quantity: number;
     private accessories: any;
 
     constructor(data: any) {
@@ -25,6 +26,7 @@ class FurnitureResponse extends ProductResponse {
         this.mainThumb = (data?.mainThumb || []).map(item => new FurnitureUploadResponse(item));
         this.subThumb = (data?.subThumb || []).map(item => new FurnitureUploadResponse(item));
         this.discount_price = data?.discount_price || 0;
+        this.buy_quantity= data?.buy_quantity || 0;
         this.categories = data?.categories || "";
     }
 }

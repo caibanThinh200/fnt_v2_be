@@ -23,7 +23,7 @@ const loggingMessage = (value: any): string => {
   else return colors.bgGreen(colorMessage);
 }
 
-const logger: any = createLogger({
+const logger = createLogger({
     format: winston.format.combine(
       winston.format.printf(info => loggingMessage(info))
     ),

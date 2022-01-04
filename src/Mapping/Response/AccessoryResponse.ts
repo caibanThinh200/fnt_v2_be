@@ -8,6 +8,7 @@ export abstract class AccessoryResponse implements generateData {
     private unit: string;
     private created_at: Date;
     private updated_at: Date;
+    private field: string;
 
     constructor(data: any) {
         this.setData(data);
@@ -18,6 +19,7 @@ export abstract class AccessoryResponse implements generateData {
         this.name = data?.name || "";
         this.types = data?.types || [];
         this.unit = data?.unit || "";
+        this.field = data?.field || ""
         this.created_at = data?.created_at || Date.now();
         this.updated_at = data?.updated_at || null;
     }

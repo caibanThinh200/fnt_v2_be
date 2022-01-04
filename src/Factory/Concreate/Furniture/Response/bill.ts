@@ -4,6 +4,8 @@ import { FurnitureUserResponse, FurnitureProductResponse } from './index';
 class FurnitureResponse extends BillResponse {
     private user: any;
     private products: any;
+    private code: string
+    private status: number;
 
     constructor(data: any) {
         super(data)
@@ -12,8 +14,10 @@ class FurnitureResponse extends BillResponse {
 
     setFurnitureData(data: any) {
         this.setData(data);
+        this.code = data?.code || "";
+        this.status = data?.status || 1;
         this.user = new FurnitureUserResponse(data?.user) || {}
-        this.products = (data?.products || []).map(item => new FurnitureProductResponse(item)) || [];
+        this.products = (data?.products || []).map(item => new FurnitureProductResponse(Object.assign(item.product, { buy_quantity: item.buy_quantity || 0 }))) || [];
     }
 }
 

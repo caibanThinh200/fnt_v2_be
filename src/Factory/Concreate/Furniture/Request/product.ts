@@ -8,6 +8,7 @@ class FurnitureRequest extends ProductRequest {
     private categories: any;
     private code: number;
     private discount_price: number
+    private buy_quantity: number
     private accessories: any;
     private subThumb: any;
     private mainThumb: any;
@@ -21,6 +22,7 @@ class FurnitureRequest extends ProductRequest {
         this.setData(data);
         this.code = data?.code || 0;
         this.is_percent = data?.is_percent || false;
+        this.buy_quantity = data?.buy_quantity || 0;
         // this.accessories = new FurnitureAccessoryRequest(data?.accessory, data?.type);
         // this.size = data?.size || "";
         // this.productWeight = data?.productWeight || 0;
@@ -29,8 +31,8 @@ class FurnitureRequest extends ProductRequest {
         this.accessories = data?.attribute || {};
         this.discount_price = data?.discount_price;
         // this.images = (data?.images || []).map(item => new FurnitureUploadRequest(item));
-        this.subThumb = data?.subThumb.length > 0 ? (data?.subThumb || []).map(item => new FurnitureUploadRequest(item)) : [];
-        this.mainThumb = data?.mainThumb.length > 0 ? (data?.mainThumb || []).map(item => new FurnitureUploadRequest(item)) : [];
+        this.subThumb = data?.subThumb ? data?.subThumb.length > 0 ? (data?.subThumb || []).map(item => new FurnitureUploadRequest(item)) : [] : [];
+        this.mainThumb = data?.mainThumb ? data?.mainThumb.length > 0 ? (data?.mainThumb || []).map(item => new FurnitureUploadRequest(item)) : [] : [];
         this.categories = data?.categories || [];
     }
 }

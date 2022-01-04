@@ -6,6 +6,7 @@ export abstract class AccessoryRequest implements generateData {
     private type: string;
     private unit: string;
     private types: number[];
+    private field: string;
     private created_at: Date;
     private updated_at: Date;
 
@@ -18,6 +19,7 @@ export abstract class AccessoryRequest implements generateData {
         this.type = data?.type || "";
         this.unit = data?.unit || "";
         this.types = data?.types || [];
+        this.field = data?.field || ""
         this.created_at = data?.created_at || Date.now();
         this.updated_at = data?.updated_at || null;
     }
