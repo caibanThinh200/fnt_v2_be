@@ -4,7 +4,6 @@ import TAG_DEFINE from '../../Constant/define';
 export abstract class AccessoryResponse implements generateData {
     private _id: string;
     private name: string;
-    private types: number[];
     private unit: string;
     private created_at: Date;
     private updated_at: Date;
@@ -17,7 +16,6 @@ export abstract class AccessoryResponse implements generateData {
     setData(data: any): void {
         this._id = data?._id || "";
         this.name = data?.name || "";
-        this.types = data?.types || [];
         this.unit = data?.unit || "";
         this.field = data?.field || ""
         this.created_at = data?.created_at || Date.now();

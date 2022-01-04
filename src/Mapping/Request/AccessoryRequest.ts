@@ -2,13 +2,13 @@ import { generateData } from '../../Factory/interface';
 import TAG_DEFINE from '../../Constant/define';
 
 export abstract class AccessoryRequest implements generateData {
-    private name: string;
-    private type: string;
-    private unit: string;
-    private types: number[];
-    private field: string;
-    private created_at: Date;
-    private updated_at: Date;
+    name: string;
+    type: string;
+    unit: string;
+    types: number[];
+    field: string;
+    created_at: Date;
+    updated_at: Date;
 
     constructor(data: any) {
         this.setData(data);

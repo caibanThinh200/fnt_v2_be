@@ -15,7 +15,8 @@ const TAG_DEFINE = {
         SOCIAL_MEDIA: "Social media",
         ACCESSORY: "Accessory",
         PRODUCT_TYPE: "Product-type",
-        MONTH_REVENUE: "Month-revenue"
+        MONTH_REVENUE: "Month-revenue",
+        ORDER: "Order"
     },
     SERVICE: {
         start: "WELCOME TO AZP SERVER",
@@ -95,6 +96,7 @@ const TAG_DEFINE = {
                 exist: "Tài khoản hoặc mật khẩu không đúng",
             },
             REGISTER: "Đăng ký",
+            CHANGE_PASSWORD: "Đổi mật khẩu"
         },
         SOCIAL_MEDIA: {
             create: "Thêm mạng xã hội",
@@ -122,6 +124,13 @@ const TAG_DEFINE = {
             update: "Cập nhật doanh thu tháng",
             getDetail: "Lấy chi tiết doanh thu tháng",
             delete: "Xóa doanh thu tháng"
+        },
+        ORDER: {
+            create: "Thêm đơn hàng",
+            getList: "Lấy danh sách đơn hàng",
+            update: "Cập nhật đơn hàng",
+            getDetail: "Lấy chi tiết đơn hàng",
+            delete: "Xóa đơn hàng"
         }
     },
     STORE: {

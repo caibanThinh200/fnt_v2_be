@@ -36,6 +36,7 @@ const PATH = {
         login: "/login",
         register: "/register",
         infoJWT: "/token",
+        change_password: '/update/change-password'
     },
     SOCIAL_MEDIA: {
         baseURL: "/media",
@@ -52,7 +53,11 @@ const PATH = {
     },
     GENERAL: {
         baseURL: "/general",
-        
+    },
+    ORDER: {
+        baseURL: '/order',
+        param: '/:orderId',
+        myOrder: '/my-order'
     }
 };
 

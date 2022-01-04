@@ -38,7 +38,10 @@ class ProductService {
                 { ...req.body, ...req.files },
                 req.headers["type"]
             );
-            const decoratorProduct = new DecoratorProduct(req.headers["type"], productFactory);
+            const decoratorProduct = new DecoratorProduct(
+                req.headers["type"],
+                productFactory
+            );
             await decoratorProduct.setAttribute(req.body.attribute);
 
             const product = ProductFactory.createSchema(

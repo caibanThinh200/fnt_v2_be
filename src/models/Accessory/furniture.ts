@@ -9,8 +9,12 @@ const FurnitureFields = {
     ...AccessoryBaseField,
     code: {
         type: Number,
-        require: true
-    }
+        require: true,
+    },
+    types: {
+        type: [Number],
+        default: [],
+    },
 };
 
 export const FurnitureAccessorySchema = new Schema(FurnitureFields, {timestamps: {createdAt: 'created_at', updatedAt: 'updated_at'}});
