@@ -13,7 +13,7 @@ class CommonFunction {
     }
 
     static getInstance() {
-        if(!this.instance) {
+        if (!this.instance) {
             this.instance = new CommonFunction
         }
         return CommonFunction.instance;
@@ -38,7 +38,7 @@ class CommonFunction {
 
     static getActionResult(result: any[] | any, code: number, error: any, value?: string) {
         const num: number = code <= 500 && code >= 400 ? 500 : 200,
-        status: string = code <= 500 && code >= 400 ? "FAILED" : "SUCCESS";
+            status: string = code <= 500 && code >= 400 ? "FAILED" : "SUCCESS";
 
         return {
             status,
@@ -92,7 +92,16 @@ class CommonFunction {
     }
 
     static checkPhoneNumberValue(value: string) {
-        return value.match(/^\d{11}$/);
+        return value.match(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im);
+    }
+
+    static hasNumber(string: string) {
+        return /\d/.test(string);
+    }
+
+    static checkUpperCase(strings: string) {
+        var i = 0;
+        return strings.split("").some(character => isNaN(parseInt(character)) && character === character.toUpperCase())
     }
 
     static checkEmailValue(value: string) {
@@ -130,9 +139,9 @@ class CommonFunction {
         let obj = {};
         alphabet.map((char, n) => {
             objectKeys.length > 0 && objectKeys.map((key, k) => {
-                if(n === k) {
-                    obj = {...obj, [char]: key};
-                }    
+                if (n === k) {
+                    obj = { ...obj, [char]: key };
+                }
             })
         })
         return obj;
@@ -148,8 +157,8 @@ class CommonFunction {
 
     static getPageCount(total: number | any, page_size: number | any) {
         total = parseInt(total),
-        page_size = parseInt(page_size)
-        return ((total / page_size)) % 1 !== 0 ? Math.floor(total / page_size) + 1 : total / page_size 
+            page_size = parseInt(page_size)
+        return ((total / page_size)) % 1 !== 0 ? Math.floor(total / page_size) + 1 : total / page_size
     }
 }
 

@@ -4,6 +4,7 @@ import ProductController from "../Controller/Product.controller";
 import logger from "../config/logger";
 import upload from "../config/multer";
 import { validateProduct } from "../Middleware/product.middleware";
+import { ValidateJWT } from '../Middleware/auth.middleware';
 
 const route: Router = express.Router();
 const thumbs = upload.fields([
@@ -13,6 +14,7 @@ const thumbs = upload.fields([
 
 route.post(
     PATH.APP.start,
+    ValidateJWT,
     thumbs,
     validateProduct,
     ProductController.AddProductController
@@ -22,6 +24,7 @@ route.get(PATH.PRODUCT.init, ProductController.GetInitProductController);
 route.get(PATH.PRODUCT.detail, ProductController.GetDetailProductController);
 route.put(
     PATH.PRODUCT.detail,
+    ValidateJWT,
     thumbs,
     validateProduct,
     ProductController.UpdateProductController
