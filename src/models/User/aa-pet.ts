@@ -17,6 +17,8 @@ interface UserDocument extends mongoose.Document {
         phone: string;
         address: string;
     }
+    salary: number;
+    typeStaff: string;
 }
 
 const UserSchema = new Schema(
@@ -27,18 +29,26 @@ const UserSchema = new Schema(
             required: true,
             unique: true,
         },
-        delivery: [{
-            type: {
-                name: String,
-                phone: String,
-                address: String
+        delivery: [
+            {
+                type: {
+                    name: String,
+                    phone: String,
+                    address: String,
+                },
+                default: [],
             },
-            default: []
-        }],
+        ],
         role: {
             type: String,
-            default: "customer"
-        }
+            default: "customer",
+        },
+        salary: Number,
+        typeStaff: String,
+        active: {
+            type: Boolean,
+            default: true
+        },
     },
     { timestamps: { createdAt: "created_at", updatedAt: "updated_at" } }
 );

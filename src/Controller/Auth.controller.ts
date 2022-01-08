@@ -39,6 +39,23 @@ class AuthController {
         }
     }
 
+    public static async GetListUserController(req: Request, res: Response) {
+        try {
+            const result = await AuthService.GetListUsersService(req);
+            res.status(200).json(result);
+        } catch (error) {
+            logger.error(error);
+            res.status(500).json(
+                CommonFunction.getActionResult(
+                    null,
+                    500,
+                    error,
+                    TAG_DEFINE.RESULT.AUTH.getList
+                )
+            );
+        }
+    }
+
     public static async GetDetailUserController(req: Request, res: Response) {
         try {
             const result = await AuthService.GetDetailUserService(req);

@@ -9,6 +9,7 @@ router.post(PATH.AUTH.login, controller.Login);
 router.post(PATH.AUTH.register, ValidateRegister, controller.Register);
 router.get(PATH.AUTH.detail, controller.GetDetailUserController);
 router.get(PATH.AUTH.infoJWT, ValidateJWT, controller.GetUserByJWTController);
+router.get(PATH.AUTH.getList, ValidateJWT, controller.GetListUserController);
 router.put(PATH.APP.params.replace("params", "id"), controller.UpdateUserController);
 router.put(PATH.AUTH.change_password, controller.ChangeMyPasswordController);
 

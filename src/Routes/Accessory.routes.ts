@@ -10,5 +10,6 @@ route.get(PATH.APP.start, AccessoryController.GetListAccessoryController);
 route.get(PATH.ACCESSORY.all, AccessoryController.GetListAllAccessoryController);
 route.get(PATH.APP.params.replace("params", "id"), AccessoryController.GetDetailAccessoryController);
 route.put(PATH.APP.params.replace("params", "id"), AccessoryController.UpdateAccessoryController);
+route.delete(PATH.APP.params.replace("params", "id"), AccessoryController.DeleteAccessoryController);
 
 export default route;

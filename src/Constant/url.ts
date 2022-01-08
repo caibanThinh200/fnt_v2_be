@@ -13,6 +13,7 @@ const PATH: any = {
         detail: "/detail/:id",
         categoryId: "/cate/:categoryId",
         categoryDetailId: "/cate-detail/:category_detail_id",
+        review: '/review'
     },
     PRODUCT_TYPE: {
         baseURL: "/product-type",
@@ -36,7 +37,8 @@ const PATH: any = {
         login: "/login",
         register: "/register",
         infoJWT: "/token",
-        change_password: '/update/change-password'
+        change_password: '/update/change-password',
+        getList: '/users'
     },
     SOCIAL_MEDIA: {
         baseURL: "/media",
@@ -51,7 +53,9 @@ const PATH: any = {
     ORDER: {
         baseURL: '/order',
         param: '/:orderId',
-        myOrder: '/my-order'
+        myOrder: '/my-order',
+        cancel: '/cancel/:orderId',
+        complete: '/complete/:orderId'
     }
 };
 

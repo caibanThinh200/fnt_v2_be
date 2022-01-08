@@ -82,7 +82,7 @@ class AccessoryService {
             const type = req.headers['type'];
             const {id} = req.params || "";
             const currentAccessory = await this.GetDetailAccessoryService(req);
-            const filters = currentAccessory || {};
+            const filters = currentAccessory.result || {};
             const newRequest = {
                 ...currentAccessory,
                 ...req.body
@@ -100,6 +100,24 @@ class AccessoryService {
         } catch(e) {
             logger.error(e);
             return CommonFunction.getActionResult(null, 400, e, TAG_DEFINE.RESULT.ACCESSORY.update);
+        }
+    }
+    public static async DeleteAccessoryService(req: any) {
+        try {
+            const type = req.headers['type'];
+            const {id} = req.params || "";
+            
+
+            const result = await AccessoryFactory.getSchema(type).findByIdAndDelete(id)
+            .then(() => CommonFunction.getActionResult(null, 200, null, TAG_DEFINE.RESULT.ACCESSORY.delete))
+            .catch((err) => {
+                logger.error(err);
+                return CommonFunction.getActionResult(null, 403, err, TAG_DEFINE.RESULT.ACCESSORY.delete);
+            })
+            return result;
+        } catch(e) {
+            logger.error(e);
+            return CommonFunction.getActionResult(null, 400, e, TAG_DEFINE.RESULT.ACCESSORY.delete);
         }
     }
 }

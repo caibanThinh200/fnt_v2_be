@@ -10,7 +10,6 @@ const AAPetFields = {
     types: {
         type: [
             {
-                _id: mongoose.Schema.Types.ObjectId,
                 name: String,
             },
         ],

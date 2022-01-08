@@ -1,12 +1,14 @@
+import mongoose from "mongoose";
+
 export const ProductBaseField = {
+    _id: mongoose.Schema.Types.ObjectId,
     name: {
         type: String,
         required: true,
     },
     description: {
         type: String,
-        maxLength: 100,
-        default: ''
+        default: "",
     },
     quantity: {
         type: Number,

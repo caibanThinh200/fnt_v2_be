@@ -5,6 +5,7 @@ class AAPetOrderRequest extends OrderRequest {
     private payment: any;
     private products: any;
     private userId: string;
+    private haveInBill: boolean;
 
     constructor(data: any) {
         super(data);
@@ -17,6 +18,7 @@ class AAPetOrderRequest extends OrderRequest {
         this.payment = data?.payment;
         this.products = data?.products;
         this.userId = data?.userId;
+        this.haveInBill = data?.haveInBill || false;
     }
 }
 

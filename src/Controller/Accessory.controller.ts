@@ -54,6 +54,15 @@ class AccessoryController {
             res.status(500).json(CommonFunction.getActionResult(null, 500, e, TAG_DEFINE.RESULT.ACCESSORY.update));
         }
     }
+    public static async DeleteAccessoryController(req: Request, res: Response) {
+        try {
+            const result = await AccessoryService.DeleteAccessoryService(req);
+            res.status(200).json(result);
+        } catch(e) {
+            logger.error(e);
+            res.status(500).json(CommonFunction.getActionResult(null, 500, e, TAG_DEFINE.RESULT.ACCESSORY.delete));
+        }
+    }
 }
 
 export default AccessoryController;

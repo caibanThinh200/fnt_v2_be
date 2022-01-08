@@ -13,6 +13,12 @@ export interface ProductDocument extends mongoose.Document{
     saled_count: number,
     discount_value: number,
     price: number,
+    reviews: {
+        user: string;
+        point: number;
+        comment: string;
+    }[];
+    rating_point: number;
     created_at: Date,
     updated_at: Date,
 }
@@ -31,6 +37,15 @@ export const ProductField = {
         type: Array,
         default: [],
     },
+    reviews: {
+        type: [{
+            user: String,
+            point: Number,
+            comment: String
+        }],
+        default: []
+    },
+    rating_point: Number,
     accessories: {}
 };
 

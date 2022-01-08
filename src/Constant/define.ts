@@ -63,6 +63,7 @@ const TAG_DEFINE = {
             update: "Cập nhật sản phẩm",
             getDetail: "Lấy chi tiết sản phẩm",
             delete: "Xóa sản phẩm",
+            review: "Đánh giá sản phẩm"
         },
         PRODUCT_TYPE: {
             create: "Thêm loại sản phẩm",
@@ -95,7 +96,8 @@ const TAG_DEFINE = {
                 exist: "Tài khoản hoặc mật khẩu không đúng",
             },
             REGISTER: "Đăng ký",
-            CHANGE_PASSWORD: "Đổi mật khẩu"
+            CHANGE_PASSWORD: "Đổi mật khẩu",
+            getList: "Lấy danh sách người dùng"
         },
         SOCIAL_MEDIA: {
             create: "Thêm mạng xã hội",
@@ -122,7 +124,9 @@ const TAG_DEFINE = {
             getList: "Lấy danh sách đơn hàng",
             update: "Cập nhật đơn hàng",
             getDetail: "Lấy chi tiết đơn hàng",
-            delete: "Xóa đơn hàng"
+            delete: "Xóa đơn hàng",
+            cancel: "Hủy đơn hàng",
+            complete: 'Hoàn tất đơn hàng'
         }
     },
     STORE: {

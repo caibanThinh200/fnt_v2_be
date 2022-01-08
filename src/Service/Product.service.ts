@@ -99,9 +99,44 @@ class ProductService {
     }
 
     public static async GetListProductService(req: any) {
+        let sort = {};
+        let query = {};
+
+        switch (req.query.productType) {
+            case "bestSeller":
+                sort = {
+                    saled_count: -1,
+                };
+                query = {
+                    saled_count: {
+                        $gt: 0,
+                    },
+                };
+                break;
+            case "newArrival":
+                sort = {
+                    created_at: -1,
+                };
+                break;
+            case "sale":
+                query = {
+                    discount_value: {
+                        $gt: 0,
+                    },
+                };
+                break;
+            default:
+                sort = {
+                    saled_count: -1,
+                };
+        }
+
         try {
             const type = req.headers["type"];
-            const product = await ProductFactory.getSchema(type).find({});
+            const product = await ProductFactory.getSchema(type)
+                .find(query)
+                .sort(sort)
+                .limit(parseInt(req.query.limit ? req.query.limit : 0));
 
             const productFactory = product.map((item) =>
                 ProductFactory.getProduct(item, type)
@@ -109,6 +144,53 @@ class ProductService {
             return CommonFunction.getActionResult(productFactory, 200, null);
         } catch (e) {
             logger.error(e);
+        }
+    }
+
+    public static async ReviewProductService(req: any) {
+        const type = req.headers["type"];
+        const { productId, comment, user, point } = req.body;
+
+        try {
+            const product = await ProductFactory.getSchema(type).findById(
+                productId
+            );
+
+            product.reviews.push({
+                user,
+                point,
+                comment,
+            });
+
+            product.rating_point = (product.rating_point + point) / 2;
+
+            return await product
+                .save()
+                .then(() =>
+                    CommonFunction.getActionResult(
+                        null,
+                        200,
+                        null,
+                        TAG_DEFINE.RESULT.PRODUCT.review
+                    )
+                )
+                .catch((err) => {
+                    logger.error(err);
+                    return CommonFunction.getActionResult(
+                        null,
+                        400,
+                        err,
+                        TAG_DEFINE.RESULT.PRODUCT.review
+                    );
+                });
+        } catch (error) {
+            logger.error(error);
+            return CommonFunction.getActionResult(
+                null,
+                400,
+                error,
+                TAG_DEFINE.RESULT.PRODUCT.review
+            );
         }
     }
 

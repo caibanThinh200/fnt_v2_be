@@ -1,8 +1,10 @@
 import {BillResponse} from '../../../../Mapping/Response/BillResponse';
 
 export default class AAPetResponse extends BillResponse {
-    private user_id: any;
+    private userId: any;
     private products: any;
+    private orderId: string;
+    private total: number;
 
     constructor(data: any){
         super(data);
@@ -11,7 +13,9 @@ export default class AAPetResponse extends BillResponse {
 
     setAAPetData(data: any){
         this.setData(data);
-        this.user_id = data?.user_id;
-        this.products = data?.products;
+        this.userId = data?.userId;
+        this.products = data?.products || [];
+        this.orderId = data?.orderId;
+        this.total = data?.total;
     }
 }

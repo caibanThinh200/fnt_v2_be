@@ -2,17 +2,32 @@ import logger from "../Config/logger";
 import TAG_DEFINE from "../Constant/define";
 import CommonFunction from "../Utils/function";
 import BillFactory from "../Factory/Creator/BillFactory";
+import OrderFactory from "../Factory/Creator/OrderFactory";
 
 class BillService {
     public static async AddBillService(req: any) {
+        const {orderId} = req.body;
+        const type = req.headers["type"];
+
         try {
+            const order = await OrderFactory.getSchema(type).findById(orderId);
+
+            if (type === TAG_DEFINE.STORE.AA_PET){
+                order.haveInBill = true;
+                order.save();
+            }
+
             const billFactory = BillFactory.createBill(
-                req.body,
-                req.headers["type"]
+                {
+                    orderId,
+                    products: order.products,
+                    total: order.total
+                },
+                type
             );
             const bill = BillFactory.createSchema(
                 billFactory,
-                req.headers["type"]
+                type
             );
             const result = await bill
                 .save()
@@ -34,14 +49,7 @@ class BillService {
         try {
             const type = req.headers["type"];
             const bill = await BillFactory.getSchema(type)
-                .find()
-                .populate("user_id")
-                .populate({
-                    path: "products",
-                    populate: {
-                        path: "product_id"
-                    }
-                });
+                .find();
             const billFactory = bill.map((item) =>
                 BillFactory.getBill(item, type)
             );
@@ -58,7 +66,6 @@ class BillService {
             const { id } = req.params || "";
             const bill = await BillFactory.getSchema(type)
                 .findById(id)
-                .populate("user_id");
             const billFactory = BillFactory.getBill(bill, type);
             return CommonFunction.getActionResult(billFactory, 200, null);
         } catch (e) {

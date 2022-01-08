@@ -5,51 +5,58 @@ import { ProductDocument, ProductField } from "../Product/aa-pet";
 import baseField from "./baseField";
 
 const OrderSchema = new mongoose.Schema({
-  ...baseField,
-  userId: {
-    type: String, 
-    ref: TAG_DEFINE.SCHEMA.USER
-  },
-  products: {
-    type: [
-      {
-        _id: false,
-        product: ProductField,
-        quantity: Number,
-      },
-    ],
-  },
-  delivery: {
-    type: {
-      _id: false,
-      name: String,
-      phone: String,
-      address: String,
-      status: {
+    ...baseField,
+    userId: {
         type: String,
-        default: "pending",
-      },
+        ref: CommonFunction.getStoreSchema(
+            TAG_DEFINE.SCHEMA.USER,
+            TAG_DEFINE.STORE.AA_PET
+        ),
     },
-  },
-  payment: {
-    type: {
-      _id: false,
-      status: Boolean, 
-      method: String
+    products: {
+        type: [
+            {
+                _id: false,
+                product: ProductField,
+                quantity: Number,
+            },
+        ],
     },
-    default: {
-      status: false,
-      method: 'cash'
-    }
-  },
+    delivery: {
+        type: {
+            _id: false,
+            name: String,
+            phone: String,
+            address: String,
+            status: {
+                type: String,
+                default: "pending",
+            },
+        },
+    },
+    payment: {
+        type: {
+            _id: false,
+            status: Boolean,
+            method: String,
+        },
+        default: {
+            status: false,
+            method: "cash",
+        },
+    },
+    haveInBill: {
+        type: Boolean,
+        default: false,
+    },
 });
 
 const Order = mongoose.model(
-  CommonFunction.getStoreSchema(
-    TAG_DEFINE.SCHEMA.ORDER,
-    TAG_DEFINE.STORE.AA_PET
-  ),
-  OrderSchema
+    CommonFunction.getStoreSchema(
+        TAG_DEFINE.SCHEMA.ORDER,
+        TAG_DEFINE.STORE.AA_PET
+    ),
+    OrderSchema
 );
 
 export default Order;

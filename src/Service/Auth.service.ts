@@ -51,8 +51,31 @@ export default class AuthService {
         }
     }
 
+    public static async GetListUsersService(req: any){
+        const type = req.headers['type'];
+
+        try {
+            const users = await UserFactory.getSchema(type).find({
+                role: "staff",
+            });
+            
+            const usersFactory = users.map(user => UserFactory.getUser(user, type));
+
+            return CommonFunction.getActionResult(usersFactory, 200, null);
+        } catch (error) {
+            logger.error(error);
+
+            return CommonFunction.getActionResult(
+                null,
+                400,
+                error,
+                TAG_DEFINE.RESULT.AUTH.getList
+            );
+        }
+    }
+
     public static async LoginService(req: any) {
-        const type = req.headers.type;
+        const type = req.headers['type'];
         const { email, password, username } = req.body;
         try {
             let existingUser: any = await UserFactory.getSchema(type).findOne({

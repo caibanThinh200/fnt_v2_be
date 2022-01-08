@@ -18,7 +18,7 @@ class OrderController {
             null,
             500,
             e,
-            TAG_DEFINE.RESULT.CATEGORY.create
+            TAG_DEFINE.RESULT.ORDER.create
           )
         );
     }
@@ -37,7 +37,7 @@ class OrderController {
             null,
             500,
             e,
-            TAG_DEFINE.RESULT.CATEGORY.getList
+            TAG_DEFINE.RESULT.ORDER.getList
           )
         );
     }
@@ -56,7 +56,7 @@ class OrderController {
             null,
             500,
             e,
-            TAG_DEFINE.RESULT.CATEGORY.getList
+            TAG_DEFINE.RESULT.ORDER.getList
           )
         );
     }
@@ -75,7 +75,7 @@ class OrderController {
             null,
             500,
             e,
-            TAG_DEFINE.RESULT.CATEGORY.getDetail
+            TAG_DEFINE.RESULT.ORDER.getDetail
           )
         );
     }
@@ -94,11 +94,50 @@ class OrderController {
             null,
             500,
             e,
-            TAG_DEFINE.RESULT.CATEGORY.update
+            TAG_DEFINE.RESULT.ORDER.update
           )
         );
     }
   }
+
+  public static async CancelOrderController(req: Request, res: Response) {
+    try {
+      const result = await OrderService.CancelOrderService(req);
+      res.status(200).json(result);
+    } catch (e) {
+      logger.error(e);
+      res
+        .status(500)
+        .json(
+          CommonFunction.getActionResult(
+            null,
+            500,
+            e,
+            TAG_DEFINE.RESULT.ORDER.cancel
+          )
+        );
+    }
+  }
+  public static async CompleteOrderController(req: Request, res: Response) {
+    try {
+      const result = await OrderService.CompleteOrderService(req);
+      res.status(200).json(result);
+    } catch (e) {
+      logger.error(e);
+      res
+        .status(500)
+        .json(
+          CommonFunction.getActionResult(
+            null,
+            500,
+            e,
+            TAG_DEFINE.RESULT.ORDER.complete
+          )
+        );
+    }
+  }
+
+
 }
 
 export default OrderController;

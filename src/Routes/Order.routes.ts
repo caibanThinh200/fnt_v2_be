@@ -9,5 +9,7 @@ router.get(PATH.ORDER.myOrder, OrderController.GetMyOrderController);
 router.get(PATH.ORDER.param, OrderController.GetDetailOrderController);
 router.post(PATH.APP.start, OrderController.AddOrderController);
 router.put(PATH.ORDER.param, OrderController.UpdateOrderController);
+router.put(PATH.ORDER.cancel, OrderController.CancelOrderController);
+router.put(PATH.ORDER.complete, OrderController.CompleteOrderController);
 
 export default router;

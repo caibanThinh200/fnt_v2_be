@@ -20,6 +20,7 @@ route.put(
     validateProduct,
     ProductController.UpdateProductController
 );
+route.put(PATH.PRODUCT.review, ProductController.ReviewProductController);
 route.post(PATH.PRODUCT.excel, ProductController.AddProductByExcelController);
 route.get(PATH.PRODUCT.filter, ProductController.GetFilterProductController);
 route.get(
@@ -29,6 +30,10 @@ route.get(
 route.get(
     PATH.PRODUCT.categoryDetailId,
     ProductController.GetProductsByCategoryDetailIdController
+);
+route.delete(
+    PATH.APP.params.replace("params", "id"),
+    ProductController.DeleteProductController
 );
 
 export default route;
